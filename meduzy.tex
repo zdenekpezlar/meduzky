@@ -1,0 +1,1802 @@
+\documentclass[12pt]{report}
+\usepackage{multicol}
+\usepackage[czech]{babel}
+\usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{a4wide}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{algorithm}
+\usepackage{threeparttable}
+\usepackage{algorithmic}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{tkz-graph}
+\usepackage{tkz-berge}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[all]{xypic}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{mathalfa}
+\usepackage{verse}
+\usepackage{extarrows}
+\usepackage{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})} 
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usetikzlibrary{babel}
+\usepackage{epsfig}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\hypersetup{colorlinks,
+citecolor=RoyalBlue
+}
+\usepackage{url}
+\usepackage{tabularx}
+\usetikzlibrary{intersections}
+\usepackage[metapost, mplabels,truebbox,clip]{mfpic}
+\allowdisplaybreaks
+\usepackage{scrextend}
+\makeatletter
+\newcommand\figcaption{\def\@captype{figure}\caption}
+\makeatother
+
+\renewcommand{\sectionmark}[1]{ \markright{-- \thesection.\ #1}{}}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead[L]{}
+\chead{}
+\rhead[R]{\nouppercase\leftmark}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[L]{}
+\chead{}
+\rhead[R]{\nouppercase\leftmark}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+
+
+\begin{document}
+
+
+\newcommand{\ZZ}{{\mathbb{Z}}}
+\newcommand{\cyc}[1]{{\langle #1 \rangle}}
+
+
+\newtheorem{veta}{Věta}[section]
+%\newtheorem{definice}{Definice}[section]
+%\newtheorem{dusledek}{Důsledek}[section]
+%\newtheorem{lemma}{Lemma}[section]
+
+
+\theoremstyle{de}
+\newtheorem{de}{Definition}[section]
+\newtheorem{dusledek}[veta]{Důsledek}
+\newtheorem{lemma}[veta]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{priklad}[veta]{Příklad}
+\newtheorem{definice}[veta]{Definice}
+\newtheorem{problem}[veta]{Problém}
+\newtheorem{znaceni}[veta]{Značení}
+\newtheorem*{umluva}{Úmluva}
+\newtheorem*{poznamka}{Poznámka}
+\newtheorem{dfn}[veta]{Definition}
+
+\floatname{algorithm}{Algoritmus}
+
+\setlength{\parindent}{2ex}
+
+\def\Tr{\operatorname{Tr}}
+\def\N{\operatorname{N}}
+\def\SL{\operatorname{SL}}
+\def\nsd{\operatorname{nsd}}
+\def\End{\operatorname{End}}
+\def\id{\operatorname{id}}
+\def\char{\operatorname{char}}
+\def\ker{\operatorname{ker}}
+\def\Aut{\operatorname{Aut}}
+\def\Gal{\operatorname{Gal}}
+\def\Fix{\operatorname{Fix}}
+\def\c{\operatorname{\mathbb{C}}}
+\def\R{\operatorname{\mathbb{R}}}
+\def\q{\operatorname{\mathbb{Q}}}
+\def\e{\operatorname{\mathcal{V}}}
+\def\z{\operatorname{\mathbb{Z}}}
+\def\n{\operatorname{\mathbb{N}}}
+\def\s{\operatorname{\subseteq}}
+\def\w{\operatorname{\zeta}}
+\def\fii{\operatorname{\varphi}}
+\def\o{\operatorname{\mathcal{O}}}
+\def\I{\operatorname{\mathcal{I}}}
+\def\J{\operatorname{\mathcal{J}}}
+\def\P{\operatorname{\mathcal{P}}}
+\def\pn{\operatorname{\mathfrak{P}}}
+\def\pn{\operatorname{\mathfrak{p}}}
+\def\res{\operatorname{res}}
+\def\ord{\operatorname{ord}}
+\def\AG{\operatorname{AG}}
+\setlength{\emergencystretch}{3em}
+
+
+\begin{titlepage}
+{
+\centering
+\LARGE \textbf{STŘEDOŠKOLSKÁ ODBORNÁ ČINNOST}\\
+\Large\textbf{Obor č. 1: Matematika a statistika}\\
+\vspace{6cm}
+\LARGE\textbf{Medúzy a posloupnosti průměrů}\\
+}
+\vspace{10cm}
+{\noindent\large\bfseries Zdeněk Pezlar\\ 
+	\large\bfseries Jihomoravský kraj\\ }
+\center\large Brno 2022
+	
+\end{titlepage}
+
+\begin{titlepage}
+{
+\centering
+\LARGE \textbf{STŘEDOŠKOLSKÁ ODBORNÁ ČINNOST}\\
+\Large\textbf{Obor č. 1: Matematika a statistika}\\
+\vspace{6cm}
+\LARGE\textbf{Medúzy a posloupnosti průměrů}\\
+\vspace{1cm}
+\LARGE\textbf{On Jellyfish and Sequences of Means}\\
+}
+\vspace{6cm}
+{\noindent\large\bfseries Autor: Zdeněk Pezlar\\ 
+	\large\bfseries Škola: Gymnázium Brno, třída Kapitána Jaroše, p. o.\\
+    \large\bfseries Kraj: Jihomoravský \\
+	\large\bfseries Vedoucí: Mgr. Vojtěch Suchánek\\
+	 \large\bfseries Konzultant: Mgr. Marek Sýs Phd.	
+	}
+	
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\vspace*{14cm}
+\subsubsection*{Prohlášení}
+
+Prohlašuji, že jsem svou práci SOČ vypracoval samostatně a použil jsem pouze prameny a literaturu uvedené v seznamu bibliografických záznamů.
+Prohlašuji, že tištěná verze a elektronická verze soutěžní práce SOČ jsou shodné. 
+Nemám závažný důvod proti zpřístupňování této práce v souladu se zákonem č. 121/2000 Sb., o právu autorském, o~právech souvisejících s právem autorským a o změně některých zákonů (autorský zákon) v~platném znění. \\[1cm]
+V Brně dne: \dotfill \ \ \ \ \ \  Podpis: \dotfill
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+\includegraphics[width=0.35\textwidth]{podpora_soc-horizontalni.png}
+\end{center}
+\vspace*{1.5cm}
+\begin{center}
+\includegraphics[width=0.45\textwidth]{logo_JMK_pruhledne.png}
+\end{center}
+\vspace*{2.2cm}
+\begin{center}
+\includegraphics[width=0.35\textwidth]{jcmm-logotype-positive1.png}
+\end{center}
+\vspace*{6.5cm}
+\subsection*{Poděkování}
+Tom pozdravuje.
+
+
+\newpage
+\thispagestyle{empty}
+\subsection*{Abstrakt}
+V naší práci podáme lehký úvod do studia isogenií eliptických křivek bez předchozího studia algebraické geometrie. V práci rovněž diskutujeme několik vybraných protokolů a~poskytujeme úvod do studia algebraické teorie čísel. Pomocí jejího studia pak podrobněji studujeme okruhy endomorfismů supersingulárních křivek. Práce je obohacena o implementace některých zmíněných protokolů, přičemž poskytujeme první implementaci velmi slibného protokolu SITH.
+
+
+\subsection*{Klíčová slova}
+isogenie; eliptická křivka; okruh endomorfismů; grupa tříd ideálů; kvantový počítač; Diffie-Hellman; SIDH; CSIDH; SITH
+
+
+\vspace*{4cm}
+
+\subsection*{Abstract}
+We provide a gentle introduction to the study of elliptic curve isogenies without any assumed knowledge in algebraic geometry. We then discuss several chosen protocols and give a~brief introduction to algebraic number theory. After that, we apply the gained knowledge on the study of endomorphism rings of supersingular curves. The thesis is accompanied by a couple of implemented protocols, providing the first ever implementation of the very promising protocol SITH.
+
+\subsection*{Key words}
+isogeny; elliptic curve; endomorphism ring; ideal class group; quantum computer; Diffie-Hellman; SIDH; CSIDH; SITH
+
+
+
+
+
+{
+\hypersetup{linkcolor=black}
+\tableofcontents
+}
+\thispagestyle{empty}
+
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+\markboth{Úvod}{}
+
+Mějme pro začátek dvě kladná reálná čísla $a,b$. Jejich \textit{aritmetický} a \textit{geometrický průměr} splňují elementární nerovnost:
+$$\frac{a+b}{2} \geqslant \sqrt{ab}.$$
+Uvažme rekurentní posloupnost dvojic kladných čísel takovou, že každá dvojice je tvořená právě těmito dvěma průměry, tedy $a_0 = a, b_0 = b$ a:
+\begin{equation*}
+(a_{n+1},b_{n+1}) = \left(\frac{a_n+b_n}{2}, \sqrt{a_n b_n} \right).
+\end{equation*}
+Platí tedy $a_n \geqslant b_n$ pro kladné $n$. Pro $n$ jdoucí k nekonečnu $a_n$ i $b_n$ konvergují ke společné limitě, tzv. \textit{aritmetickému geometrickému průměru} čísel $a,b$. Tento průměr studoval již Carl Friedrich Gauss [?] a ukázal, že tato na první pohled nevinná posloupnost je spojena s eliptickými integrály. Později se dokonce ukázalo, že tuto posloupnost můžeme využít k rychlému počítání čísla $\pi$ i evaluování funkcí jako $e^x$ či $\arcsin(x)$. 
+
+Co se ale na posloupnost podívat v jiném světle, konkrétně nad konečnými tělesy? V~jistých tělesech můžeme definovat jednoznačně \uv{konzistentní} odmocninu z čísla a tak adaptovat naši posloupnost. Tentokrát posloupnost již ne vždy nekonverguje, zato však tvoří možná zajímavější struktury. Pokud sestavíme orientované grafy popisující naši posloupnost pro všechny dvojice $(a,b)$ nad naším tělesem, získáme grafy, které vypadají následovně:\\
+-IMG-\\
+Tento graf nazveme \textit{medúzou}. Už to, že grafy tvoří takovéto struktury je pozoruhodné, medúzy ale zde zdaleka nekončí. Ukážeme, že svým způsobem popisují \textit{třídy isomorfismů eliptických křivek} nad naším tělesem, ?. 
+
+Na tomto místě končí článek \cite{Meduza}, na kterém je práce založená. My jsme se rozhodli uvážit v potaz i podobné posloupnosti užívající průměry nad konečnými tělesy. Ukážeme, že jedna z nich je s $AG$ posloupnosti téměř shodná, druhá se však liší. Grafy těchto posloupností charakterizujeme a ukážeme, že jsou ještě zajímavější, než pouhé medúzy. Ve finální části práce i tuto posloupnost propojíme s teorií dynamických systémů a eliptických křivek.
+
+\chapter{AG posloupnost nad reálnými čísly}
+
+
+Nejprve se budeme zabývat posloupností dvojic kladných reálných čísel, přičemž každá další je tvořena aritmetickým a geometrickým průměrem té předchozí. I~v~tomto jednoduchém prostředí narazíme na posloupnost v místech, kde bychom vůbec nehledali.
+
+\section{Seznámení s posloupností}
+
+
+\begin{definice}
+Ať $a,b$ jsou dvě kladná reálná čísla. Pak definujme \textit{AG posloupnost} jako posloupnost $(a_n,b_n)_{n=0}^{\infty}$ tak, že $(a_0,b_0) = (a,b)$ a:
+$$\left(a_{n+1},b_{n+1} \right) = \left(\frac{a_n+b_n}{2}, \sqrt{a_n b_n} \right).$$
+Jednotlivá čísla $a_i$ a $b_i$ nazveme \textit{složkami} prvku $(a_i,b_i)$ této posloupnosti.
+\end{definice}
+
+Toto značení ponechme po zbytek sekce. První vlastnosti, které si všimněme, je monotónnost obou složek $(a_n)_{n=0}^{\infty}$ a $(b_n)_{n=0}^{\infty}$. Z $AG$ nerovnosti je totiž platné $a_n \geqslant b_n$ a~proto:
+$$ b_{n+1} = \sqrt{a_n b_n} \geqslant b_n,$$
+posloupnost $(b_n)_{n=0}^{\infty}$ je proto rostoucí (pokud $a_0 \neq b_0$, tak ostře rostoucí). Obdobně  můžeme psát:
+$$a_{n+1} = \frac{a_n+b_n}{2} \leqslant a_n,$$
+posloupnost $(a_n)_{n=0}^{\infty}$ je tedy naopak klesající. Protože průměry dvou čísel leží mezi nimi, obě posloupnosti jsou shora svírané prvkem $a$ a zdola $b$. Libovolná ohraničená monotónní posloupnost konverguje, víme tedy, že obě posloupnosti $(a_n)_{n=0}^{\infty}$ a $(a_n)_{n=0}^{\infty}$ konvergují. Abychom získali nějakou představu o jejich limitách, ukážeme si pár příkladů.
+
+
+Pokud si zvolíme $a=b=5$, tak jsou obě hodnoty konstantní, to příliš zajímavě není. Zvolme si tedy například trochu záživnější dvojici $a = 2, b = 8$. Pak můžeme psát:
+
+
+\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.3\linewidth}p{0.202\linewidth}}
+\toprule
+$a_i$ & $b_i$\\
+\midrule
+$2$ & \noindent $8$\\
+$5$ & \noindent $4$\\
+$ 4.5$ & $4.472135955000\dots$\\
+$4.486067977500\dots$ & $4.486046343664\dots$\\
+$4.486057160582\dots$ & $4.486057160569\dots$\\ 
+$4.486057160575\dots$ & $4.486057160575\dots$\\
+$4.486057160575$ & $4.486057160575\dots$\\
+$4.486057160575$ & $4.486057160575\dots$\\
+\vdots & \vdots\\
+\bottomrule 
+\end{longtable}
+GRAF
+
+V tomto případě prvky $AG$ posloupnosti zdárně konvergují ke společné hodnotě. Spočítejme si ještě pro jistotu jednu posloupnost, tentokrát pro dvojici $a=1$ a $b=\sqrt{2}$. Tuto dvojici vůbec nevolíme náhodně. Vrátíme se k ní ještě za chvíli, její $AG$ posloupnost lze použít k rychlému počítání čísla $\pi$.
+
+\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.3\linewidth}p{0.202\linewidth}}
+\toprule
+$a_i$ & $b_i$\\
+\midrule
+$1$ & $1.414213562373\dots$\\
+$1.207106781187\dots$ & $1.189207115003\dots$\\
+$1.198156948095\dots$ & $1.198123521493\dots$\\
+$1.198140234794\dots$ & $1.198140234677\dots$\\
+$1.198140234736\dots$ & $1.198140234736\dots$\\
+$1.198140234736\dots$&  $1.198140234736\dots$\\
+$1.198140234736\dots$&  $1.198140234736\dots$\\
+\vdots & \vdots\\
+\bottomrule 
+\end{longtable}
+
+Složky $AG$ posloupnosti vždy konvergují ke společné hodnotě.
+\begin{veta}\label{conv}
+Ať $(a_n,b_n)_{n=0} ^{\infty}$ je AG posloupnost. Pak limity čísel $a_n$ a $b_n$ pro $n$ jdoucí do nekonečna existují a jsou si navzájem rovné. 
+\end{veta}
+\noindent \textit{Důkaz.} Existenci limit jsme si ukázali výše. Jelikož platí:
+$$ 0 \leqslant a_n - b_n  =  2 \left( a_n - \frac{a_n+ b_n}{2} \right) = 2 ( a_{n} - a_{n+1} )$$
+a navíc díky existence limity $\lim_{n \rightarrow \infty} a_n - a_{n+1} = 0$, je posloupnost $(a_n-b_n)_{n=0}^{\infty}$ sevřena mezi dvěma posloupnostmi s nulovou limitou, konstantně nulovou posloupností a $(a_{n}-a_{n+1})_{n=0}^{\infty}$, má ji proto nulovou též. \hfill $\square$
+
+
+\begin{definice}
+Tuto společnou limitu nazvěme \textit{aritmeticko-geometrickým průměrem}, zkráceně \textit{AG-průměrem}, čísel $a,b$. Toto číslo značme $\AG(a,b)$.
+\end{definice}
+
+
+Následující věta shrnuje základní vlastnosti $AG$ posloupnosti. 
+
+\begin{veta}\label{zkjb}
+Mějme $a,b,k \in \mathbb{R}^{+}$. Pro $AG$ posloupnost platí:
+\begin{enumerate}
+\item $\AG(a,a) = a$,
+\item $\AG(ka,kb) = k \AG (a,b)$,
+\item $\AG(a,b) = \AG(a_1,b_1) = \AG(a_2,b_2) = \dots$,
+\item $\AG(1-x,1+x) = \AG(a,b)$, kde $x = \frac{1}{a} \sqrt{a^2 - b^2}$.
+\end{enumerate}
+\end{veta}
+
+
+Vraťme se zpět k příkladům, které jsme uvedli na začátku. Třetí iterace $AG$ posloupnosti čísel $2$ a $8$ se s limitou shoduje už na čtyřech desetinných místech. Ta následující dokonce na desíti. Opravdu, $AG$ posloupnost konverguje velmi rychle.
+\begin{veta}\label{konverg}
+Ať $(a_n,b_n)_{n=0}^{\infty}$ je $AG$ posloupnost. Pak složky $(a_n)_{n=0}^{\infty}$ a $(b_n)_{n=0}^{\infty}$ konvergují ke společné limitě kvadraticky.
+\end{veta}
+Tzv. \textit{řád konvergence} nám říká, jak přesně jak rychle posloupnost konverguje. Přesná definice řádu $\sigma$ posloupnosti $x_i$ konvergující k limitě $L$ je, že pro všechna $n \in \mathbb{N}$ a nějakou konstantu $C$ platí:
+$$\frac{\vert x_{n+1} - L \vert}{\vert x_n - L \vert ^ \sigma} \leqslant C.$$
+Pro $\sigma = 2$ získáme \textit{kvadraticky konvergentní posloupnost}. U takové posloupnosti se tak v~každém dalším kroku se obě čísla \textit{přibližně} rovnají limitě na dvakrát více desetinných míst.
+
+\noindent \textit{Důkaz.} Zaveďme pomocné posloupnosti $(x_n)_{n=0}^{\infty}$ a $(\varepsilon_i)_{n=0}^{\infty}$ splňující $x_i = \frac{a_i}{b_i} = 1 + \varepsilon_i$ pro každé $i$. Platí $\varepsilon_i \geqslant 0$ pro každé $i$. Pak pro libovolné $n$ platí:
+\begin{equation*}
+x_{n+1} = \frac{a_n+b_n}{2 \sqrt{a_n b_n}} = \frac{\sqrt{\frac{a_n}{b_n}} + \sqrt{\frac{b_n}{a_n}}}{2} = \frac{\sqrt{x_n}+\frac{1}{\sqrt{x_n}}}{2},
+\end{equation*}
+takže:
+\begin{align*}
+1+\varepsilon_{n+1} &= x_{n+1} =\frac{\sqrt{x_n}+\frac{1}{\sqrt{x_n}}}{2}\\
+&= \frac{\sqrt{1+\varepsilon_n} + \frac{1}{\sqrt{1+\varepsilon_n}}}{2}.
+\end{align*}
+Taylorova řada funkce $\sqrt{x}$ v bodě $1$ je $1+\frac{x}{2} - \frac{x^2}{8} + O(x^3)$ a Taylorova řada funkce $\sqrt{x}^{-1}$ je $1-\frac{x}{2}+\frac{3 x^2}{8} + O(x^3)$. Proto pro $n$ dostatečně velké a tedy $\varepsilon_n$ dostatečně malé platí:
+$$1+\varepsilon_{n+1}  = 1+\frac{\varepsilon_n ^2}{8} + O(\varepsilon_n ^3),$$ 
+řád konvergence $\frac{a_i}{b_i} \rightarrow 1$ je tedy kvadratický. \hfill $\square$\\
+
+
+Prozatím může vypadat, že tato posloupnost leží na uzavřeném ostrůvku vzdálená od jiných oblastní matematiky. Toto zdání však nemůže být dál od pravdy. Zamysleme se přímo nad samotným průměrem, limity posloupnost. Pro čísla $2$ a $8$ získáváme průměr $4.48605716\dots$. Jak takové číslo určit uzavřeně? K nalezení odpovědi budeme muset nakouknout do sféry tzv. \uv{eliptických integrálů}.
+\section{Eliptické integrály}
+
+\begin{definice}
+Definujme \textit{eliptický integrál prvního druhu} jako následující určitý integrál:
+\begin{equation*}
+K(t) := \int_{0}^{\pi/2} \frac{d \theta}{\sqrt{1 - t^2 \sin^2 \theta}}.
+\end{equation*}
+\end{definice}
+
+Tento integrál a tzv. eliptický integrál \uv{druhé druhu} mají mnoho využití, například v počítání délky oblouku na elipse, ve světě fyziky zase například pomáhají najít periodu kmitu kyvadla [?].
+
+Taktéž jsou intimně spojené s $AG$ posloupností, umožní nám totiž přesně vyjádřit hodnotu $AG(a,b)$.
+\begin{veta} (Gauss)
+Pro $x<1$ platí:
+$$\frac{\pi}{2} \cdot \frac{1}{\AG(1,x)} = K\left(\sqrt{1 - x^2}\right)$$
+\end{veta}
+
+Pokud definujeme:
+$$I(a,b) := \int_{0}^{\pi/2} \frac{d \theta}{\sqrt{a^2 \sin ^2 \theta + b^2 \cos ^2 \theta}}, $$
+tak snadno uvidíme, že $I(a,b) = \frac{1}{a} K(x)$, kde $x =\frac{1}{a} \sqrt{a^2-b^2}$. Takové $x$ jsme už ale někde viděli, konkrétně ve větě \ref{zkjb} iv). Gaussovu větu poté můžeme díky části ii) věty \ref{zkjb} přepsat na:
+$$\frac{\pi}{2} \frac{1}{\AG(a,b)} = I(a,b).$$
+
+ Skutečnosti, že se $\frac{1}{AG(1,\sqrt{2})}$ a $\frac{2}{\pi} I(1,\sqrt{2})$ shodují na $11$ místech, si mladý Gauss všiml ve svém deníků již ve svých dvaadvaceti letech. [Pi and AGM] Metoda, kterou pak celou větu dokázal spočívá v důkazu výsledku $I(a,b) = I(a_1,b_1)$, ke kterému dojde po několika přiměřeně bolestných krocích, neboli jak Gauss sám pravil:
+
+\begin{center}
+\begin{verse}
+\setverselinenums{1}{3}
+\textit{\uv{After the development has been made correctly}}
+\end{verse}
+\end{center}
+Důkazem tohoto výsledku jsme hotovi, protože pak v limitním případě $I(a,b) = I(\AG(a,b),\AG(a,b)) = \frac{1}{\AG(a,b)} I(1,1) = \frac{1}{\AG(a,b)} \cdot \frac{\pi}{2}$. Plný důkaz hledejte na [Pi and AGM]. 
+
+Jelikož $AG$ posloupnost konverguje kvadraticky, tato spojitost nám může pomoci počítat právě eliptické integrály velmi rychle. K čemu jinému nám ale rychlá konvergence této posloupnosti může být k užitku?
+\section{Rychlé výpočty elementárních funkcí}
+
+$AG$ posloupnost může být využita například při počítání elementárních funkcí. Motivace použití rekurzivně definovaných posloupností může poskytnout například Newtonova metoda pro počítání odmocniny v kvadratickém čase:
+
+\begin{veta}(Newton)
+Ať $N>1$ je dané. Pak posloupnost $(x_n)_{n=0}^{\infty}$ splňující $x_0 = N$:
+$$x_{n+1} = \frac{1}{2} \left( x_n + \frac{N}{x_n}\right)$$
+konverguje kvadraticky k $\sqrt{N}$.
+\end{veta}
+Důkaz existence a hodnoty limity, ani řádu konvergence není obtížný. Nešlo by obdobně využít i $AG$ posloupnost? Ukáže se, že ano.
+
+Totiž přirozený logaritmus je \uv{přirozeně} spojen s eliptickými integrály [Borw, Pi and AGM]:
+$$K(\sqrt{1-x^2}) = \left(1+O(x^2)\right)\ln\left(\frac{4}{x} \right),$$
+kde onen chybový člen lze jednoduše odhadnout []. Pro $x$ dostatečně malé nám pak ke spočítání logaritmu velkého čísla postačí použít kvadraticky konvergující $AG$ posloupnost. Dá se jednoduše ukázat, že platí vztahy:
+\begin{align*}
+\arccos (x) &= \arctan\left(\frac{\sqrt{1-x^2}}{x} \right),\\
+\arctan (x) &= \textrm{Im}(\log(1+ix)).
+\end{align*}
+Pomocí nich a \textit{komplexního AG}, o kterém budeme mluvit dále, pak již můžeme spočítat inverzní funkce k základním goniometrickým funkcím a proto i je samotné.
+
+
+
+
+\section{Posloupnosti s ostatními průměry}
+
+Aritmetický a geometrický průměr nám vygenerovaly posloupnost, která skýtá překvapivě mnoho praktických aplikací. S takovým úspěchem pro jednu dvojici průměrů se pak jenom nabízí vzít v potaz i nějaké další. Zapojíme proto do práce i harmonický průměr, který je pro dvě čísla definován následovně:
+$$\frac{2}{\frac{1}{a}+\frac{1}{b}} = \frac{2ab}{a+b}.$$
+
+\begin{definice}
+Ať $a,b$ jsou dvě kladná reálná čísla. Pak definujme \textit{HG posloupnost} $(a_n,b_n)_{n=0}^{\infty}$ tak, že $(a_0,b_0) = (a,b)$ a:
+$$\left(a_{n+1},b_{n+1} \right) = \left( \frac{2 a_n b_n}{a_n+b_n} , \sqrt{a_n b_n} \right).$$
+Obdobně definujeme \textit{AH posloupnost}  $(a_n,b_n)_{n=0}^{\infty}$ tak, že $(a_0,b_0) = (a,b)$ a:
+$$\left(a_{n+1},b_{n+1} \right) = \left( \frac{a_n+b_n}{2}, \frac{2 a_n b_n}{a_n+b_n} \right).$$
+\end{definice}
+Kvůli nerovnostem panujícím mezi průměry můžeme imitovat důkaz věty \ref{conv}, čímž získáme, že obě posloupnosti konvergují k hodnotám $HG(a,b)$, resp. $AH(a,b)$. Abychom tyto posloupnosti porovnali s $AG$ posloupností, spočítejme průměry pro $a=2$ a $b=8$. První posloupnost vypadá následovně:
+
+\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.3\linewidth}p{0.202\linewidth}}
+\toprule
+$a_i$ & $b_i$\\
+\midrule
+$2$ & \noindent $8$\\
+$3.2$ & \noindent $4$\\
+$3.555555555555\dots$ & $3.577708763999\dots$\\
+$3.566597760054\dots$ & $3.566614959874\dots$\\
+$3.566606359943\dots$ & $3.566606359954\dots$\\ 
+$3.566606359948\dots$ & $3.566606359948\dots$\\
+$3.566606359948\dots$ & $3.566606359948\dots$\\
+$3.566606359948\dots$ & $3.566606359948\dots$\\
+\vdots & \vdots\\
+\bottomrule 
+\end{longtable} 
+
+
+\begin{align*}
+\left(a_{n+1}, b_{n+1} \right) = \left( \frac{2 a_n b_n}{a_n + b_n}, \sqrt{a_n b_n} \right) = \left( \left(\frac{\frac{1}{a_n}+ \frac{1}{b_n}}{2} \right)^{-1}, \sqrt{a_n ^{-1} b_n ^{-1}} ^{-1}  \right)
+\end{align*}
+
+Nyní přichází čas pro $AH$ posloupnost. Bude mít něco společného s předchozími dvěma posloupnostmi? Podívejme se, jak se posloupnost chová s počátečními prvky $a_0 = 2$ a $b_0 = 8$:
+
+\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.3\linewidth}p{0.202\linewidth}}
+\toprule
+$a_i$ & $b_i$\\
+\midrule
+$2$ & \noindent $8$\\
+$5$ & \noindent $3.2$\\
+$4.1$ & $3.902439024390\dots$\\
+$4.001219512195\dots$ & $3.998780859494\dots$\\ 
+$4.000000185845\dots$ & $3.999999814155\dots$\\
+$4.000000000000\dots$ & $4.000000000000\dots$\\
+$4.000000000000\dots$ & $4.000000000000\dots$\\
+$4.000000000000\dots$ & $4.000000000000\dots$\\
+\vdots & \vdots\\
+\bottomrule 
+\end{longtable} 
+
+$AH$ posloupnost $2$ a $8$ tedy konverguje zjevně k číslu $4$. Tento úkaz vysvětlí jednoduché pozorování, totiž že součin obou složek je přes všechny prvky posloupnosti konstantní. Platí:
+$$a_1  b_1 = \frac{a+b}{2} \cdot \frac{2ab}{a+b} = ab.$$
+Jelikož opět obě složky posloupnosti konvergují ke stejné hodnotě $AH(a,b)$, ta musí splňovat $AH (a,b)^2 = ab$, tedy $AH(a,b) = \sqrt{ab}$. Tento trend, kdy se $AH$ drasticky liší od předchozích dvou, bude v jistém smyslu držet i v pozdějších částech práce, kdy posloupnosti uvažujeme nad konečnými tělesy. Adaptace $AG$ a $GH$ posloupností budou velmi spřízněné, zatímco $AH$ s nimi má velmi málo společného.
+
+Samozřejmě můžeme místo těchto třech průměrů uvažovat libovolné \textit{mocninné průměry} a všechny takové posloupnosti budou konvergovat, to díky platným nerovnostem mezi těmito průměry. Pro mnohem více o teorii s těmito posloupnostmi vřele doporučuji knihu [AG and pi].
+
+Na konec této sekce ještě zmiňme, že se nemusíme zastavit pouze na dvou průměrech. Zobecněná $AGH$ posloupnost pro tři proměnné byla zběžně studovaná v ?, v [?] byly též studovány ještě posloupnosti čtyř a dokonce šesti čísel. Nyní se ale obraťme list a podívejme se více na vlastnosti $AG$ posloupnosti v kontextu teorie čísel. 
+
+
+
+\chapter{AG posloupnost nad konečnými tělesy}
+
+Když jsme nyní zodpovědně prozkoumali $AG$ posloupnost nad reálnými čísly, zamysleme se, jaké informace nám $AG$ může poskytnout z pohledu teorie čísel - konečně se podíváme na posloupnost nad konečnými tělesy. I v~konečném případě tato posloupnost skýtá hluboká propojení se zdánlivě nesouvisejícími odvětvími matematiky, konkrétně s \textit{eliptickými křivkami}. O nich ale až později.
+
+
+\section{Základní poznatky}
+
+Hned ze začátku narážíme na první problém. Ne vždy totiž není součin $a,b \in \mathbb{F}_q$ čtvercem v~$\mathbb{F}_q$ a i pokud je, jak rozlišíme tu správnou odmocninu? Kvůli tomuto problému se prozatím zaměříme na tělesa $\mathbb{F}_q$ s $q = p^k \equiv -1 \pmod{4}$, pak v $\mathbb{F}_q$ neexistuje odmocnina z $-1$. V~každé nenulové dvojici $(x,-x)$ se proto nachází právě jeden čtverec a tak si vždy můžeme zvolit korektní odmocninu, aby byla posloupnost korektně definovaná i dále.  
+
+\begin{poznamka}
+Ve skutečnosti jsme na tento problém narazili i nad reálnými čísly, tehdy ale jsou všechna kladná čísla čtverci, tedy je správná volba odmocniny intuitivní.
+\end{poznamka}
+
+\begin{definice}
+Definujme \uv{zobecněný Legendreho symbol} $\phi_q$ nad $\mathbb{F}_q$ tak, že $\phi_q(0) = 0$ a pro $x$ nenulové je $\phi_q(x)$ rovno $1$, pokud $x$ je v $\mathbb{F}_q$ čtvercem,  a $-1$ jinak.
+\end{definice}
+
+Tento zobecněný Legendreho symbol je podobně jako ten klasický multiplikativním charakterem na $\mathbb{F}_q$, tj. platí $\phi_q(a)\phi_q(b)=\phi_q(ab)$ pro $a,b \in \mathbb{F}_q$.
+
+\begin{definice}
+Ať $a,b$ jsou různé prvky $\mathbb{F}_q ^{\times}$ splňují $\phi_q (ab) = 1$. Pak definujeme $AG_{\mathbb{F}_q}(a,b)$ jako posloupnost $(a_n,b_n)_{n=0}^{\infty}$ s $(a_0,b_0) = (a,b)$ a:
+\begin{equation*}
+\left(a_{n+1},b_{n+1} \right) = \left(\frac{a_n+b_n}{2}, \sqrt{a_n b_n} \right),
+\end{equation*}
+přičemž $b_{n+1}$ volíme tak, že $\phi_q (a_{n+1} b_{n+1}) = 1$.
+\end{definice}
+Všimněme si, že naše posloupnost je dobře definovaná. Aritmetický průměr by nám dělal problém, jen pokud by součet $a_{n+1} + b_{n+1}$ byl nulový. To by znamenalo:
+$$a_{n}+b_{n} = - 2\sqrt{a_n b_n}, \qquad \text{takže po umocnění} \qquad (a_n - b_n)^2 = 0.$$
+
+Díky tomu, že odmocniny z čísla jsou navzájem opačná čísla a $\phi_q(-1)=-1$, víme, že pro $a_n b_n \neq 0$ je právě jedno z čísel $\sqrt{a_n b_n}$ a $-\sqrt{a_n b_n}$ čtvercem, mi si $b_{n+1}$ zvolíme tak, aby součin $a_{n+1} b_{n+1}$ byl čtvercem. Můžeme tak pokračovat psát posloupnost i nadále.
+
+Navíc, podmínka $a_i,b_i \in \mathbb{F}_q ^{\times}$ je zachovaná i nadále. Pokud by totiž bylo jedno z čísel $a_{n+1},b_{n+1}$ nulové, jistě to musí být $a_{n+1}$ a tak muselo být $a_{n} = - b_n$, to je ale ve sporu s~volbou $\phi_q (a_n b_n) = 1$. 
+
+Posloupnost budeme vizualizovat jako orientovaný graf, kde hrana vede právě mezi po sobě jdoucími členy posloupnosti.
+\begin{definice}
+Definujme \textit{roj} (angl. \textit{swarm}) $AG_{\mathbb{F}_q} = (V,E)$ jako orientovaný graf, kde $(a,b) \in V$, právě pokud platí $\phi_q(ab) = 1$, a $\big((a,b),(c,d)\big) \in E$, právě pokud platí $(c,d) = (a_1,b_1)$.
+\end{definice}
+Pracujeme s orientovanými grafy, přesto se domluvme, že každou slabě souvislou komponentu souvislosti nazveme jednoduše komponentou souvislosti.
+\begin{umluva}
+Ať $G$ je orientovaný graf a $V \subseteq G$ je komponenta slabé souvislosti. Pak budeme o $V$ říkat, že je komponenta souvislosti.
+\end{umluva}
+
+
+\begin{priklad}
+Pojďme si udělat představu o grafu, se kterým pracujeme, konkrétně se podívejme na $AG_{\mathbb{F}_7}$. Zvolme dvojici $(1,2) \in AG_{\mathbb{F}_q}$ a pišme posloupnost $AG_{\mathbb{F}_q} (1,2)$:
+$$
+(1,2) \mapsto (5,3) \mapsto (4,1) \mapsto (6,5) \mapsto (2,4) \mapsto (3,6) \mapsto (1,2),
+$$
+vrchol $(1,2)$ je proto členem cyklu délky $6$. Pokud máme v grafu orientovanou hranu $(a,b) \mapsto (c,d)$, tak jistě vede hrana i mezi $(b,a)$ a $(c,d)$, proto například vede hrana z $(2,1)$ do $(5,3)$ a podobně. Výpočtem lze ověřit, že prvky mimo cyklus - $(2,1)$, $(3,5)$ a pod., již předchůdce nemají. Komponenta obsahující vrchol $(1,2)$ proto vypadá následovně:
+%\begin{center}
+%\begin{tikzpicture}
+
+%\def \n {6}
+%\def \radius {2.5cm}
+%\def \margin {15} % margin in angles, depends on the radius
+
+%\node [draw, circle] at ({360/\n * (1 - 1)}:\radius) {$1,2$};
+%  \draw[->, >=latex] ({360/\n * (1 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (1 - 1)+\margin}:{360/\n * (1)-\margin}:\radius);
+%\node[draw, circle] at ({360/\n * (1 - 1)}:2*\radius) {$6,3$};
+%\draw[->,>=latex]
+%\node[draw, circle] at ({360/\n * (2 - 1)}:\radius) {$5,3$};
+%  \draw[->, >=latex] ({360/\n * (2 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (2 - 1)+\margin}:{360/\n * (2)-\margin}:\radius);
+%\node[draw, circle] at ({360/\n * (3 - 1)}:\radius) {$4,1$};
+%  \draw[->, >=latex] ({360/\n * (3 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (3 - 1)+\margin}:{360/\n * (3)-\margin}:\radius);
+%\node[draw, circle] at ({360/\n * (4 - 1)}:\radius) {$6,5$};
+%  \draw[->, >=latex] ({360/\n * (4 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (4 - 1)+\margin}:{360/\n * (4)-\margin}:\radius);
+%\node[draw, circle] at ({360/\n * (5 - 1)}:\radius) {$2,4$};
+%  \draw[->, >=latex] ({360/\n * (5 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (5 - 1)+\margin}:{360/\n * (5)-\margin}:\radius);
+%    \node[draw, circle] at ({360/\n * (6 - 1)}:\radius) {$3,6$};
+%  \draw[->, >=latex] ({360/\n * (6 - 1)+\margin}:\radius) 
+%    arc ({360/\n * (6 - 1)+\margin}:{360/\n * (6)-\margin}:\radius);
+%\end{tikzpicture}
+%\end{center}
+Tento příklad - cyklus a listy připojené ke každému členu cyklu - je typický. Pro ilustraci se podívejme na .
+\end{priklad}
+
+
+
+Začněme zlehka, konkrétně z kolika vrcholů a hran je vlastně náš graf tvořen.
+
+\begin{veta}\label{pocetprvkuAG}
+Graf $AG_{\mathbb{F}_q}$ čítá $(q-1)(q-3)/2$ vrcholů a stejný počet hran.
+\end{veta}
+\noindent \textit{Důkaz.} Uspořádaná dvojice $(a,b)$ náleží do $AG_{\mathbb{F}_q}$, právě pokud platí $\phi_q(ab) = 1$, tedy buď jsou $a,b$ obě čtverci v $\mathbb{F}_q$, nebo ani jedno. Počet uspořádaných dvojic různých nenulových čtverců je roven $(q-1)/2 \cdot (q-3)/2$ a stejný počet přispívají dvojice nečtverců. Dohromady získáme $2 \cdot (q-1)(q-3)/4$ vyhovujících dvojic. Protože z každého vrcholu vychází právě jedna orientovaná hrana, počet hran je roven počtu vrcholů. \hfill $\square$\\
+
+Grafy z příkladu jsou tvořeny z několika komponent souvislosti, které mají všechny velmi specifický tvar, tj. cyklus, kde z každého jeho vrcholu vychází hrana délky jedna. Tento tvar je typický a~libovolná komponenta jej tvoří.
+
+\begin{definice}
+Souvislý orientovaný graf $G$ nazveme \textit{medúzou}, pokud je tvořen jediným cyklem $H$ a pro každý vrchol $V \in H$ existuje unikátní předchůdce mimo cyklus, který sám nemá předchůdce.
+\end{definice}
+
+Nejprve si charakterizujme, které vrcholy mají v $AG_{\mathbb{F}_q}$ předchůdce, poté již bude popis celého grafu nasnadě.
+
+\begin{lemma}
+Vrchol $(a,b) \in AG_{\mathbb{F}_q}$ má předchůdce, právě pokud platí $\phi_q(a^2-b^2)=1$.
+\end{lemma}
+
+\noindent \textit{Důkaz.} Nejprve předpokládejme $(a,b)$ má předchůdce $(c,d)$, platí tedy:
+\begin{equation*}
+a = \frac{c+d}{2}, \quad b = \sqrt{cd}.
+\end{equation*}
+Potom:
+\begin{equation*}
+a^2 - b^2 = \left(\frac{c+d}{2} \right)^2 - cd = \left( \frac{c-d}{2} \right)^2
+\end{equation*}
+je čtverec. Naopak ať $a^2-b^2$ je čtverec a $x$ je nějaká jeho odmocnina. Pak uvažme vrchol $(a-x,a+x)$, jeho následník je: $$\left(\frac{a-x+a+x}{2}, \sqrt{a^2-x^2} \right)= \left(a, b \right),$$
+kde $b$ je ta \uv{správná} odmocnina. \hfill $\square$
+\begin{veta}\label{meduzy}
+Roj $AG_{\mathbb{F}_q}$ je tvořen z několika medúz.
+\end{veta}
+\noindent \textit{Důkaz}. Graf je určen zobrazením $(u,v) \longmapsto (u_1,v_1) \longmapsto \dots$ na konečné množině, takže každá taková posloupnost jednou vstoupí v cyklus, který bude mít délku větší než $1$. 
+
+Dejme tomu, že $(c,d)$ je členem nějaké cyklu, předchozí člen v cyklu je $(C,D)$, platí $C+D=2c$ a $CD = d^2$, tedy $(C,D)$ jsou kořeny polynomu $x^2-2c+d^2$. Takový polynom má nad $\mathbb{F}_q$ právě dva kořeny, $C$ a $D$. Všichni předkové vrcholu $(c,d)$ v $AG_{\mathbb{F}_q}$ jsou proto $(C,D)$ a $(D,C)$. Díky $q \equiv -1 \pmod{4}$ je $\phi_q(-1)=-1$, proto díky předchozímu lemmatu má právě jeden z těchto dvou vrcholů předchůdce, ten je jistě taky součástí cyklu. Každý vrchol, který není členem cyklus, proto nemá předchůdce a $AG_{\mathbb{F}_q}$ je proto medúzou. \hfill $\square$\\
+
+
+Pojďme si nyní charakterizovat, jaké různé medúzy můžeme v celém grafu najít. Podle analogu bodu $ii)$ věty \ref{zkjb} můžeme přenásobit všechny vrcholy dané medúzy nějakým $k \in \mathbb{F}_q$ a získat novou medúzu, kterou nazveme jejím \textit{přítelem}. Příklady takových medúz jsou na TOM PŘÍKLADU NA ZAČÁTKU.
+\begin{definice}
+Ať $M \subseteq AG_{\mathbb{F}_q}$ je medúza a $(a,b)$ její prvek. Potom nazveme libovolnou medúzu obsahující prvek $(ka,kb)$ pro $k \in \mathbb{F}_q$ \textit{přítelem} medúzy $M$.
+\end{definice}
+
+ Kolik přátel má daná medúza? Na to zodpovídá následující tvrzení:
+\begin{veta}\label{isom}
+Ať $(a,b) \in AG_{\mathbb{F}_q}$ leží v cyklu medúzy $M$ a $i$ je první index takový, že existuje $k \in \mathbb{F}_q$ splňující $(a_i,b_i) = (ka, kb)$. Pak má medúza $M$ právě:
+$$\frac{q-1}{\ord_q (k)}$$
+přátel.
+\end{veta}
+
+\noindent \textit{Důkaz.} Je zřejmé, že všechny ostatní prvky cyklu $(a_i,b_i)$ splňující $a_i/b_i = a/b$ jsou ve tvaru $(a_i,b_i) = (k^x a_i, k^x b_i)$. Navíc, pokud přenásobíme všechny prvky $M$ jedním z prvků podgrupy $\mathbb{F}_q ^{\times} \leqslant O_k$ generované $k$, pouze otočíme medúzu.
+
+Přesněji, máme danou akci grup $\mathbb{F}_q \times AG_{\mathbb{F}_q} \longrightarrow AG_{\mathbb{F}_q}$, která pro $k \in \mathbb{F}_q$ zobrazí prvek $(a,b)$ na $(ka,kb)$. Nosná množina $O_k$ je pak stabilizátorem pro libovolný prvek medúzy $M$. To znamená, že existuje bijekce mezi množinou prvků $k \in \mathbb{F}_q$, které zobrazí $M$ na medúzu s ní spřátelenou, a faktorgrupou $\mathbb{F}_q/O_k$, která má $\frac{q-1}{\ord_q (k)}$ prvků. \hfill $\square$\\
+
+Pro taxonomické účely se nám hodí tyto spřátelené medúzy uskupit dohromady, zaveďme proto pojem \textit{hejno}.
+\begin{definice}
+Ať $H \subseteq AG_{\mathbb{F}_q}$ je medúza a $H_1,\dots,H_k$ jsou všichni její přátelé. Pak $H \cup H_1 \cup \dots \cup H_k$ nazvěme \textit{hejnem medúz}.
+\end{definice}
+ 
+ 
+\section{Vlastnosti grafů}
+
+Ohledně medúz je hned několik hodnot, které má cenu zkoumat. Kolik je pro dané $p$ dohromady medúz? Kolik existuje různých hejn? A na jaké délky cyklů můžeme narazit? Pojďme se na tyto hodnoty podívat trochu podrobněji.
+
+Nejdůležitější hodnotou je pro nás počet medúz v celém hejnu. Tuto hodnotu studovali autoři původního článku \cite{Meduza} a pomocí eliptických křivek budeme moci uvést odhady na tato čísla.
+
+\begin{definice}
+Ať $q \equiv 3 \pmod{4}$ je mocnina prvočísla. Pak označme $d(\mathbb{F}_q)$ počet všech medúz v grafu $AG_{\mathbb{F}_q}$. Dále označme $s(\mathbb{F}_q)$ počet všech hejn v grafu $AG_{\mathbb{F}_q}$.
+\end{definice}
+
+V článku, ze kterého vycházíme, se $d(\mathbb{F}_q)$ nazývá \textit{jellyfish number}, číslo $s(\mathbb{F}_q)$ není zmíněno vůbec a obecně hejna medúz nejsou nijak značena a jsou zmíněna pouze okrajově. Protože víme z příkladu ?, že délky cyklů se přes prvočísla mohou tak lišit, tak nás nepřekvapí, že i celkový počet medúz se chová poměrně různorodě. Pro představu uveďme malou tabulku pro prvočísla $p < 100$.
+
+\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
+\toprule
+$p$ & $d(\mathbb{F}_p)$ & $s(\mathbb{F}_p)$\\
+\midrule
+$3$ & \noindent $0$ & \noindent $0$\\
+$7$ & \noindent $1$ & \noindent $1$\\
+$11$ & \noindent $3$ & \noindent $2$\\
+$19$ & \noindent $8$ & \noindent $2$\\
+$23$ & \noindent $5$ & \noindent $3$\\
+$31$ & \noindent $10$ & \noindent $3$\\
+$43$ & \noindent $7$ & \noindent $4$\\
+$47$ & \noindent $4$ & \noindent $3$\\
+$59$ & \noindent $7$ & \noindent $4$\\
+$67$ & \noindent $30$ & \noindent $6$\\
+$71$ & \noindent $25$ & \noindent $5$\\
+$79$ & \noindent $18$ & \noindent $7$\\
+$83$ & \noindent $6$ & \noindent $4$\\
+\bottomrule 
+\end{longtable}
+
+Tato náhodná povaha $d(\mathbb{F}_q)$ se nese i dál, na následujícím grafu vidíme jednotlivé hodnoty pro prvočísla $p < 10^5$:
+
+
+I po sobě jdoucí prvočísla mohou mít disproporcionálně různé počty medúz. Na příklad pro prvočíslo $1619$ je počet medúz roven $d(\mathbb{F}_{1619}) = 56$ a hned o dům dál u prvočísla $1627$ nalezneme v grafu enormní počet $d(\mathbb{F}_{1627}) =2227$ medúz, skoro čtyřicetkrát více. Můžeme tedy nějak ohraničit toto číslo?
+
+Autoři původního článku studovali číslo $d(\mathbb{F}_q)$. Pomocí teorie eliptických křivek, kterým se budeme věnovat později, ukázali netriviální dolní odhad na toto číslo, resp. jejich postup ohraničí dokonce číslo $s(\mathbb{F}_q)$. Hlavním výsledkem jejich článku je tvrzení, že pro libovolně malé $\varepsilon > 0$ a $q$ dostatečně velké platí:
+$$s(\mathbb{F}_q) \geqslant \left( \frac{1}{2} - \varepsilon \right) \sqrt{q}.$$
+V závěru práce spekulují, zda je tento odhad asymptoticky optimální a navrhují odhad $d(\mathbb{F}_q) \geqslant O(\sqrt{q} \log \log q)$. Pojďme se těmto výsledkům věnovat.
+
+Nejprve, jak optimální opravdu je odhad $s(\mathbb{F}_q)$ (resp. $d(\mathbb{F}_q)$)?  Nejprve se podívejme na číslo $s(\mathbb{F}_q)$:
+??
+--\\
+
+blabla
+
+se to chová trochu jako nějaká funkce idk.
+
+Další otázkou může být, jak spolu souvisí čísla $d(\mathbb{F}_q)$ a $s(\mathbb{F}_q)$. Rozhodně platí $s(\mathbb{F}_q) \geqslant d(\mathbb{F}_q)$, co lepšího ale můžeme říci? Obecný trend alespoň ze začátku zdárně neexistuje, uveďme si tabulku několika vybraných hodnot:
+
+Tabulka
+
+Pokud se podíváme, jak se plošně chová číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ získáme velmi zajímavý graf:
+
+Ne jenom, že se číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ drží nejvýše okolo hodnoty $0.6$ (maximální podíl je roven $0.75$ pro $p=?$), pozorujeme dva velké shluky hodnot v intervalu $[0.5,0.65]$ a poté pod hodnotou $0.35$ (KONKRETNI CISLA DOPLNIT PRESNEJI). Prvočísla $p<10^5$, pro které hodnota $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ neleží v žádné z těchto mezí jsou pouze:
+
+tabulečka.
+
+
+Krom velikostí celého roje, můžeme se podívat na velikostí jednotlivých hejn, ?.
+
+Konečně, zaměřme se na jednotlivé medúzy a podívejme se na velikosti jednotlivých medúz, resp. jejich cyklů.
+
+\section{HG posloupnost}
+
+
+V první kapitole jsme si ukázali, že pokud místo aritmetického a geometrického průměru zvolíme jinou dvojici průměrů, získáme posloupnosti úzce propojené s $AG$ posloupností. Co tedy se podívat na jejich obdoby v konečných tělesech? 
+
+
+Nejprve zapojme do práce geometrický a harmonický průměr, kde samozřejmě definujeme harmonický průměr dvou nenulových čísel s nenulovým součtem jako:
+$$\frac{2}{\frac{1}{a}+\frac{1}{b}} = \frac{2ab}{a+b},$$
+kde $\frac{1}{a}$ je multiplikativní inverze čísla $a$. Definujme pak $HG$-posloupnost nad konečným tělesem.
+
+
+\begin{definice}
+Ať $a,b$ jsou různé prvky $\mathbb{F}_q ^{\times}$ splňují $\phi_q (ab) = 1$. Pak definujeme $HG_{\mathbb{F}_q}(a,b)$ jako posloupnost $(a_n,b_n)_{n=0}^{\infty}$ s $(a_0,b_0) = (a,b)$ a:
+\begin{equation*}
+\left(a_{n+1},b_{n+1} \right) = \left(\frac{2}{\frac{1}{a_n} + \frac{1}{b_n}}, \sqrt{a_n b_n} \right),
+\end{equation*}
+přičemž $b_{n+1}$ volíme tak, že $\phi_q (a_{n+1} b_{n+1}) = 1$.
+\end{definice}
+
+\begin{definice}
+Definujme \textit{roj} $HG_{\mathbb{F}_q}$ jako orientovaný graf, jehož vrcholy jsou uspořádané dvojice $(a,b)$ prvků nad $\mathbb{F}_q ^{\times}$, jejichž součin je čtverec. Všechny orientované hrany vedou mezi vrcholem $(a,b)$ a $(a_1,b_1)$.
+\end{definice}
+PRIKLADY, GRAF.
+
+
+Při porovnání předchozího příkladu se můžeme dovtípit, že tato posloupnost je pouze přestrojená AG posloupnost. V tomto přesvědčení nás může utvrdit počet hran a vrcholů i kritérium, kdy vrchol má předchůdce.
+
+\begin{veta}
+Graf $HG_{\mathbb{F}_q}$ čítá $(q-1)(q-3)/2$ vrcholů a stejný počet hran.
+\end{veta}
+\textit{Důkaz.} Analogický k důkazu věty \ref{pocetprvkuAG}. \hfill $\square$
+
+
+\begin{lemma}
+Vrchol $(a,b) \in HG_{\mathbb{F}_q}$ má předchůdce, právě pokud platí $\phi_q(b^2-a^2)=1$.
+\end{lemma}
+
+\noindent \textit{Důkaz.} Nejprve předpokládejme $(a,b)$ má předchůdce $(c,d)$, platí tedy:
+\begin{equation*}
+a = \frac{2cd}{c+d}, \quad b = \sqrt{cd}.
+\end{equation*}
+Potom:
+\begin{equation*}
+b^2-a^2 = cd- \left(\frac{2 cd}{c+d} \right)^2 = cd \left( \frac{c-d}{c+d} \right)^2
+\end{equation*}
+je čtverec, protože pracujeme pouze s dvojicemi, jejichž součin je čtvercem. Naopak ať $b^2-a^2$ je čtverec a $x$ je nějaká jeho odmocnina. Pak uvažme vrchol $\Big(\frac{b^2+b  x}{a},\frac{b^2-bx}{a} \Big)$, jeho následník je: $$\left(\frac{2 b^2 (b+x)(b-x)}{a^2 \left(\frac{b^2+bx}{a} + \frac{b^2-bx}{a} \right)}, \sqrt{\frac{b^2(b^2-x^2)}{a^2}} \right)= \left(\frac{2 b^2 \cdot a^2}{2 a \cdot b^2 }, b \right) = \left(a, b \right).$$
+ \hfill $\square$
+
+Porovnejme toto lemma 
+
+\begin{dusledek}
+Graf $GH_{\mathbb{F}_q}$ je tvořen z několika medúz.
+\end{dusledek}
+\noindent \textit{Důkaz}. Analogický k důkazu věty \ref{meduzy}. \hfill $\square$\\
+
+Rozdíl mezi oběma grafy je ten, že vrchol $(a,b)$ pro $a,b$ je součástí cyklu v \textit{právě jednom} z grafů $AG_{\mathbb{F}_q}$ a $HG_{\mathbb{F}_q}$. To nám napovídá, jaké bude konkrétní propojení těchto dvou grafů.
+
+\begin{veta}
+Platí isomorfismus grafů $AG_{\mathbb{F}_q} \cong HG_{\mathbb{F}_q}$.
+\end{veta}
+\noindent \textit{Důkaz.} Uvažme zobrazení $\psi : AG_{\mathbb{F}_q} \longrightarrow HG_{\mathbb{F}_q}$ určené předpisem $\psi((a,b)) = (1/a,1/b)$. Ukážeme, že toto zobrazení definuje mezi grafy isomorfismus. Opravdu, uvažme orientovanou hranu v grafu $AG_{\mathbb{F}_q}$: 
+$$(a,b) \longmapsto \left(\frac{a+b}{2}, \sqrt{ab} \right),$$
+poté v grafu $HG_{\mathbb{F}_q}$ má $\psi((a,b))$ hranu:
+$$\psi ((a,b)) = \left(\frac{1}{a}, \frac{1}{b} \right) \longmapsto \left(\frac{2/ab}{1/a+1/b}, \sqrt{\frac{1}{ab}} \right) = \left( \frac{2}{a+b}, \frac{1}{\sqrt{ab}} \right) = \psi \left( \left( \frac{a+b}{2}, \sqrt{ab} \right) \right).$$
+Jelikož $\psi$ se zjevně bijekce mezi $AG_{\mathbb{F}_q}$ a $HG_{\mathbb{F}_q}$, definuje mezi grafy isomorfismus.\hfill $\square$\\
+
+
+\chapter{AH posloupnost}\label{AH}
+Zatím jsme pracovali s dvěma dvojicemi průměrů z trojice - aritmetický, geometrický a~harmonický. Co se proto podívat i na tu poslední? Tentokrát již ze začátku nebude pracovat pouze nad konečným tělesem, ale i s bodem v nekonečnu. Přesto se můžeme ptát, jak souvisí tato posloupnost a její grafy s předchozími dvěma, obzvláště ve spojení s eliptickými křivkami.
+
+K této ani $HG$ posloupnosti nad konečnými tělesy neexistuje podle nejlepšího svědomí autora žádná literatura. Strávíme nějaký čas nad tvary grafů - případ $AH$ posloupnosti je totiž na dvakrát tolik zajímavý, jako ty předchozí.
+
+\section{Základní poznatky}
+
+
+
+\begin{definice}
+Ať $K$ je těleso. Pak definujeme \textit{projektivní přímku} $\mathbb{P}^{1} (K)$ jako $K \cup \lbrace \infty \rbrace$, kde $\infty$ je \textit{bod v~nekonečnu}. Ten pro $m \in \mathbb{F}_q$ splňuje:
+\begin{enumerate}
+\item $\infty+m = \infty$,
+\item $\infty \times 0 = 1$,
+\item $\infty \cdot m = \infty$ pro $m \neq 0$,
+\item $\infty \times \infty = \infty$.
+\end{enumerate}
+\end{definice}
+
+
+
+\begin{definice}
+Ať $a,b \in \mathbb{F}_q ^{\times}$ jsou různé. Pak definujeme $AH_{\mathbb{F}_q}(a,b)$ jako posloupnost $(a_n,b_n)_{n=0}^{\infty}$ s $(a_0,b_0) = (a,b)$ a:
+\begin{equation*}
+\left(a_{n+1},b_{n+1} \right) = \left(\frac{a_n+b_n}{2}, \frac{2}{\frac{1}{a_n} + \frac{1}{b_n}} \right).
+\end{equation*}
+\end{definice}
+
+Všimněme si, že prvek $(a,-a)$ pro $a \in \mathbb{F}_q$ se zobrazí na $(0,\infty)$, $(0,\infty)$ se zobrazí na $(\infty,0)$ a $(\infty,0)$ se zobrazí sám na sebe. 
+
+Pokud $\phi_q(2) \neq 1$, tak se každý \textit{afinní} prvek zobrazí opět na afinní prvek. Ať je naopak pro nějaká $(a_0,b_0)$ a $n$ nezáporné $1/a_{n+1} + 1/b_{n+1} = 0$, pak i $a_{n+1} + b_{n+1} = 0$. Muselo pak být:
+\begin{align*}
+\frac{a_n+b_n}{2} + \frac{2 a_n b_n}{a_n + b_n} &= 0,\\
+(a_n+b_n)^2 + 4 a_n b_n &= 0,\\
+\left(\frac{a_n}{b_n} + 1 \right)^2 + \frac{4a_n}{b_n} &= 0,\\
+\left(\frac{a_n}{b_n}\right)^2 + \frac{6a_n}{b_n} + 1 &= 0.
+\end{align*}
+Poznamenejme, že $b_n \neq 0$. Tato kvadratická rovnice má kořen nad $\mathbb{F}_q$, právě pokud $2$ je v~$\mathbb{F}_q$ čtvercem. Pro tělesa, kde $2$ je čtvercem, se některé prvky mohou zobrazit do nekonečna a musíme již pracovat s projektivní přímkou. Budeme vždy pracovat pouze s posloupnostmi, které obsahují alespoň jeden afinní prvek. Nejprve zaměříme na tělesa $\mathbb{F}_q$ s $q \equiv \pm 3 \pmod{8}$.
+
+\begin{definice}
+Definujme \textit{roj} $AH_{\mathbb{F}_q} = (V,E)$ jako orientovaný graf, kde $(a,b) \in V$ pokud $a,b \in \mathbb{F}_q$, nebo $\lbrace a,b \rbrace = \lbrace 0,\infty \rbrace$. Pro libovolná $a,b,c,d \in \mathbb{P}^1 (\mathbb{F}_q)$ platí $\Big((a,b), (c,d) \Big) \in E$, právě pokud $(c,d) = (a_1,b_1)$. 
+\end{definice}
+Každý afinní prvek má v grafu zjevně nejvýše dva předchůdce. Toto je zdárně porušeno pro body v nekonečnu, kde prvek $(0,\infty)$ má předchůdců hned $\frac{q-1}{2}$. Čistě z důvodu elegance budeme uvažovat $\frac{q-1}{2}$ bodů $(0,\infty)$ a $(\infty,0)$, každý příslušící jedné dvojici bodů $(a,-a)$ a $(-a,a)$. 
+\begin{umluva}
+Ať $a,b \in \mathbb{F}_q ^{\times}$ splňují $a \neq \pm b$. Poté se domluvme, že body $(a,-a)$ a~$(b,-b)$ neleží ve stejné komponentě souvislosti grafu $AH_{\mathbb{F}_q}$. 
+\end{umluva}
+
+PRIKLAD
+
+Na příkladu vidíme, že pro $q \equiv \pm 3 \pmod{8}$ při vizualizaci $AH$ posloupnosti získáme krom medúz i tzv. \textit{vulkány hloubky $2$}. V případě $q \equiv \pm 1 \pmod{8}$ jsou tyto vulkány dokonce ještě hlubší a některé obsahují $(\infty,0)$. Tato terminologie není vybraná autorem, setkáme se s ní v kontextu eliptických křivek. 
+\begin{definice}
+Souvislý orientovaný graf $V$ nazveme \textit{vulkánem hloubky $k$}, pokud je dělen do $k+1$ stupňů $V_0,\dots,V_k$ a:
+\begin{enumerate}
+\item $V_0$ je cyklus, kde každý jeho člen má unikátního předchůdce mimo cyklus,
+\item pro $0 <i < k$ má každý vrchol $W \in V_i$ unikátního následníka ve $V_{i-1}$ a dva předchůdce ve $V_{i+1}$,
+\item každý prvek $V_k$ je listem.
+\end{enumerate}
+\end{definice}
+Všimněme si, že medúza je pouze vulkánem hloubky $1$. Předtím, než ukážeme, že grafy $AH$ posloupnosti pro $q = \pm 3 \pmod{8}$ nabývají těchto tvarů, se pozastavme nad spojením $AH$ posloupnosti s dvěma předchozími, které jsme studovali. I když větší vulkány $AG$ posloupnost nikdy netvoří, pro například $p \equiv -1 \pmod{4}$ získáme v některých případech $AH$ posloupnosti též medúzy. Klíčové rozdělení bude podle $\phi(ab)$ pro jednotlivé dvojice. Hned uvidíme, že toto číslo je pro jednotlivé komponenty souvislosti stejné a dokážeme silnější tvrzení. Určeme nyní počty (afinních) dvojic v jednotlivých takových skupinách.
+
+\begin{veta}\label{pocetv}
+Buď $q = p^k$ mocnina prvočísla. Pak:
+\begin{enumerate}
+\item počet afinních prvků $(a,b) \in AH_{\mathbb{F}_q}$ takových, že $\phi_q(ab) = 1$, je $(q-1)(q-3)/2$, 
+\item počet afinních prvků $(a,b) \in AH_{\mathbb{F}_q}$ takových, že $\phi_q(ab) = -1$, je $(q-1)^2/2$,
+\item počet hran v celém grafu vycházejících z afinních vrcholů je $(q-1)(q-2)$.
+\end{enumerate}
+
+\end{veta}  
+\noindent \textit{Důkaz.} V případě, kdy $ab$ je v $\mathbb{F}_q$ nenulovým čtvercem, leží v roji $AH_{\mathbb{F}_q}$ právě dvojice $(a,b)$, až na případ, kdy $a=b$. Pokud je součin dvou prvků čtverec, tak jsou buď oba čtverce, nebo ani jeden. Počet dvojic nenulových prvků $(a,b)$, jejichž součin je čtverec, spočítáme tedy součtem počtů dvojic různých čtverců, resp. nečtverců. Toto je $(q-1)/2 \cdot (q-3)/2 + (q-1)/2 \cdot (q-3)/2 =  (q-1)(q-3)/2$.
+
+V případě, kdy $ab$ není v $\mathbb{F}_q$ nenulovým čtvercem, leží v roji $AH_{\mathbb{F}_q}$ právě dvojice $(a,b)$. Takové dvojice mají jedno složku, která je čtvercem, a druhou, která není. Vyhovující počet je proto $(q-1)/2 \cdot (q-1)/2 + (q-1)/2 \cdot (q-1)/2 = (q-1)^2/2$. Konečně, z každého afinního vrcholu vychází právě jedna hrana, proto počet hran je:
+$$\frac{(q-1)(q-3)}{2}+\frac{(q-1)^2}{2} = (q-1)(q-2).$$  \hfill $\square$\\
+
+
+
+Grafy $AH_{\mathbb{F}_q}$ a $AG_{\mathbb{F}_q}$ jsou velmi odlišné. Na příkladu ? vidíme, že komponenty roje $AG_{\mathbb{F}_q}$ mohou mít mnohonásobně více prvků, než je $q$. Zato v případě $AH$ posloupnosti počet prvků značně omezí stejný invariant, jako v reálném případě - součin jednotlivých složek prvků. 
+
+\begin{lemma}\label{fix}
+Uvažme roj $AH_{\mathbb{F}_q}$ a nějakou jeho komponentu souvislosti $V$. Pak je přes všechny afinní dvojice $(a,b) \in V$ součin $ab$ invariantní.
+\end{lemma}
+\noindent \textit{Důkaz.} Stačí nám ukázat, že pro vrchol $(a,b)$ a jeho následníka platí $a_1 b_1 = ab$, jelikož $(a_1,b_1)$ má právě dva předchůdce, $(a,b)$ a $(b,a)$. A opravdu:
+\begin{equation*}
+a_1 b_1 = \frac{a+b}{2} \cdot \frac{2ab}{a+b} = ab.
+\end{equation*} 
+\hfill $\square$\\
+
+\begin{dusledek}\label{fixab}
+Každá komponenta souvislosti v roji $AH_{\mathbb{F}_q}$ obsahuje nejvýše $q-1$ afinních vrcholů.
+\end{dusledek}
+\noindent \textit{Důkaz.} Pro dané $k \in \mathbb{F}_q$ je nad $\mathbb{F}_q$ jistě $q-1$ dvojic se součinem $k$, konkrétně $\left(a, \frac{k}{a}\right)$ pro $a \in \mathbb{F}_q ^{\times}$. Podle předchozího lemmatu \ref{fix} mají všechny prvky jedné souvislé komponenty stejný součin prvků, je jich proto nejvýše $q-1$. \hfill $\square$\\
+
+Poznamenejme, že ze všech $q-1$ dvojic prvků s daným součinem ne nutně všechny leží v roji, například v tělese $\mathbb{F}_{11}$ pro součin roven čtyřem nevyhovuje dvojice $(2,2)$. Lemma, které jsme zmínili před chvílí, nám též umožní adaptovat větu \ref{isom}, tentokrát je totiž počet přátel grafů k dané souvislé komponentě velmi omezený.
+\begin{definice}
+Ať $(a,b) \in AH_{\mathbb{F}_q}$ leží v souvislé komponentě $V$. Potom nazveme libovolnou souvislou komponentu obsahující prvek $(ka,kb)$ pro $k \in \mathbb{F}_q$ přítelem $V$.
+\end{definice}
+
+\begin{veta}\label{lol}
+Ať $(a,b) \in AH_{\mathbb{F}_q}$ leží v souvislé komponentě $V$, která obsahuje pouze afinní vrcholy. Pak počet přátel $V$ je roven:
+\begin{enumerate}
+\item $q-1$, pokud $(-a,-b)$ neleží ve $V$,
+\item $(q-1)/2$, pokud $(-a,-b)$ leží ve $V$.
+\end{enumerate} 
+\end{veta}
+\noindent \textit{Důkaz.} Důkaz je prakticky stejný, jako důkaz věty \ref{isom}, tentokrát ale pokud pro $k \neq 1$ leží $(a,b)$ a $(ka,kb)$ ve stejné komponentě, podle lemmatu \ref{fix} musí platit $a b = k^2 ab$, tj. $k = - 1$. Nosná množina grupy $O_{k}$ sestrojené analogicky k důkazu věty \ref{isom} je proto podmnožinou $\lbrace 1,-1 \rbrace$ a dojdeme k tomu, že  $V$ má právě $\frac{q-1}{\ord_q (\pm 1)} \in  \left\lbrace q-1,\frac{q-1}{2}\right\rbrace$ přátel. \hfill $\square$\\
+
+V případě, že komponenta obsahuje body v nekonečnu, pak předchůdci prvku $(0,\infty)$ jsou $(\pm a,\mp a)$, tedy tato komponenta má $(q-1)/2$ přátel. Poznamenejme, že ve zdánlivé většině grafů $AH_{\mathbb{F}_q}$ se vyskytují komponenty s $q-1$ přáteli, stejně jako jiné komponenty, které mají přátel pouze $(q-1)/2$.
+
+\begin{definice}
+Ať $H \subseteq AH_{\mathbb{F}_q}$ je souvislá komponenta roje a $H_1,\dots,H_k$ jsou všichni její přátelé. Pak $H \cup H_1 \cup \dots \cup H_k$ nazvěme \textit{hejnem}.
+\end{definice}
+ 
+
+\section{Struktura grafů}
+
+$AH$ posloupnost se od $AG$ posloupnosti na několika místech principiálně liší, přesto se na jednom místě shodují. Jejich grafy mají pozoruhodně pravidelnou strukturu. V pozdějších částech práce tuto strukturu do jisté míry vysvětlíme. Bez dalšího otálení proto pojďme opravdu dokázat, že grafy $AH_{\mathbb{F}_q}$ mají tu strukturu, kterou jim připisujeme. Nejprve klasifikujeme, kdy má prvek předchůdce.
+
+\begin{lemma}\label{lema}
+Afinní vrchol $(a,b) \in AH_{\mathbb{F}_q}$ má předchůdce, právě pokud $\phi_q(a^2-ab)=1$.
+\end{lemma}
+
+\noindent \textit{Důkaz.} Nejprve předpokládejme, že $(a,b)$ má předchůdce $(c,d)$, platí tedy:
+\begin{equation*}
+a = \frac{c+d}{2}, \quad b = \frac{2cd}{c+d}.
+\end{equation*}
+Potom:
+\begin{equation*}
+a(a-b) = \frac{c+d}{2} \left( \frac{c+d}{2} - \frac{2cd}{c+d} \right) =\left( \frac{c-d}{2}\right)^2
+\end{equation*}
+je čtverec. Naopak ať $a(a-b)$ je čtverec a $x$ je nějaká jeho odmocnina. Podle definice roje nemůže platit $a^2 \neq a(a-b)$, tedy v $AH_{\mathbb{F}_q}$ leží vrchol $(a-x,a+x)$.  Jeho následník je: $$\left(\frac{a-x+a+x}{2}, \frac{2 (a-x)(a+x)}{a-x+a+x} \right)= \left(a, b \right).$$ \hfill $\square$\\
+
+
+Díky tomuto tvrzení dokážeme poskytnout parciální odpověď na otázku, jak vypadají komponenty souvislosti v $AH_{\mathbb{F}_q}$. Prozatím se zaměříme na případy $q \equiv 3,5 \pmod{8}$, lemma \ref{lema} nám rozdělí práci pro tyto dva případy.
+
+\begin{dusledek}\label{dusl}
+Uvažme afinní vrchol $(a,b) \in AH_{\mathbb{F}_q}$. Potom:
+\begin{enumerate}
+\item pokud $\phi_q(-ab) = -1$, tak má právě jeden z vrcholů $(a,b)$ a $(b,a)$ v $AH_{\mathbb{F}_q}$ předchůdce,
+\item pokud $\phi_q(-ab) = 1$, tak mají v $AH_{\mathbb{F}_q}$ předchůdce buď oba vrcholy $(a,b)$ a $(b,a)$, nebo ani jeden.
+\end{enumerate}
+\end{dusledek}
+\noindent \textit{Důkaz.} Pokud $\phi_q(-ab) = -1$, tak součin čísel: $$a(a-b) \cdot b (b-a) = -ab(a-b)^2$$
+čtverec není, tak je právě jedno z čísel $a(a-b)$ a $b(b-a)$ čtvercem, tedy díky lemmatu \ref{lema} má právě jeden z vrcholů předchůdce. Pokud naopak $\phi_q(-ab) =1$, tak jsou buď obě čísla čtverci, nebo ani jedno, což koresponduje s počty předchůdců příslušných vrcholů. \hfill $\square$\\
+
+V případě $q \equiv 3 \pmod{8}$ není $-1$ v $\mathbb{F}_q$ čtvercem a proto $a,b$ s $\phi_q (ab) = 1$ má právě jeden z vrcholů $(a,b)$, $(b,a)$ předchůdce. Pokud $ab$ není čtverec, tak buď oba vrcholy mají předchůdce, nebo ani jeden. Pro $q \equiv 5$ je tato situace prohozena. 
+
+Jádro celé charakterizace grafu $AH_{\mathbb{F}_q}$ pro $q \equiv \pm 3 \pmod{8}$ spočívá v následujícím tvrzení:
+
+\begin{lemma}\label{smol}
+Ať $q \equiv 3,5 \pmod{8}$ je mocnina prvočísla. Dejme tomu, že v $AH_{\mathbb{F}_q}$ máme sled vrcholů $A \longmapsto B \longmapsto C \longmapsto D$, kde $B = (a,b)$ je bod splňující $\phi_q(-ab) = 1$. Potom každý jiný sled vrcholů v $AH_{\mathbb{F}_q}$ splňující $X \longmapsto Y \longmapsto Z \longmapsto D$ také splňuje $Z = C$.
+\end{lemma}
+\noindent \textit{Důkaz.} Bez újmy na obecnosti pišme $B = (1,b)$, pak požadujeme $\phi_q(-b)=1$. Fakt, že $B$ má předchůdce (jímž je $A$) díky lemmatu \ref{lema} znamená, že existuje $x \in \mathbb{F}_q$ splňující $1-b = x^2$. Nyní si spočítejme body $C,D$:
+$$ (1,b) \longmapsto \underbrace{\left(\frac{b+1}{2}, \frac{2b}{b+1} \right)}_{C} \longmapsto \left( \frac{b^2+6b+1}{4(b+1)}, \frac{4b(b+1)}{b^2+6b+1} \right) = D. $$
+
+Předchůdce $D$ různý od $C$ je roven:
+$$E : \left(\frac{2b}{b+1}, \frac{b+1}{2} \right).$$
+Tento bod má sám předchůdce podle důsledku \ref{dusl}. Ať $(X,Y)$ a $(Y,X)$ jsou dva předchůdci $D$, ti splňují soustavu:
+\begin{align*}
+\frac{X+Y}{2} &= \frac{2b}{b+1},\\
+\frac{2XY}{X+Y} =  \frac{b+1}{2} \Rightarrow XY &= b.
+\end{align*}
+Čísla $X,Y$ jsou tedy kořeny kvadratické rovnice $U^2 - \frac{4b}{b+1} U + b = 0$ nad $\mathbb{F}_q$. Tyto kořeny spočítáme explicitně:
+$$\lbrace X,Y \rbrace = \left\lbrace \frac{2b + \sqrt{-b}(b-1)}{b+1},\frac{2b - \sqrt{-b}(b-1)}{b+1} \right\rbrace,$$
+při nějaké volbě odmocniny z $-b$, která dle předpokladů leží v $\mathbb{F}_q$. Konečně ukážeme, že $(X,Y)$ nemá předchůdce, z toho podle důsledku \ref{dusl} plyne, že i $(Y,X)$ nemá předchůdce. K~tomu nám díky lemmatu \ref{lema} stačí ověřit, že číslo $X(X-Y)$, které je rovno:
+\begin{align*}
+\frac{2b + \sqrt{-b}(b-1)}{b+1} \cdot \left( \frac{2b + \sqrt{-b}(b-1)}{b+1} - \frac{2b - \sqrt{-b}(b-1)}{b+1} \right) &=\\
+\frac{2b + \sqrt{-b}(b-1)}{(b+1)^2} \cdot 2 \sqrt{-b}(b-1)&=\\
+\frac{2 (b-1)}{(b+1)^2} \cdot [2 \sqrt{-b} b - b(b-1)] &=\\
+\frac{2 b(b-1)}{(b+1)^2} \cdot [2 \sqrt{-b}-(b-1)] &= \frac{2 b(b-1)}{(b+1)^2} (1-\sqrt{-b})^2,
+\end{align*}
+není v $\mathbb{F}_q$ čtvercem. Díky existenci $x \in \mathbb{F}_q$ splňujícího $x^2 = 1-b$ pišme:
+\begin{align*}
+\phi_q( 2 b (b-1)) &= \phi_q (2) \cdot \phi_q(b) \cdot \phi_q(b-1) = -1 \cdot \phi_q(b) \cdot \phi_q(-x^2)\\
+&= -1 \cdot \phi_q (-b) \cdot \phi_q(x^2) = -1 \cdot 1 \cdot 1 = -1.
+\end{align*}
+Dohromady máme $\phi_q (X(X-Y)) = 1 \cdot (-1) = -1$, tedy oba předchůdci $E$ nemají předchůdce. Pokud proto existuje sled čtyř prvků končících v $D$, pak předposlední člen nutně musí být $C$. \hfill $\square$
+
+\begin{poznamka}
+Nad tělesy, kde $\phi_q(2) =1$, lemma neplatí.
+\end{poznamka}
+
+Nyní dokážeme hlavní větu této sekce.
+
+\begin{veta}\label{big}
+Ať $q \equiv 3,5 \pmod{8}$ je mocnina prvočísla. Pak roj $AH_{\mathbb{F}_q}$ vypadá následovně:
+\begin{enumerate}
+\item Pokud $q \equiv 3 \pmod{8}$, tak:
+\begin{itemize}
+\item sjednocení komponent souvislosti obsahujících prvky $(a,b)$ splňující $\phi_q(ab) = 1$ je tvořeno medúzami,
+\item sjednocení komponent souvislosti obsahujících prvky $(a,b)$ splňující $\phi_q(ab) = -1$ je tvořeno vulkány hloubky $2$.
+\end{itemize}
+\item Pokud $q \equiv 5 \pmod{8}$, tak:
+\begin{itemize}
+\item sjednocení komponent souvislosti obsahujících prvky $(a,b)$ splňující $\phi_q(ab) = 1$ je tvořeno vulkány hloubky $2$,
+\item sjednocení komponent souvislosti obsahujících prvky $(a,b)$ splňující $\phi_q(ab) = -1$ je tvořeno medúzami.
+\end{itemize}
+\end{enumerate}
+
+\end{veta}
+
+\noindent \textit{Důkaz.} Ukážeme, že komponenty souvislosti obsahující body $(a,b)$ splňující $\phi_q(-ab) = -1$ tvoří medúzy a komponenty souvislosti obsahující $(a,b)$ pro něž je naopak $\phi_q(-ab)=1$ tvoří vulkány hloubky $2$.
+
+%Uvažujme bez újmy na obecnosti $q \equiv 3 \pmod{8}$, tedy $\phi_q(-1)= -1$, případ $q \equiv 5 \pmod{8}$ je analogický, pouze se prohodí role vrcholů $(a,b)$ s $\phi_q(ab) =1$ a $\phi_q(ab) = -1$. Ukážeme, že vrcholy $(a,b)$, pro které není součin $ab$ čtvercem, tvoří medúzy, a pokud $\phi_q (ab) = 1$, tak tvoří vulkány hloubky $2$. 
+
+Pokud platí $\phi_q(-ab) =-1$ čtverec, tak podle důsledku \ref{dusl} má právě jeden z vrcholů $(a,b)$ a $(b,a)$ předchůdce. Jako v případě $AG$ posloupnosti tedy vyberme libovolný vrchol $(a,b)$, $a \neq b$, a hledejme další členy posloupnosti $(a_1,b_1), (a_2,b_2)$, \dots, dokud nedojdeme do cyklu. Ať $(c,d)$ je členem cyklu a jeho předchůdci jsou vrcholy $(C,D)$, $(D,C)$. Víme, že jeden z těchto dvou nemá předchůdce a ten druhý proto musí být členem cyklu. Komponenta souvislosti obsahující $(c,d)$ je tedy medúzou.
+
+%Nyní přijde ta zajímavější část, tedy že pokud $\phi_q(-ab)$ je rovno jedné, tak komponenta souvislosti obsahující bod $V=(a,b)$ je vulkán. Opravdu, uvažme vrchol $V = (a,b)$ grafu, který má předchůdce, a bez újmy na obecnosti položme $a=1$. Spočítejme dva následníky vrcholu $V$:
+%$$ V \longmapsto W \longmapsto X. $$
+
+%Nyní aplikujme lemma \ref{smol} pro $B=V$ a $D=X$. Pokud druhý předchůdce $W$ je $Y$, tak $Y$ má dva rodiče a tito rodiče nemají rodiče. Nyní již se můžeme pustit přímo do důkazu, že naše posloupnost tvoří vulkány.
+
+Nyní přijde ta zajímavější část, tedy že pokud $\phi_q(-ab)$ je rovno jedné, tak komponenta souvislosti obsahující libovolný vrchol $V=(a,b)$ je vulkán. Stejně jako v případě $AG$ posloupnosti pišme sled následníků vrcholu V:
+$$(a,b)\longmapsto (a_1,b_1)\longmapsto (a_2, b_2) \longmapsto \dots$$
+Máme nekonečně definovanou posloupnost na konečné množině vrcholů, jednou proto vstoupí do cyklu, který má délku větší než jedna. Dejme tomu, že $(c,d)$ je člen cyklu, potom mu můžeme psát nekonečnou posloupnost předků ležících v cyklu. Ať je tedy $(C,D)$ předchůdce $(c,d)$ neležící v cyklu.  V důkaze lemmatu \ref{smol} jsme si ukázali, že $(C,D)$ má dva rodiče a ti již rodiče nemají. Toto platí pro každý člen $(c,d)$ libovolného cyklu. Tím tedy získáváme, že každá komponenta souvislosti v tomto případě tvoří vulkány hloubky $2$. \hfill $\square$\\
+ 
+
+Tato charakterizace byla poměrně pracná, přesto je pouze polovina války vyhrána. Zaprvé, co když uvážíme konečná tělesa $\mathbb{F}_q$, kde $q = p^k$ a $p \equiv 1,7 \pmod{8}$? Nebo sice platí $p \equiv 3,5 \pmod{8}$, ale $k = 2t$ je sudé? V takových případě je $\phi_q(2)=1$ a navíc každý list v~grafu $AH_{\mathbb{F}_{p^t}}$ má v grafu $AH_{p^k} = AH_{p^{2t}}$ předchůdce. Na příklad rozšiřme příklad ? nad tělesem $\mathbb{F}_{p^2}$, pak graf vypadá následovně:
+
+OBR--
+
+Vulkán má tedy o jedna vyšší hloubku. V případě rozšíření lichého stupně jsou grafy shodné. Při rozšíření sudého stupně můžeme získat alespoň jednoduché odhady na hloubku binárního stromu, který je připojen ke členu cyklu. Důkaz, že všechny listy mají stejnou hloubku přes všechny takové stromy, tedy že graf je opět vulkánem, je již nad možnosti základní teorie čísel. 
+
+\begin{dusledek}\label{hloub}
+Buď $q = p^m$ a $V \subseteq AH_{\mathbb{F}_q}$ vulkán hloubky $h$ a $(a,b)$ nějaký jeho prvek. V grafu $AH_{\mathbb{F}_{q^k}}$ leží $(a,b)$ ve stromu zakořeněném v cyklu. Potom výška tohoto stromu je alespoň $h+v_2(k)$.
+\end{dusledek}
+\noindent \textit{Důkaz.} Postupujme indukcí podle $v_2(k)$. Případ $k$ lichého pokrývá věta \ref{big}. Ať nyní věta platí pro nějaké $\ell \geqslant 0$ a všechna $k$ s $v_2 (k) = \ell$. Pokud $(a,b)$ je list v $\mathbb{F}_{q^k}$ pro nějaké $k$, pak platí $\phi_{q^k} (a(a-b)) = -1$ a tedy $a(a-b)$ je čtvercem v $\mathbb{F}_{q^{2k}}$. Vrchol $(a,b)$ má proto dva předchůdce $(a\pm x,a\mp x) \in AH_{\mathbb{F}_{q^{2k}}}$  a výšla stromu obsahujícího $(a,b)$ má v $AH_{\mathbb{F}_{q^{2k}}}$ hloubku alespoň o jedna delší, než v $AH_{\mathbb{F}_{q^{k}}}$. Snadno pak získáme dokazované tvrzení. \hfill $\square$\\
+
+Uveďme si zde známé lemma z olympiádní matematiky, tzv. \textit{Lifting the Exponent lemma}, které hodnotu $v_2(k)$ ukotví k číslu $p^k - 1$. 
+\begin{veta}(LTE lemma)
+Ať $p$ je liché a $k$ sudé. Pak platí:
+$$v_2 (p^k - 1) = v_2(p-1)+v_2 (p+1) + v_2 (k) - 1.$$
+\end{veta}
+[citation needed] Důsledek výše spolu s větou \ref{big} pak ukazuje, že hloubka vulkánu je určitým způsobem spojena s $v_2 (q-1)$. Toto propojení plně prozkoumáme až ke konci práce i pro tělesa s~charakteristikou $p \equiv \pm 1 \pmod{8}$ pomocí eliptických křivek.
+
+\section{Vlastnosti grafů}
+
+I v případě $AH$ posloupnosti se můžeme dívat na empirická data ohledně jednotlivých parametrů.
+
+\begin{definice}
+Ať $q$ je mocnina prvočísla. Pak označme $D(\mathbb{F}_q)$ počet všech souvislých komponent v grafu $AG_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek. Navíc, označme $S(\mathbb{F}_q)$ počet všech hejn v grafu $AH_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek.
+\end{definice}
+???
+\begin{veta}
+Platí řetězec nerovností:
+$$q-1 \geqslant \frac{D(\mathbb{F}_q)}{S(\mathbb{F}_q)} \geqslant \frac{q-1}{2}.$$
+\end{veta}
+\noindent \textit{Důkaz.} Tato věta je přímým důsledkem věty \ref{lol}, jelikož každé hejno přispívá buď $\frac{q-1}{2}$ nebo $q-1$ medúzami do počtu $D(\mathbb{F}_q)$. \hfill $\square$\\
+
+Lepší odhady zdánlivě nenajdeme, dále uveďme grafy $AH_{\mathbb{F}_p}$ pro $p = A$ a $B$, kde každá medúza je reprezentantem svého hejna a má vždy buď $q-1$ nebo $\frac{q-1}{2}$ přátel.
+
+\section{Dynamické systémy}
+
+AH posloupnost se od dvou, které jsme studovali před chvílí, liší také tím, že nemusíme nijak vybírat tu \uv{správnou} odmocninu. Tato posloupnost je tím mnohem jednodušeji studovatelná, protože je udaná zobrazeními, která jsou pouze lomenými funkcemi. 
+  
+V AH posloupnosti zobrazíme prvek $(x,1)$ na $\left(\frac{x+1}{2}, \frac{2x}{x+1}\right)$. Jaké poznatky můžeme vytěžit, kdybychom i tento prvek znovu normalizovali na $\left ( \frac{(x+1)^2}{4x}, 1 \right)$? Poté se zabýváme iterací zobrazení:
+$$x \longmapsto \frac{(x+1)^2}{4x}$$
+a jejím chováním na $\mathbb{P}^1 ( \mathbb{F}_q)$. Toto je přesně úkolem oblasti matematiky studující \textit{dynamické systémy} lomených funkcí nad konečnými tělesy.
+
+Dynamické systémy byly přes poslední dekády hojně zkoumány, i přesto se o nich ví poměrně málo. Přehledový článek z roku 2013 [?] dává do kontextu, kolik jejich struktury je nám zatím neznámo, dokonce i pouhé očekávané chování dynamického systému. 
+
+Většina vyřešených dynamických systémů se zabývá buď pouze aditivní strukturou $\mathbb{F}_q$ [] a nebo pouze jeho multiplikativní strukturou. Příklady takových systémů jsou tvaru $x \mapsto ax$ či $x \mapsto x+b$, případně systém $x \mapsto ax+b$. My se zabýváme systémem, kde obě struktury kombinujeme, a proto se nemůžeme divit, že znalosti o této posloupnosti nepřijdou zdarma. Příkladem takového systému je $x \longmapsto x^2+c$ - zobrazení, které nad komplexními čísly studovat Mandelbrot a je spojen s fraktály. Studium tohoto systému nad konečnými tělesy vedlo mimo jiné na tvorbu Pollard-Rho-ova algoritmu na rozkládání celých čísel [].
+
+Jak přesně ale souvisí náš systém s $AH$ posloupností? 
+
+\begin{definice}
+Mějme $x \in \mathbb{P}^{1}(\mathbb{F}_q)$. Pak definujme \textit{orbitu} $\mathcal{O}(x)$ jako množinu:
+$$\lbrace x,f(x),f(f(x)),f(f(f(x))),\dots \rbrace,$$
+kde $f \equiv \frac{(x+1)^2}{4x}$. \textit{Dynamický systém} $D_f = (\mathbb{P}^{1}(\mathbb{F}_q),E)$ definujeme jako orientovaný graf takový, že pro $a,b \in \mathbb{P}^{1}(\mathbb{F}_q)$ platí $(a,b) \in E$, právě pokud $f(a)=b$.
+\end{definice}
+
+Přiřadíme-li bodu $(a,b) \in AH_{\mathbb{F}_q}$ prvek $\frac{a}{b} \in \mathbb{P}^1 (\mathbb{F}_q)$, pak každý afinní a nenulový prvek $x \in  \mathbb{P}^1 (\mathbb{F}_q)$ má v $AH_{\mathbb{F}_q}$ právě $q-1$ předobrazů - konkrétně prvky $(ax,a) \in AH_{\mathbb{F}_q}$ pro $a \in \mathbb{F}_q ^{\times}$. Prvky $0$ a $\infty$ mají každý právě jeden předobraz. Každé hejno v grafu $AH_{\mathbb{F}_q}$ je pak předobrazem jedné komponentě souvislosti v $D_f$. Poznamenejme pak, že komponenta souvislosti $D_f$ obsahující $0$ a $\infty$ má právě $\frac{q-1}{2}$ předobrazů.
+
+Jelikož je $D_f$ systém daný kvadratickou lomenou funkcí, každý prvek (vyjma $1$) má buď žádného nebo dva předchůdce. Funkce $f$ je fixovaná pod involucí $x \longmapsto \frac{1}{x}$.  Pokud tedy $x$ je předchůdcem $y$, tak druhým předchůdcem $y$ je $\frac{1}{x}$, to koresponduje s tím, že předchůdci v grafu $AH_{\mathbb{F}_q}$ chodí v párech - $(a,b)$ a $(b,a)$. 
+
+Jestliže bod $(a,b)$ neleží v cyklu v grafu $AH_{\mathbb{F}_q}$, tak prvek $\frac{a}{b}$ musí být ve své orbitě předperiodický bod. Naopak je-li bod $(a,b)$ zobrazen na předperiodický bod, nemůže sám ležet v cyklu. Z toho pak taky plyne, že pokud máme posloupnost $AH(a,b)$:
+$$(a,b) \longmapsto (a_1,b_1) \longmapsto \dots \longmapsto (a_k,b_k) \longmapsto \dots,$$
+kde $(a_k,b_k)$ je první prvek cyklu, pak v orbitě: $$\mathcal{O}\left(\frac{a}{b}\right) =\left\lbrace \frac{a}{b},\frac{a_1}{b_1},\frac{a_2}{b_2},\dots,\frac{a_k}{b_k},\dots \right\rbrace,$$
+je $\frac{a_k}{b_k}$ první periodický bod. To znamená, že je-li k bodu $(a,b) \in AH_{\mathbb{F}_q}$ připojen orientovaný binární strom, pak k bodu $\frac{a}{b} \in D_f$ je připojen isomorfní strom. Speciálně pro $q \equiv \pm 3 \pmod{8}$ je $D_f$ tvořen medúzami a vulkány hloubky $2$. Jediný rozdíl tak nastává v ohledu cyklů - stejně jako v případě $AG$ posloupnosti. Konkrétně, je-li $(a,b) \in AH_{\mathbb{F}_q}$ je členem cyklu, tak buď prvek $(-a,-b)$ leží v tom samém cyklu, potom je délka cyklu v $D_f$ je poloviční, nebo leží v naprosto odlišném cyklu, pak je délka cyklu zachována.
+
+Pomocí dynamických systémů můžeme znovu dokázat některé výsledky ohledně $AH$ posloupnosti, které jsme dokázali v předchozích sekcích. Nejprve si všimněme, že rovnice: $$\frac{(x+1)^2}{4x} = a$$ s parametrem $a$ má nad $\mathbb{F}_q$ řešení, právě pokud diskriminant výsledné kvadratické rovnice $x^2 + (2-4a)x+1=0$, tedy $4(1-a)^2-4 = 4a(a-1)$, je nad $\mathbb{F}_q$ čtvercem. Toto koresponduje s lemmatem \ref{lema}. Můžeme určit, kolik prvků v $D_f$ není listy.
+
+
+
+%\begin{definice}
+%Ať $\chi : \mathbb{F}_q ^{\times} \longrightarrow \mathbb{F}_q ^{\times}$ je zobrazení %splňující $\chi (a) \chi(b) = \chi(ab)$ pro $a,b \in \mathbb{F}_q ^{\times}$. Pak $\chi$ %nazveme \textit{multiplikativním charakterem} na $\mathbb{F}_q$.
+%\end{definice}
+
+%Typické příklady multiplikativních charakterů na $\mathbb{F}_q$ jsou triviální charakter %$\varepsilon$, které každý prvek zobrazí na $1$, či Legendreho symbol $\phi_q$. %Multiplikativní charaktery se originálně studovaly kvůli hledání řešení rovnic jako %například $x^3 + y^3 = 1$ nad konečnými tělesy, pomocí Jacobiho sum můžeme ale obecněji %najít počet řešení rovnice typu $a_1 x_1 ^{b_1} + \dots + a_k x_k ^{b_k} = c$. 
+
+%\begin{definice}
+%Ať $\chi, \lambda$ jsou multiplikativní charaktery na $\mathbb{F}_q$. Pak %\textit{Jacobiho sumu} $J(\chi,\lambda)$ definujeme jako:
+%$$J (\chi, \lambda) = \sum_{a+b = 1} \chi (a) \lambda (b).$$
+%\end{definice}
+
+\begin{veta}
+Počet $a \in \mathbb{F}_q$ takových, že $\phi_q ( a^2-a) = 1$, je $\frac{q-3}{2}$.
+\end{veta}
+\noindent \textit{Důkaz.} Určíme součet:
+$$\sum_{a} \phi_q (a (a-1)) = \sum_{a} \phi_q (a) \phi_q (a-1).$$
+Bez újmy na obecnosti sčítejme přes $\mathbb{F}_q \setminus \lbrace 1 \rbrace$. Protože pro libovolné $a \neq 1$ platí $\phi_q (a-1) ^2 = 1$, tak díky multiplikativitě $\phi_q$ máme $\phi_q (a-1) = \phi_q (a-1)^{-1}$. Tím získáme:
+\begin{align*}
+\sum_{a} \phi_q (a) \phi_q (a-1) &=  \sum_{a} \phi_q (a) \phi_q (a-1)^{-1}\\
+&= \sum_{a} \phi_q \left (\frac{a}{a-1} \right).
+\end{align*}
+Nyní přejdeme na proměnnou $x = \frac{a}{a-1}$, které splňuje $a = \frac{x}{x-1}$. Pro každé $x \neq 1$ existuje unikátní $a \neq 1$ splňující vztahy výše, takže:
+$$\sum_{a} \phi_q(a^2-a) = \sum_{a \neq 1} \phi_q(a).$$
+
+Víme ale, že v $\mathbb{F}_q$ leží stejně kvadratických zbytků jako nezbytků, takže součet výše je roven $-\phi_q(1) = -1$.
+
+Legendreho symbol nabývá pouze hodnot $0,1$ a $-1$, přičemž v našem součtu figuruje $q-1$ sčítanců, jeden z nich nulový. To znamená, že právě $\frac{q-3}{2}$ z nich je rovno jedné, což jsme chtěli. \hfill $\square$\\
+
+
+\begin{poznamka}
+Tento součet a ostatně i trik, kde podělíme výraz $\phi_q (a-1)^2$, je inspirován teorií obklopující tzv. \textit{Jacobiho sumy} multiplikativních charakterů nad $\mathbb{F}_q$. Konkrétně součet $\sum \phi_q (a(a-1))$ je roven $\phi_q (-1) \sum \phi_q (a) \phi_q (1-a)$, což je Jacobiho suma $\phi_q (-1) J(\phi_q, \phi_q)$. Tyto sumy jsou intimně spojené s počtem řešení rovnic typu $a_1 x_1 ^{b_1} + \dots + a_n x_n ^{b_n} = k$ nad konečnými tělesy. Pro excelentní, byť mírně pokročilý, úvod do jejich studia doporučuji [IR]. 
+\end{poznamka}
+
+
+\begin{dusledek}
+Je-li $x \in D_f$ periodický bod, pak jeho perioda má délku nejvýše $(q-1)/4$. Jinak řečeno, každý cyklus v $AH_{\mathbb{F}_q}$ má délku nejvýše $(q-1)/2$.
+\end{dusledek}
+
+
+%\noindent \textit{Důkaz.}
+%\hfill $\square$
+
+
+%Jak moc je tento odhad těsný? Pokud si spočítáme poměr $p$ a největšího cyklu, který %nalezneme nad $\mathbb{F}_p$, tak získáme následující data:
+%-obrázek-
+
+%Vidíme tedy, že poměrně mnoho prvočísel dosahuje této maximální délky cyklu, další trendy se poté drží u podílů $1/5, 1/6$ a poté většina prvočísel spadá pod podíl $1/12$. (vysvětlení?)
+Tento výsledek je však zjevný při pohledu na původní problém. Totiž každá komponenta souvislosti obsahuje podle věty \ref{fixab} nejvýše $q-1$ afinních bodů a navíc obsahuje jediný cyklus. Navíc ke každému prvku cyklu je připojen alespoň jeden další prvek, proto každý cyklus má délku nejvýše $(q-1)/2$. Můžeme ale ohraničit největší cyklus v grafu i jinak. Ohledně spodních odhadů na největší cyklus v grafu $D_{f}$ již pochodíme lépe.
+
+Konkrétně se podívejme na systém pod světlem komplexních čísel. Dívejme se na vícenásobné aplikace lomené funkce $f \equiv \frac{(x+1)^2}{4x}$ stupně dva, její $n$-násobná aplikace má stupeň $2^n$, přičemž stupeň čitatele je ostře větší, než stupeň jmenovatele. Podívejme se na následující rovnici: $$\underbrace{f(f(\dots f}_{n}(x))) = x.$$
+
+Pokud vynásobíme rovnici jmenovatelem, získáme polynom stupně $2^n$ roven $0$. Jelikož $\mathbb{F}_q$ je oborem integrity, rovnice má nejvýše $2^n$ kořenů. 
+
+\begin{veta}
+Buď $q \equiv \pm 3 \pmod{8}$ mocnina prvočísla. Potom pro $d \in \lbrace 1,2 \rbrace$ existuje v $D_f$ vulkán hloubky $d$, jehož cyklus má délku alespoň $\log_2((q-1)\cdot(q-3))-d-2$.
+\end{veta}
+\noindent \textit{Důkaz.} Označme $f: \mathbb{F}_q \longrightarrow \mathbb{F}_q : f(x) = \frac{(x+1)^2}{4x}$ lomenou funkci stupně dva. Potom $n$-násobná aplikace $f^{(n)} (x) = \underbrace{f(f(\dots f}_{n}(x)))$ má stupeň $2^n$. Prvek $x \in ?$ tak leží v cyklu délky $D \mid n$, právě pokud $f^{(n)}(x)=x$.
+
+Představme si, že vynásobíme lomenou funkci $f^{(n)}(x)-x$ jmenovatelem $f^{(n)}(x)$, poté získáme polynom ležící v $\mathbb{F}_q [x]$ stupně $2^n$, který má nad $\mathbb{F}_q$ nejvýše $2^n$ kořenů. Existuje proto nejvýše $2^n$ prvků $x \in ?$ ležících v cyklu délky $n$. Počet prvků ? ležících v cyklu délky nejvýše $n$ je proto roven nejvýše:
+\begin{equation}\label{lol}
+2+2^2+\dots+2^n < 2^{n+1}.
+\end{equation}
+
+Zvolme nyní $d \in \lbrace 1,2 \rbrace$ a uvažme komponentu $V \subseteq AH_{\mathbb{F}_q}$ složenou ze všech vulkánů hloubky $d$. Ke každému členu cyklu $v \in V$ je připojen binární strom hloubky $d$ s $2^d$ prvky, proto ve $V$ je právě $\vert V \vert/2^d$ prvků ležících v cyklech. Díky větě \ref{pocetv} je toto číslo alespoň:
+$$\frac{(q-1)(q-3)}{2^{d+1}}.$$
+
+Označme konečně $N$ nejvyšší délku cyklu, který ve $V$ najdeme. Podle nerovnosti \eqref{lol} musí platit:
+$$2^{N+1} > \frac{(q-1)(q-3)}{2^{d+1}},$$
+což jsme chtěli. \hfill $\square$\\ 
+
+
+
+Pomocí dynamických systémů a vlastností konečných těles můžeme novým způsobem dokázat důsledek \ref{hloub}. Stačí nám ukázat, že pro $z \in \mathbb{F}_q$ leží každý předchůdce prvku $(z,1) \in AH_{\overline{\mathbb{F}}_q}$ po normalizaci v $\mathbb{F}_{q^2}$. 
+
+
+\begin{veta}
+Ať $q \equiv \pm 3 \pmod{8}$ je mocnina prvočísla a $x \in \overline{\mathbb{F}_q}$ je prvek splňující:
+$$\frac{(x+1)^2}{4x} \in \mathbb{F}_q.$$
+Potom $x \in \mathbb{F}_{q^2}$.
+\end{veta}
+\noindent \textit{Důkaz.} Číslo $z \in \overline{\mathbb{F}}_q$ leží v tělese $\mathbb{F}_q$, právě pokud je kořenem polynomu $z^q - z \in \mathbb{F}_q [x]$. Protože $q$ je mocninou charakteristiky tělesa $\mathbb{F}_q$, tak pro libovolná $a,b \in \overline{\mathbb{F}}_q$ platí kvůli binomické větě $(a+b)^q = a^q + b^q$. Speciálně:
+\begin{align*}
+\frac{(x+1)^2}{4x} = \left( \frac{(x+1)^{2}}{4 x} \right)^{q} &= \frac{(x^2+2x+1)^{q}}{4 x^q} = \frac{x^{2q}+2 x^q + 1}{4 x^q},\\
+x^{q+1} + 2 x^{q} + x^{q-1} &= x^{2q} + 2x^q + 1,\\
+0 &= (x^{q+1} - 1)(x^{q-1} - 1).
+\end{align*}
+Buď tedy platí $x^{q+1} = 1$ nebo $x^{q-1}=1$. Umocněním těchto dvou vztahů na exponent po řadě $q-1$ a $q+1$ získáme, že v každém případě platí $x^{q^2-1}=1$, tj. $x \in \mathbb{F}_{q^2}$. \hfill $\square$\\
+%V každém případě platí $x^{q^2-1} = 1$, tj. $x \in \mathbb{F}_{q^2}$. \hfill $\square$\\
+
+
+
+\chapter{Propojení s eliptickými křivkami}
+
+Je pozoruhodné, že tak jednoduchá věc, jako $AG$ či $HG$ posloupnost, generuje nad konečnými tělesy tak pravidelné grafy jako medúzy. Toto není vůbec náhoda, podobné grafy totiž popisují mnohem složitější struktury, konkrétně grafy isogenií eliptických křivek nad konečnými tělesy.
+
+\section{Rychlý úvod do eliptických křivek}
+V této sekci rychle a svižně probereme základy teorie eliptických křivek nad konečnými tělesy. Pro podrobnější text nemohu nedoporučit svou SOČ \cite{Pezlar}, další excelentní cizojazyčné zdroje jsou [],[],[].
+
+Po celou dobu se pohybujeme v tzv. \textit{projektivní prostoru}, tedy množině tříd nenulových vektorů $(a_0: \dots: a_n) \in \overline{K}^{n+1}$, kde dva vektory považujeme za shodné, pokud jsou vzájemně skalárními násobky. Tyto třídy nazveme \textit{body}.
+
+
+\begin{definice}
+Ať $A,B,\lambda \in \mathbb{F}_q$ jsou taková, že $4 A^3 + 27 B^2 \neq 0$ a $\lambda \neq 0, 1.$ Pak definujeme \textit{eliptickou křivku ve Weierstrassově tvaru} jako množinu bodů $(x,y) \in \mathbb{F}_q$ splňujících vztah:
+$$y^2 = x^3 + Ax + B,$$
+spolu s tzv. \textit{bodem v nekonečnu} $O$. Dále definujeme \textit{eliptickou křivku v Legendrově tvaru} jako množinu $(x,y) \in \mathbb{F}_q$ splňujících:
+$$y^2 = x(x-1)(x-\lambda),$$
+opět s bodem v nekonečnu.
+\end{definice}
+Pokud definujeme sčítání na křivce tak, že součet každých tří kolineárních (ne-nutně různých) bodů je $O$, pak body na eliptické křivky tvoří grupu. V případě, že přímka $PQ$ pro $P,Q$ body na $E$ degeneruje v tečnu, pak poslední průsečík této přímky s $E$ bude dvojnásobek bodu $P$. Díky asociativitě sčítání na křivky můžeme pak jednoznačně definovat $n$-násobek bodu $[n]P = \underbrace{P+\dots+P}_{n}$. Definujeme $[0]P = O$.
+
+--Obrázek--
+
+
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+        \begin{axis}[
+            xmin=-2,
+            xmax=4,
+            ymin=-3,
+            ymax=3,
+            scale only axis,
+            axis lines=middle,
+            % set the minimum value to the minimum x value
+            % which in this case is $-\sqrt[3]{7}$
+            domain=-1.3247:2.1663,      % <-- works for pdfLaTeX and LuaLaTeX
+%            domain=-1.91293118:3,   % <-- would also work for LuaLaTeX
+            samples=200,
+            smooth,
+            % to avoid that the "plot node" is clipped (partially)
+            clip=false,
+            % use same unit vectors on the axis
+        ]
+            \addplot [red] {sqrt(x^3-x+1)};
+            \addplot [red] {-sqrt(x^3-x+1)};
+        \end{axis}
+        \draw[black!30!green] (4.78,5.485) -- (0.975,4);
+         \fill[blue] (0.975,4) circle (1.25 pt);
+           \node[left, outer sep=2pt] at (0.975,4) {$P$};
+           \fill[blue] (2.975,4.78) circle (1.25 pt);
+           \node[above right, outer sep=2pt] at (2.975,4.78) {$Q$};
+          \fill[blue] (4.78,5.485) circle (1.25 pt);
+           \node[right, outer sep=2pt] at (4.78,5.485) {$-(P+Q)$};
+             \fill[blue] (4.78,1.785) circle (1.25 pt);
+           \node[right, outer sep=2pt] at (4.78,1.785) {$P+Q$};
+           \draw[dashed] (4.78,5.485) -- (4.78,1.785);
+             
+         \draw[->] (-0.5,3.63) -- (-0.5,6);
+         \draw[->] (-0.5,3.63) -- (-0.5,1.35);
+         \node[above right, outer sep=2pt] at (-0.5,6) {$\mathcal{O}$};
+        \end{tikzpicture}
+\end{center}
+\caption{Sčítání na eliptické křivce.}
+\end{figure}
+
+
+Grupa bodů definovaných nad konečným tělesem je isomorfní direktnímu součinu $\mathbb{Z}_{n} \times \mathbb{Z}_m$ pro vhodná celá $m,n$ [já]. Pokud označíme $E(\mathbb{F}_q)$  množinu bodů na $E$ definovaných nad $\mathbb{F}_q$ (včteně $O$), tak zmiňme důležitou \textit{Hasseho větu}, která značně ukotví počet prvků této křivky.
+\begin{veta}(Hasse)
+Buď $q$ mocnina lichého prvočísla a $E$ eliptická křivka nad $\mathbb{F}_q$. Potom platí:
+\begin{equation*}
+\vert q+1 - \# E(\mathbb{F}_q) \vert \leqslant 2\sqrt{q}.
+\end{equation*}
+\end{veta}
+
+Důležité pro nás jsou zobrazení mezi křivkami, která zachovají jejich grupovou strukturu.
+
+\begin{definice}
+Ať $E_1,E_2$ jsou eliptické křivky nad tělesem $K$. Surjektivní homomorfismus grup $\phi: E_1(\overline{K}) \longrightarrow E_2(\overline{K})$ tvaru $\phi : (x:y:z) \longmapsto (u(x,y,z):v(x,y,z):w(x,y,z))$ pro polynomy $u,v,w \in K[x]$ nazveme \textit{isogenií}. Pod jádrem $\ker \phi$ isogenie $\phi$ rozumíme jejímu jádru jako homomorfismu grup. 
+\end{definice}
+
+Obzvláště důležité isogenie jsou \textit{isomorfismy}, tzn. invertibilní isogenie - isogenie dané lineárními zobrazeními $(x,y) \longmapsto (ax+by+c,dx+ey+f)$. Je jednoduché ukázat, že pro křivky ve Weierstrassově tvaru jsou isomorfismy dané zobrazením $(x,y) \longmapsto (u^2 x, u^3 y)$ pro $u \in \overline{K}$. Každá Legendreho křivka má nejvýše $6$ křivek s ní isomorfních a je jednoduché najít jejich koeficienty [?].
+
+I když ne všechny isogenie jsou invertibilní, ke každé isogenii $\phi : E \longrightarrow E^{\prime}$ najdeme její \textit{duální isogenii} $\widehat{\phi} : E^{\prime} \longrightarrow E$. Můžeme proto říci, že \uv{být isogenní} je relace ekvivalence na množině křivek nad daným tělesem. Jak ale zjistit, kdy jsou dvě křivky isogenní? Částečný výsledek nám může poskytnout věta připisovaná \textit{Sato a Tatovi}:
+\begin{veta}\label{satotate} (Sato-Tate)
+Buďte $E,E^\prime$ eliptické křivky nad $\mathbb{F}_q$. Pak jsou tyto křivky isogenní nad $\mathbb{F}_q$, právě pokud platí $\#E (\mathbb{F}_q) = \#E^\prime (\mathbb{F}_q)$.
+\end{veta}
+
+Problém, kdy jsou dvě křivky isogenní pod isogenií daného stupně, je již obtížnější.
+
+\section{Okruhy endomorfismů}
+Endomorfismus na křivce $E$ definujme jako isogenii $\phi : E \longrightarrow E$, přičemž připusťme, že $[0]$ je na $E$ endomorfismem. Pak se sčítáním $(\phi+\psi) P = \phi P + \psi P$ a skládáním $\phi \circ \psi = \phi(\psi)$ tvoří endomorfismy na křivce okruh.
+\begin{definice}
+Buď $E$ eliptická křivka definovaná nad $\mathbb{F}_q$. Pak označme $\End(E)$ okruh všech endomorfismů na $E$ definovaných nad $\mathbb{F}_q$ s operacemi sčítáním a skládáním.
+\end{definice}
+\begin{definice}
+Buď $\phi \in \End(E)$. Pak definujeme jeho stopu jako:
+$$\Tr \phi = \phi + \widehat{\phi}.$$
+\end{definice}
+Je přímočaré ukázat, že stopa je aditivní funkce. Dále je známé, že $\phi+\widehat{\phi}$ je v okruhu endomorfismů celým číslem a navíc každý endomorfismus stupně $n$ je nad $\End(E)$ kořenem kvadratické rovnice $x^2 - \Tr \phi x + n \in \mathbb{Z}[x]$. 
+\section{AG posloupnost ve světle eliptických křivek}
+
+Nyní aplikujeme teorii eliptických křivek na $AG$ posloupnost. Konkrétně ukážeme, že medúzy, které tvoří $AG$ posloupnosti, můžeme propojit s grafy isogenií Legendreho křivek.
+
+
+Uvažme nějakou dvojici $(a,b) \in AG_{\mathbb{F}_q}$. Tuto dvojici ztotožníme s dvojicemi $(ka,kb)$ pro $k \in \mathbb{F}_q ^{\times}$ pomocí podílu $\frac{b}{a} = \lambda$. Budeme se dále zabývat pouze tímto podílem. Kvůli přítomnosti odmocniny se budeme dívat na druhou mocninu tohoto podílu při přechodu z~jedné dvojice na druhé:
+$$\lambda^2 =\left(\frac{b}{a}\right)^2 \longmapsto \left(\frac{2 \sqrt{ab}}{a+b}\right)^2 = \frac{4ab}{(a+b)^2} = \frac{4 \lambda}{(\lambda+1)^2}.$$
+
+Chceme najít nějaké médium, ve kterém bude toto zobrazení přirozené. Autoři článku \cite{Meduza}, na kterém je práce založena, našli velmi elegantní pohled na posloupnost pomocí Legendreho křivek. Konkrétně, pro každý podíl $\lambda = \frac{b}{a}$ definujeme Legendreho křivku:
+$$E_{(a,b)} = E_{\lambda ^2} : y^2 = x(x-1)\left(x - \frac{b^2}{a^2} \right).$$
+
+
+\begin{veta}\label{lol}
+Graf je skoro graf isogenií.
+\end{veta}
+
+Pointou této definice samozřejmě je zjistit, jaký vztah spolu má dvojice $(a,b)$ a $(a_1,b_1)$.
+\begin{veta}
+Mějme v grafu $AG_{\mathbb{F}_q}$ orientovanou hranu $(a,b) \longmapsto (a_1,b_1)$. Pak existuje mezi křivkami $E_{(a,b)}$ a $E_{(a_1,b_1)}$ isogenie stupně dvě definovaná nad $\mathbb{F}_q$. Tato isogenie má předpis:
+$$\phi(x,y) = \left(\frac{(ax+b)^2}{x (a+b)^2 }, y \frac{a(ax+b)(ax-b)}{x^2 (a+b)^3 } \right).$$
+\end{veta}
+\noindent \textit{Důkaz.} $\phi$ je opravdu isogenií, protože je daná lomenými funkcemi nad $\mathbb{F}_q$ (a tedy i ponechává bod v nekonečnu), postačí nám tedy ukázat, že zobrazuje jednotlivé křivky na sebe. Pokud $(x,y) \in E_{(a,b)}$ splňuje $(a,b) \neq (0,0)$, tak nám stačí ukázat, že $\phi(x,y) \in E_{(a_1,b_1)}$. To je pouze otázka výpočtu:
+\begin{align*}
+\frac{(ax+b)^2}{x(a+b)^2 } \cdot \left(\frac{(ax+b)^2}{x(a+b)^2 } - 1 \right) \left(\frac{(ax+b)^2}{x(a+b)^2} - \frac{b_1 ^2}{a_1 ^2} \right) &=\\
+\frac{(ax+b)^2}{x(a+b)^2 } \cdot \left(\frac{(ax+b)^2}{x(a+b)^2 } - 1 \right) \left(\frac{(ax+b)^2}{x(a+b)^2 } - \frac{4ab}{(a+b)^2} \right) &=\\
+\frac{(ax+b)^2}{x(a+b)^2 } \cdot \frac{(x-1)(a^2 x - b^2)}{x(a+b)^2 } \cdot \frac{(ax-b)^2}{x(a+b)^2 } &=\\
+x(x-1)\left(x - \frac{b^2}{a^2} \right) \cdot a^2 \cdot \frac{(ax-b)^2 (ax+b)^2}{x^2 (a+b)^6} &= \left(y \cdot  \frac{a(ax-b)(ax+b)}{x(a+b)^3} \right)^2.
+\end{align*} 
+Isogenie $\phi$ proto zobrazí $E_{(a,b)}$ na $E_{(a_1,b_1)}$. \hfill $\square$\\
+
+Jádro takové isogenie (ve smyslu homomorfismu grup) je grupa $\lbrace (0,0), O \rbrace $. To potvrzuje, že $AG$ posloupnost nezobrazí žádnou dvojici na jinou dvojici s nulovou složkou.
+
+
+něco svulkánama. 
+
+--
+
+Pojďme nyní využít tento nový náhled na $AG$ posloupnost a osvětleme zdánlivě náhodné velikosti a počty medúz. Díky větě \ref{lol} je počet skupin přátel mezi medúzami, které tvoří roj $AG_{\mathbb{F}_q}$, roven počtu různých vulkánů v grafu isogenií. O počtu vulkánů v ?? je toho známo málo, v našem případě je možné poskytnout netriviální dolní odhad na počet vulkánů.
+
+\begin{veta}(Griffin, Ono, Saika, Tsai)
+Pro každé $\varepsilon>0$ a dostatečně velké $q \equiv 3 \pmod{4}$ platí:
+$$s(\mathbb{F}_q) \geqslant \left(\frac{1}{2} - \varepsilon \right) \sqrt{q}.$$
+\end{veta}
+\noindent \textit{Nástin důkazu.}
+
+
+
+\chapter{Eliptické křivky a AH posloupnost}
+
+V procesu studia AH posloupnosti jsem se pokusil propojit tuto posloupnost s teorií obklopující eliptické křivky, podobně jako autoři původního článku ? udělali s AG posloupností. Přímo adaptovat jejich postup, tedy přiřadit vrcholům grafu křivky, podle nejlepšího mínění autora není možné, protože komponenty $AH_{\mathbb{F}_q}$ mají velmi jednoduché invarianty a mají velmi málo prvků. To by znamenalo, že bychom museli vybírat ideály s malými řády v grupě tříd ideálů. 
+
+Ne, $AH$ posloupnost můžeme popsat trochu jednodušeji. Přesto se ale vrátíme do světa eliptických křivek. 
+
+\section{Motivace}
+
+Pro tuto sekci proto sledujme trochu pozorněji časovou osu studia dynamických systémů, mnohé z nich vedly směrem isogenií přímo na křivkách, tzv. \textit{endomorfismů}.
+
+%Vraťme se hned čtyři dekády nazpět, kdy Miller a Koblitz stáli u zrodu kryptografie pomocí eliptických křivek. Při studiu šifrování ryze nad eliptickými křivkami, tedy se zabýváme pouze skalárními isogeniemi $[n]P$, hledáme křivky, které obzvláště elegantní vzorce pro násobení, zpravidla hledáme jednoduché vzorce pro $[2]P$ a $[3]P$. Právě Neal Koblitz zjistil, že pro eliptickou křivku:
+Vraťme se hned čtyři dekády nazpět, kdy Miller a Koblitz stáli u zrodu kryptografie pomocí eliptických křivek. Efektivita takového šifrování je založena na jednoduchosti vzorců pro skalární násobení, hlavně pak $[2]P$ a $[3]P$. Speciálně tito pánové navrhli práci na eliptické křivce:
+$$E : y^2 + xy = x^3 + 1$$
+ %Bod $(x,y)$ má velmi pěkný dvojnásobek:
+%$$2(x,y) = \left(x^2+\frac{1}{x^2}, - \right) = \left( \left(x+\frac{1}{x}\right)^2, - \right)$$ 
+nad konečným tělesem charakteristiky $2$. Krom jejío využití v šifrování nám tato křivka může pomoci studovat mj. dynamiku funkce $x + \frac{1}{x}$ nad tělesy $\mathbb{F}_{2^n}$. V \cite{Ugolini} je totiž ukázáno, že pro bod $P = (x,y) \in E$ a Frobeniův automorfismus  $\pi : (x,y) \longmapsto (x^2,y^2)$ platí:
+$$P + \pi (P) = \left(x + \frac{1}{x} ,  x^2 + y + 1 + \frac{1}{x^2} + \frac{y}{x^2} \right).$$
+Pokud se tedy zaobíráme čistě $x$-ovou souřadnicí, endomorfismus $1+\pi$ zobrazí $x$ na prvek $x+\frac{1}{x}$. Ugolini \cite{Ugolini},\cite{Ugolini2},\cite{Ugolini3},\cite{Ugolini4} hojně studoval podobná propojení jistých dynamických systémů a eliptických křivek, nejprominentněji právě zobrazení $x \longmapsto x+\frac{1}{x}$ nad tělesy s charakteristikou $2,3$ a $5$. V těchto případech grafy asociované s tímto zobrazením též tvoří vulkány a pomocí vlastností okruhů endomorfismů eliptických křivek dokážeme podrobněji určit jejich vlastnosti. Tyto články byly hlavní inspirací pro tuto kapitolu. 
+
+
+\section{Singulární Montgomeryho křivka}
+
+Ve snaze adaptovat postupy popsané výše jsem hledal křivky, na nichž existuje endomorfismus $\phi$ zobrazující bod $P : (x,y)$ na bod s $x$-ovou složkou $\frac{(x+1)^2}{4x}$. U klasických křivek ve Weierstrassově ani Legendrově tvaru se mi takové zobrazení najít nepodařilo. 
+
+Hledaný endomorfismus jsem nakonec nalezl u křivek v \textit{Montgomeryho tvaru} $ B y^2 = x^3 + A x^2 +x$ pro $A,B \in \mathbb{F}_q$. Tyto křivky mají několik praktických výhod, proto se například používají v šifrovacím protokolu CSIDH, pro více informací doporučuji konzultovat mou předchozí práci \cite{Pezlar}.
+
+První z takových výhod je, že třída isomorfismů Montgomeryho křivky závisí \textit{pouze} na hodnotě parametru $A$. Další výhodou je, že lomené funkce udávající zobrazení $[2]$ a $[3]$ mají na Montgomeryho křivkách jednoduší tvary, což umožňuje pro rychlejší výpočty. Konkrétně pro bod $P = (x,y)$ je jeho dvojnásobek roven:
+$$[2] P = \left(\frac{(x^2-1)^2}{4x(x^2+Ax+1)},y \frac{(x^2-1)(x^4+2 A x^3 + 6x^2 + 2 Ax + 1)}{8 x^2 (x^2+Ax+1)^2} \right),$$
+viz \cite{Karaskova}. Co by se stalo, pokud bychom zvolili $A = -2$? Pro takovou hodnotu $A$ dostaneme pro $x \neq 1$:
+\begin{equation}\label{dvoj}
+[2] P = \left(\frac{(x+1)^2}{4x},y \frac{x^2-1}{8 x^2} \right).
+\end{equation}
+$x$-ová souřadnice dvojnásobku bodu $(x,y)$ přesně emuluje dynamický systém založený na $AH$ posloupnosti! Toto pozorování otevírá cestu studiu $AH$ posloupnosti pomocí eliptických křivek.
+
+Problém ale nastává právě s hodnotou $A=-2$, pro ni je totiž křivka rovna: $$E: y^2 = x(x-1)^2.$$ Tuto křivku budeme ve zbytku sekce studovat. Ve skutečnosti není křivka $E$ eliptická, v~bodě $(1,0)$ je singulární a nelze v něm spočítat tečnu. Všechny ostatní body při klasicky definovaném sčítání opět tvoří grupu, tentokrát je ale opravdu jednodušší, než na klasické eliptické křivce. 
+
+\begin{definice}
+Uvažme křivku $E : y^2 = x(x-1)^2$ nad tělesem $\mathbb{F}_q$. Definujeme $E(\mathbb{F}_q)$ jako grupu bodů $(x,y) \in \mathbb{F}_q ^2$ splňující $y^2 = x(x-1)^2$ a $x \neq 1$ spolu s bodem v nekonečnu $O$. 
+\end{definice}
+
+Ihned vidíme, že pokud $(x,y)$ leží na $E$, tak $x$ je čtvercem v $\mathbb{F}_q$. Díky tomuto pozorování můžeme parametricky vyjádřit všechny body na $E$ a charakterizovat, kdy tři body leží na~přímce.
+
+\begin{lemma}\label{param}
+Prvky grupy $E(\mathbb{F}_q)$ můžeme vyjádřit parametricky jako: $$E(\mathbb{F}_q) = \lbrace (t^2,t^3-t) \vert t \in \mathbb{F}_q \setminus \lbrace \pm 1 \rbrace  \rbrace \cup \lbrace O \rbrace.$$
+\end{lemma}
+\noindent \textit{Důkaz.} Pokud $(x,y)$ patří do $E(\mathbb{F}_q)$, tak $x \neq 1$ a platí $x =\left( \frac{y}{x-1}\right)^2$, tedy buď $(x,y) = (0,0)$, nebo je $\phi_q (x) = 1$. Ať $x \neq 0$, potom existuje $t \in \mathbb{F}_q ^{\times}$ takové, že $x = t^2$. Potom $y$ splňuje:
+$$y^2 = x (x-1)^2 = \left[t(t^2-1)\right]^2.$$
+Tomuto vztahu vyhovují právě dvě hodnoty $y$ a to $\pm t(t^2-1) \in \lbrace t^3-t, (-t)^3+t \rbrace$. Všechny body ležící na $E(\mathbb{F}_q)$ jsou proto tvaru $(t^2,t^3-t)$. Ukážeme, že krom $t \in \lbrace \pm 1 \rbrace$ je každý takový bod unikátní. Opravdu, dejme tomu, že různé prvky $s,t \in \mathbb{F}_q$ splňují $(s^2,s^3-s) = (t^2,t^3-t)$. Platí:
+$$s(s^2-1) = t(t^2-1) = t(s^2-1).$$
+Jistě platí $st \neq 0$, proto platí $s^2=1=t^2$, bod $(1,0)$ ale na $E(\mathbb{F}_q)$ neleží. Docházíme k~tomu, že prvky $E(\mathbb{F}_q) \setminus \lbrace O \rbrace$ můžeme jednoznačně přiřadit prvkům $\mathbb{F}_q \setminus \lbrace \pm 1 \rbrace$. \hfill $\square$\\
+
+Okamžitým důsledkem této věty je, počet prvků na $E$ je $\vert E(\mathbb{F}_q)\vert = q-1$. Abychom se blíže seznámili s křivkou $E$, podívejme se právě jak vypadá součet dvou bodů.
+ 
+\begin{veta}\label{pl}
+Uvažme dva body $P = (a^2,a^3-a),Q = (b^2,b^3-b) \in E(\mathbb{F}_q)$ takové, že $P \neq \pm Q$. Potom:
+$$P+Q = \left( \left(\frac{ab+1}{a+b}\right)^2, \left(\frac{ab+1}{a+b}\right)^3 -\frac{ab+1}{a+b} \right).$$
+\end{veta}
+
+\noindent \textit{Důkaz.} Dle předpokladu je $-(P+Q)$ afinní bod, označme jej $R = (c^2,c^3-c)$ pro $c \in \mathbb{F}_q$. Potom $P+Q+R=O$ a tak $P,Q$ a $R$ leží na přímce. Proto platí: 
+$$0 = \begin{vmatrix}
+a^2 & a^3-a & 1 \\ 
+b^2 & b^3-b & 1 \\ 
+c^2 & c^3-c & 1
+\end{vmatrix} = (a-b)(b-c)(c-a)(ab+ac+bc +1),$$
+tedy jelikož $a,b,c$ jsou různé, tak platí $ab+ac+bc=-1$. Proto platí $c = - \frac{ab+1}{a+b}$ a tedy $P+Q$ = $(c^2,-c^3+c)$. \hfill $\square$\\
+
+Důkaz výše neplatí pro $P=Q$, tento případ je pokryt rovnicí \eqref{dvoj}. Díky této charakterizaci můžeme přesně zjistit, jak vypadá grupa bodů na $E$.
+\begin{veta}
+Ať $q$ je lichá mocnina prvočísla. Potom platí:
+$$E(\mathbb{F}_q) \cong \mathbb{F}_q ^{\times}.$$
+\end{veta}
+
+\noindent \textit{Důkaz.} Z lemmatu \ref{param} implicitně plyne, že obě grupy mají stejný počet prvků, totiž $q-1$. Definujme nyní zobrazení $\psi : E \longrightarrow \mathbb{F}_q ^{\times}$ dané $\psi(O) = 1$ a pro bod $(a^2,a^3-a) \in E(\mathbb{F}_q)$:
+%$$\psi(x,y) = \frac{x+y-1}{-x+y+1}.$$
+%Pomocí charakterizace \ref{param} přepišme předpis $\psi$:
+$$\psi(a^2,a^3-a) = \frac{a+1}{a-1}.$$
+
+Ukážeme, že zachovává operaci mezi oběma grupami. Nejprve, pokud pro afinní body $P,Q \in E$ platí $P+Q=O$, tak existuje $a \in \mathbb{F}_q$ takové, že $P = (a^2,a^3-a)$ a $Q=(a^2,-a^3+a)$. Pak:
+$$\phi(a^2,a^3-a) \cdot \phi(a^2,-a^3+a) \cdot \phi(O) = \frac{a+1}{a-1} \cdot \frac{-a+1}{-a-1} \cdot 1 = 1.$$
+Dále, ať $P=(a^2,a^3-a), Q = (b^2,b^3-b)$ a $R=(c^2,c^3-c)$ jsou ne všechny stejné afinní body ležící na přímce, pak dle věty \ref{pl}, resp. rovnice \eqref{dvoj}, pokud se dva body z $P,Q,R$  rovnají, platí $ab+ac+bc=-1$. Stačí nám ověřit, že za této podmínky platí:
+$$\frac{a+1}{a-1} \cdot \frac{b+1}{b-1} \cdot \frac{c+1}{c-1} = 1,$$
+což je triviální. Konečně, $\psi$ je invertibilní, jelikož každému $a \in \mathbb{F}_q ^{\times}$ přiřadíme bod:
+$$\left(\left(\frac{a+1}{a-1} \right)^2, \left( \frac{a+1}{a-1} \right)^3-\frac{a+1}{a-1} \right).$$ Protože $\frac{x+1}{x-1}$ je involucí, tak $\psi$ bod výše zobrazí na $a$. Zobrazení $\psi$ proto definuje isomorfismus mezi oběma grupami. \hfill $\square$\\
+
+Podívejme se, kdy v grupě $E(\mathbb{F}_q^k)$ leží bod s $x$-ovou souřadnicí $a \in \mathbb{F}_q ^{\times}$. Leží-li bod $(a,-)$ v $E(\mathbb{F}_q)$, potom podle lemmatu \ref{param} platí $\phi_q(a)=1$. Je-li naopak $a$ čtvercem v $\mathbb{F}_q$, tak podle lemmatu \ref{param} existuje bod $P \in E(\mathbb{F}_q)$, jehož $x$-ová souřadnice je $a$. Speciálně pro $a \in \mathbb{F}_q$, které není čtvercem, leží bod $(a,-) \in E(\mathbb{F}_{q^2})$. Tyto poznatky shrnuje následující tvrzení.
+
+\begin{veta}\label{Fq2}
+Nechť $a \in \mathbb{F}_q$. Potom:
+\begin{itemize}
+\item pokud $\phi_q(a) = 1$ nebo $a=0$, pak existuje bod $(a,-) \in E(\mathbb{F}_q)$,
+\item pokud $\phi_q(a) = -1$, pak existuje bod $(a,-) \in E(\mathbb{F}_{q^2})$.
+\end{itemize}
+\end{veta}
+
+
+\section{Aplikace na AH posloupnost}
+
+Studium iterací zobrazení $x \longmapsto \frac{(x+1)^2}{4x}$ na konečném tělese nás zavedlo k jedné singulární křivce. Jelikož grupa bodů na takové křivce má velmi jednoduchou strukturu, získáme mnoho informací o AH posloupnosti. 
+
+\begin{definice}
+Označme $G_{\mathbb{F}_q} = (E(\mathbb{F}_q),F)$ orientovaný graf takový, že pro libovolné body $P,Q \in E$ platí $(P,Q) \in F$, právě pokud $[2]P=Q$.
+\end{definice}
+
+
+Nejprve si určeme, kdy pro bod $P = (x,y) \in E(\mathbb{F}_q)$ existuje v grafu $G_{\mathbb{F}_q}$ předchůdce, tj. kdy existuje bod $Q \in E(\mathbb{F}_q)$ takový, že $[2]Q = P$. Dále ukážeme, že pokud takový bod existuje, tak už existují dva.
+
+\begin{veta}\label{jedna}
+Uvažme bod $P=(x,y) \in E(\mathbb{F}_q)$. Pak existuje bod $Q \in E(\mathbb{F}_q)$ splňující $[2]Q = P$, právě pokud 
+\end{veta}
+\noindent \textit{Důkaz.} Nejprve připusťme, že existuje bod $Q$ vyhovující zadání. 
+
+
+\begin{veta}\label{dva}
+Ať $P,Q \in E(\mathbb{F}_q)$ jsou afinní body takové, že $[2]Q = P$. Potom existuje unikátní bod $R \neq Q$ splňující $[2]R = P$ a je to právě bod splňující $Q-R = R-Q = (0,0)$.
+\end{veta}
+
+\noindent\textit{Důkaz.} Nejprve zmiňme, že protože $P \neq O$, tak $Q \not\in \lbrace O,(0,0) \rbrace$, jelikož jediný bod ležící ve $2$-torzi je $(0,0)$. Proto body $Q,(0,0), Q-(0,0)$ a $O$ jsou různé.
+
+Nyní ukážeme, že bod $R=(0,0)+Q$ vyhovuje. Opravdu, bod $(0,0)$ leží ve $2$-torzi $E$, tj. platí $[2](0,0) = O$. Pak:
+$$[2]\big((0,0)+Q\big) = O + [2]Q = P.$$
+Naopak připusťme, že nějaký bod $R \neq Q$ splňuje $[2]R = P = [2]Q$. Platí pak $[2](R-Q) = O$. Jelikož bod $R-Q$ není $O$, pak leží v $2$-torzi a je proto roven $(0,0)$. \hfill $\square$\\
+
+Věty \ref{jedna} a \ref{dva} nám říkají, že každý vrchol $P \in G_{\mathbb{F}_q}$ má buď dva předchůdce, nebo ani jednoho. Zamysleme se nyní, jak může souvislá komponenta grafu $G_{\mathbb{F}_q}$ vypadat - podle příkladů uvedených v kapitole \ref{AH} se můžeme domnívat, že grafy \textit{vždy} tvoří vulkány. Jak ale rozlišíme, v jakém stupni vulkánu daný bod leží?
+
+Víme, že vrchol $P \in V_i$ má následníka $[2]P$ ležícího ve $V_{i-1}$. Laicky řečeno násobení bodu dvojkou jej posune o stupeň výše. Veličina, kterou můžeme pomocí endomorfismu $[2]$ vhodně kontrolovat, je řád bodu $P$, přesněji \textit{jeho $2$-valuace}. Abychom toto ověřili, podívejme se znovu na příklad ?. Body $(a,b)$, jejichž součin je ?, tvoří medúzy a opravdu podle věty \ref{Fq2} NĚCO. Naopak u vulkánu hloubky $2$ si k bodům připišme jejich řády:
+
+--OBR--
+
+Opravdu, bod na levelu $V_2$ má řád dělitelný čtyřmi, body levelu $V_1$ mají řády sudé a nedělitelné čtyřmi, každý prvek $V_0$ má řád lichý. Zformalizujme si to. Podle postupu zmíněného v důkaze věty \ref{big} víme, že každá posloupnost $AH_{\mathbb{F}_q}(a,b)$ jednou vstoupí v cyklus, to tedy musí platit i pro posloupnost bodů $P \longmapsto [2] P \longmapsto \dots$. Podívejme se, jakou výšku budou mít stromy zakořeněné ve členech cyklu.   
+
+\begin{veta}
+Ať $P \in E(\mathbb{F}_q)$ je členem cyklu v grafu $G_{\mathbb{F}_q}$. Potom strom zakořeněný v $P$ je dokonale vyvážený binární strom hloubky $v_2 (q-1)$. 
+\end{veta}
+
+\begin{dusledek}
+Ať $P \in G_{\mathbb{F}_q}$ je libovolný afinní bod na $E$. Potom komponenta souvislosti grafu $G_{\mathbb{F}_q}$ obsahující $P$ je vulkánem hloubky $v_2(q-1)$.
+\end{dusledek}
+
+\begin{dusledek}
+Roj $AH_{\mathbb{F}_q}$ vypadá následovně:
+\begin{enumerate}
+\item komponenty souvislosti obsahující prvky $(a,b)$ splňující $\phi_q (ab) = 1$ jsou vulkány hloubky $v_2(q-1)$,
+\item komponenty souvislosti obsahující prvky $(a,b)$ splňující $\phi_q (ab) = -1$ jsou vulkány hloubky $v_2(q+1)$.
+\end{enumerate} 
+\end{dusledek}
+
+Konečně jsme splnili slib z kapitoly \ref{AH} - pomocí eliptických křivek plně charakterizovat, jaký tvar mají komponenty souvislosti v roji $AH_{\mathbb{F}_q}$. Pojďme toto propojení maximálně využít ve zkoumání dalších vlastností roje $AH_{\mathbb{F}_q}$.
+
+--
+X = q-1 nebo q2-1 nebo tak
+--
+\begin{veta}\label{phi}
+Nechť $k \mid X$ je liché číslo. Potom počet bodů $P \in E(\mathbb{F}_q)$ takových, že $k$ nejmenší číslo $\ell \in \mathbb{N}$ splňující $[2^{\ell}]P = P$, je $\phi(k)$.
+\end{veta}
+
+Tato věta má jeden roztomilý důsledek, můžeme totiž pomocí ní dokázat novým způsobem jedno známé tvrzení.
+
+\begin{dusledek}
+$$ X = \sum_{k \mid X} \phi(k)$$
+\end{dusledek}
+
+Tento vztah platí bezpodmínečně pro libovolné $n$:
+$$n = \sum_{k \mid n} \phi(k).$$
+Důkaz tohoto obecného tvrzení lze ? například pomocí tzv. Mobiovy inverzní formule [IR].  Blabla.
+
+Podívejme se na nějaké $k \mid q-1$, podle věty \ref{phi} existuje $\phi(k)$ bodů, jejichž cykly jsou ?. Díky tomu můžeme vyjádřit přesně počet vulkánů obsahující tyto body.
+
+
+\begin{dusledek}
+Nechť $k \mid X$ je liché číslo.  Potom počet všech vulkánů $V \subseteq AH_{\mathbb{F}_q}$ s délkou cyklu rovné $k$ je:
+$$\frac{\phi(k)}{\ord_k (2)}.$$
+\end{dusledek}
+
+\begin{veta}
+Platí:
+$$S(\mathbb{F}_q) = \sum_{\substack{k \mid X \\ 2 \nmid k}} \frac{\phi(k)}{\ord_k (2)}.$$
+\end{veta}
+
+Toto explicitní vyjádření můžeme využít na nalezení netriviálních odhadů na číslo $S(\mathbb{F}_q)$. Mnoho ohledně obecného chování řádu $2$ modulo libovolné číslo $k$ není známé, dokonce ani zda existuje nekonečně mnoho prvočísel, pro které $2$ generuje grupu $\mathbb{Z}_{p} ^{\times}$. Tato otázka je předmětem známé \textit{Artinovy domněnky}. Budeme tedy používat poměrně slabé odhady.
+
+\begin{veta} 
+Platí řetězec nerovností:
+$$ > S(\mathbb{F}_q) \geqslant$$
+\end{veta}
+
+\begin{dusledek}
+$$ > D(\mathbb{F}_q) \geqslant$$
+\end{dusledek}
+
+Podívejme se, jak těsné tyto odhady vlastně jsou.
+
+
+
+
+
+\chapter*{Závěr}
+\addcontentsline{toc}{chapter}{Závěr}
+\markboth{Závěr}{}
+zu ende
+
+Carl Friedrich Gauss aritmeticko-geometrický průměr ve svém mládí studoval hojně, v jeho deníku o této posloupnosti nalezneme hned destíku zmínek této posloupnosti mezi roky $1799$ a $1800$. Věnoval se i zobecnění posloupnosti nad komplexními čísly. Jak to zobecnit nad konečnýma tělesama - - p adický?
+
+
+
+
+
+%\begin{algorithm}
+%\caption{A}
+%\begin{algorithmic}
+%\REQUIRE $n \geq 0 \vee x \neq 0$
+%\ENSURE $y = x^n$
+%\STATE $y \leftarrow 1$
+%\IF{$n < 0$}
+%\STATE $X \leftarrow 1 / x$
+%\STATE $N \leftarrow -n$
+%\ELSE
+%\STATE $X \leftarrow x$
+%\STATE $N \leftarrow n$
+%\ENDIF
+%\WHILE{$N \neq 0$}
+%\IF{$N$ is even}
+%\STATE $X \leftarrow X \times X$
+%\STATE $N \leftarrow N / 2$
+%\ELSE[$N$ is odd]
+%\STATE $y \leftarrow y \times X$
+%\STATE $N \leftarrow N - 1$
+%\ENDIF
+%\ENDWHILE
+%\end{algorithmic}
+%\end{algorithm}
+
+
+\chapter*{Použitá značení}
+\begin{flalign*}
+&a \mid b  &&a \text{ dělí } b\\
+&\frac{1}{a}  &&\text{multiplikativní inverze } a,\text{ tj. } a^{-1} \\
+&\nu_p(n) &&p\text{-adická valuace } n\\
+&\genfrac{(}{)}{}{}{a}{p} && \text{Legendreův symbol } a \text{ vzhledem k } p\\
+&\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C} &&\text{množina přirozených, celých, racionálních, reálných, komplexních čísel} \\
+&\mathbb{Z}_d &&\text{okruh zbytků modulo } d \\
+&\mathbb{F}_q &&\text{konečné těleso s } q \text{ prvky}\\
+&\overline{K} &&\text{algebraický uzávěr tělesa } K\\
+&K^{\times} &&\text{multiplikativní podrupa tělesa } K\\
+&\mathbb{P}^{n}(K) &&\text{projektivní prostor nad } K \text{ o dimenzi } n+1\\
+&E(K) &&\text{množina bodů křivky } E \text{ nad } K\\
+&\# E(K) &&\text{počet bodů na křivce } E \text{ nad konečným tělesem } K\\
+&\mathcal{O},O &&\text{bod v nekonečnu křivky } E\\
+&[n]_E,[n] &&\text{násobení } n \text{ na křivce } E\\
+&\pi,\pi_E &&\text{Frobeniův endomorfismus}\\
+&\widehat{\phi} &&\text{isogenie duální k } \phi\\
+&\deg \phi &&\text{stupeň isogenie } \phi\\
+&\ker \phi &&\text{jádro isogenie } \phi\\
+&\# \ker \phi &&\text{velikost jádra isogenie } \phi\\
+&\langle G\rangle &&\text{podgrupa generovaná množinou } G\\
+&E/G &&\text{obraz } E \text{ v separabilní isogenii s jádrem } G\\
+&E/\mathfrak{a} &&\text{obraz } E \text{ v isogenii generované ideálem } \mathfrak{a}\\
+&E[n] &&n\text{-torze křivky } E\\
+&\End(E) &&\text{okruh endomorfismů } E\\
+&\mathrm{Ell}_{\mathcal{O}} &&\text{množina eliptických křivek nad } \mathbb{F}_p \text{ s okruhem endomorfismů } \End(E) \cong \mathcal{O}\\
+& M \otimes_{R} N &&\text{tenzorový součin } R\text{-modulů } M \text{ a } N\\
+&\End ^0(E) &&\text{algebra endomorfismů } E\\
+&\Tr \phi, \Tr \alpha && \text{stopa endomorfismu } \phi \text{, stopa } \alpha \in \End^0 (E)\\
+&\N \alpha && \text{norma } \alpha \in \End^0 (E)\\
+&\widehat{\alpha} && \text{Rosatiho involuce } \alpha \in \End^0 (E)\\
+&j(E) &&j\text{-invariant křivky } E\\
+&G_{\ell} (\overline{\mathbb{F}}_p) &&\text{graf supersingulárních } j \text{-invariantů nad } \overline{\mathbb{F}}_p \text{ spojených isogeniemi stupně } \ell\\
+&R[x] &&\text{okruh polynomů s koeficienty nad okruhem } R\\
+&K(a_1,\dots, a_n) &&\text{nejmenší nadtěleso } K \text{ obsahující prvky } a_1, \dots, a_n\\  
+&[K:L] &&\text{stupeň rozšíření tělesa } K \text{ nad } L\\
+&\alpha(x) &&\text{lineární transformace } x \mapsto \alpha x \text{ působící na } \mathbb{Q}(\theta)\\ 
+&M_{\alpha} &&\text{matice odpovídající } \alpha(x)\\ 
+&\Tr M &&\text{stopa matice } M\\ 
+&\det M &&\text{determinant matice } M\\
+&Tr_K(\alpha) &&\text{stopa prvku } \alpha \text{ v } K\\ 
+&N_K(\alpha) &&\text{norma prvku } \alpha \text{ v } K\\ 
+&\mathcal{O}_K &&\text{okruh celých algebraických čísel tělesa } K\\
+&Cl(\mathcal{O}) &&\text{grupa tříd ideálů pořádku } \mathcal{O}\\
+&h_{\mathcal{O}} &&\text{řád grupy } Cl(\mathcal{O})\\
+&(a) &&\text{hlavní ideál generovaný prvkem } a\\
+&\frac{\mathfrak{a}}{m} &&\text{lomený ideál } \frac{\mathfrak{a}}{m}\\
+&N_{\mathcal{O}}(\mathfrak{a}) &&\text{norma ideálu } \mathfrak{a} \subseteq \mathcal{O}, \text{ tj. } \vert \mathcal{O}/\mathfrak{a} \vert\\
+&\mathfrak{a} + \mathfrak{b} &&\text{součet ideálů } \mathfrak{a} \text{ a } \mathfrak{b}\\
+&\mathfrak{a} \mathfrak{b}, \mathfrak{a} \cdot \mathfrak{b} &&\text{součin ideálů } \mathfrak{a} \text{ a } \mathfrak{b}\\
+&\mathfrak{a} \vert \mathfrak{b} &&\text{ideál } \mathfrak{a} \text{ dělí ideál } \mathfrak{b}\\
+&\mathsf{G} / \mathsf{H} &&\text{faktorgrupa } \mathsf{G} \text{ podle } \mathsf{H}\\
+&\deg f&&\text{stupeň polynomu, lomené funkce } f\\
+&f^{\prime}&&\text{derivace } f\\
+&f \vert_{M} && \text{zúžení } f \text{ na množinu } M\\
+&\phi \vert_{\ell} && \text{zúžení isogenie } \phi \text{ na } \ell\text{-torzi}\\
+&f \in O(g) &&f \text{ roste asymptoticky nejvýše stejně rychle jako } g
+\end{flalign*}
+
+
+\begin{thebibliography}{97}
+
+\bibitem{DeFeo}
+\textsc{De Feo}, Luca: \textit{Mathematics of Isogeny Based Cryptography}. Université de Versailles \& Inria Saclay, 2017. Dostupné z: \url{https://arxiv.org/abs/1711.04062}.
+
+\bibitem{Meduza}
+\textsc{Griffin}, Michael J., Ken \textsc{Ono}, Neelam \textsc{Saikia} a Wei-Lun \textsc{Sai}: \textit{AGM and jellyfish swarms of elliptic curves}. 2021. Dostupné z:\url{https://arxiv.org/abs/2110.12226}.
+
+\bibitem{Karaskova}
+\textsc{Karásková}, Zdislava: \textit{Supersingulární isogenie a jejich využití v kryptografii}. Diplomová práce. Brno: Masarykova univerzita, 2019. Dostupné z:  \url{https://is.muni.cz/th/mt87i/}.
+
+\bibitem{Pezlar}
+\textsc{Pezlar}, Zdeněk: \textit{Isogenie v kryptografii}. Středoškolská odborná činnost. Brno: Masarykova univerzita, 2021. Dostupné z: \url{https://socv2.nidv.cz/archiv43/getWork/hash/d97d25e1-9729-11eb-acaf-005056bd6e49}.
+
+\bibitem{Ugolini}
+\textsc{Ugolini}, Simone: \textit{Graphs associated with the map $x\mapsto x+x^{-1}$ in finite fields of characteristic two}. Theory and Applications of Finite Fields, Contemporary Mathematics, vol. 579, Amer. Math. Soc. 2011. Dostupné z: \url{https://arxiv.org/abs/1107.4565}.
+
+
+\bibitem{Ugolini2}
+\textsc{Ugolini}, Simone: \textit{Graphs associated with the map $x\mapsto x+x^{-1}$ in finite fields of characteristic three}. Journal of Number Theory, 133 (4). 2013. Dostupné z: \url{https://arxiv.org/abs/1108.1763}.
+
+\bibitem{Ugolini3}
+\textsc{Ugolini}, Simone: \textit{Graphs associated with the map $x\mapsto x+x^{-1}$ in finite fields of characteristic five}. Journal of Number Theory, 133 (4). 2013. Dostupné z: \url{https://arxiv.org/abs/1110.0968}.
+
+\bibitem{Ugolini4}
+\textsc{Ugolini}, Simone: \textit{Functional graphs of rational maps induced by endomorphisms of ordinary elliptic curves over finite fields}. Period. Math. Hung. 77(2). 2015. Dostupné z: \url{https://arxiv.org/abs/1509.05365}.
+
+
+
+\end{thebibliography}
+\end{document}
+
+
+
+%\begin{veta} Nechť $p,q$ jsou různá lichá prvočísla. Potom 
+%$$\left( \frac{p}{q} \right) = \left( \frac{q}{p} \right) \cdot (-1)^{\frac{(p-1)(q-1)}{4}}.$$
+
+%Dále navíc Pro libovolná celá čísla $a,b$ a liché prvočíslo $p$ platí:
+%\begin{enumerate}
+%\item $\bigl( \frac{a}{p} \bigr)\cdot\bigl( \frac{b}{p} \bigr)=\bigl( %\frac{ab}{p} \bigr),$
+%\item $\bigl( \frac{-1}{p} \bigr) = (-1)^{\frac{p-1}{2}},$
+%\item $\bigl( \frac{2}{p} \bigr) = (-1)^{\frac{p^2-1}{8}}.$ 
+%\end{enumerate}
+%\end{veta}
+
+%\ Vzhledem k důležitosti těchto tvrzení uvedeme ještě ekvivalentní formu, jíž je možné některé z nich vyjádřit -- a to pomocí kongruencí:
+
+%\begin{veta} Nechť $p,q$ jsou různá lichá prvočísla. Potom 
+%$$\left( \frac{p}{q} \right) = \begin{cases}
+%\left( \frac{q}{p} \right) \qquad \text{pokud} \; p\;\text{nebo}\; q\equiv 1\pmod4;\\ 
+%-\left( \frac{q}{p} \right) \qquad \mbox{pokud} \; p\equiv q\equiv 3 \pmod{4}. \end{cases} $$
+
+%Dále navíc pro libovolná celá čísla $a,b$ a liché prvočíslo $p$ platí:
+%\begin{enumerate}
+%\item $\bigl( \frac{a}{p} \bigr)\cdot\bigl( \frac{b}{p} \bigr)=\bigl( \frac{ab}{p} \bigr),$
+%\item $\bigl( \frac{-1}{p} \bigr) =
+%\begin{cases}
+%1 \quad \text{pokud} \; p\equiv1\pmod4\\
+%-1\quad\text{pokud}\; p\equiv3\pmod4
+%\end{cases}$
+%\item $\bigl( \frac{2}{p} \bigr) = 
+%\begin{cases}
+%1 \quad \text{pokud} \; p\equiv\pm1\pmod8\\
+%-1\quad\text{pokud}\; p\equiv\pm3\pmod8.
+%\end{cases}$
+%\end{enumerate}
+%\end{veta
+
+
+% Cvičení: falešný násobení PO_L
+
+
+% \Zdroje: Dumit Foote, Zakony reciprocity, Rosicky, Cox, Marcus, clanek o Mihaelescau?, Ireland Rosen?, Pupik?
+
+%\begin{definice} Množinu $G$ spolu s binární operací $\odot$ na ní definovanou nazveme grupou, pokud splňuje tyto podmínky:
+%\begin{enumerate}
+%\item operace je asociativní, tzn.\ pro každé $x,y,z \in G$ platí $(x\odot y)\odot z=x\odot(y\odot z)$,
+%\item existuje tzv.\ neutrální prvek, tedy nějaké $e \in G$ takové, že pro každé $x \in G$ platí $e\odot x=x=x\odot e$,
+%\item ke každému prvku můžeme nalézt prvek k němu inverzní, tedy pro každé $x\in G$ existuje $y\in G$ tak, že $x\odot y=e=y\odot x$. 
+%\end{enumerate}
+%\ Pokud je operace navíc komutativní, hovoříme o abelovské nebo komutativní grupě.
+%\end{definice}
+
+%\begin{definice} Nechť R je množina, $+$, $\cdot$ binární operace na ní definované. Pak $(R,+,\cdot)$ je okruh, pokud:
+%\begin{enumerate}
+%\item $(R,+)$ je komutativní grupa,
+%\item operace $\cdot$ je asociativní a existuje vzhledem k ní neutrální prvek,
+%\item platí oboustranná distributivita, tedy pro libovolné $a,b,c\in R$ platí $a\cdot(b+c)=a\cdot b+a\cdot c,$ $(b+c)\cdot a=b\cdot a+ c\cdot a.$
+%\end{enumerate}
+%\ Pokud je i operace $\cdot$ komutativní, hovoříme o komutativním okruhu.
+%\end{definice}
+
+%\ Operaci + běžně nazýváme sčítání a neutrální prvek vůči ní značíme symbolem 0, operaci $\cdot$ nazýváme násobení a neutrální prvek vůči ní značíme jako $1$.
+
+
+
+%\begin{definice} Komutativní okruh $R$ nazýváme obor integrity, pokud pro libovolná $a,b\in R$ platí, že pokud $a\cdot b=0$, tak $a=0$ nebo $b=0$. \end{definice}
+
+
+%\begin{definice} Nechť T je množina, $+$, $\cdot$ binární operace na ní definované. Pak $(T,+,\cdot)$ je těleso, pokud:
+%\begin{enumerate}
+%\item $(T,+)$ je komutativní grupa,
+%\item $(T\smallsetminus\{0\},\cdot)$ je komutativní grupa,
+%\item platí oboustranná distributivita, tedy pro libovolné $a,b,c\in T$ platí $a\cdot(b+c)=a\cdot b+a\cdot c,$ $(b+c)\cdot a=b\cdot a+ c\cdot a.$
+%\end{enumerate}
+%\end{definice}
+
+%\ Jinak řečeno, těleso je takový obor integrity, jehož každý nenulový prvek je jednotkou, neboli je \textit{invertibilní} -- tedy má vůči operaci $\cdot$ inverzní prvek.
+
+
+
+
+
+
+%V případě $p=2$ se nám situace ztíží tím, že pokud $m\equiv1\pmod4$, nemůžeme aplikovat větu \ref{polynomy}, jelikož 2 dělí $|\z[\frac{1+\sqrt m}2]/\z[\sqrt m]|$. Přesto ale dokážeme následující větu:
+
+%\begin{veta} Nechť $K=\q(\sqrt m)$. Potom: $$2\o_K=
+%\begin{cases}
+%(2,\sqrt m)^2 \quad \text{pokud}\; m\equiv2\pmod4, \\
+%(2,1+\sqrt m)^2 \quad \text{pokud} \;m\equiv3\pmod4, \\
+%(2,\frac{1-\sqrt m}2)(2,\frac{1+\sqrt m}2) \quad \text{pokud}\; m\equiv1\pmod 8, \\
+%2\o_K,\; \text{tj. je prvoideál} \quad \text{pokud}\; m\equiv 5\pmod 8.
+%\end{cases}$$
+%\end{veta}
+
+%\begin{proof} Zamysleme se nejprve nad diskriminantem okruhu $\o_K$. Z věty \ref{tabulka} víme, že v případě $m\equiv 2,3\pmod4$ platí $d(\o_K)=4m$ a v případě $m\equiv1\pmod4$ platí $d(\o_K)=m$.
+
+%\ Uvažujme nejprve $m\equiv2,3\pmod4$. V tomto případě můžeme aplikovat větu \ref{polynomy}. Jelikož $d(\o_K)=4m$, tak se 2 bude vždy větvit.
+
+%\ Pokud $m\equiv2\pmod4$, tak $2|m$ a tedy $x^2-m\equiv(x)^2\pmod2$. Tudíž $2\o_K=(2,\sqrt m)^2$ (analogicky jsme postupovali v důkazu předchozí věty).
+
+%\ Pokud $m\equiv3\pmod4$, tak jelikož se 2 větví a zároveň nedělí $m$, platí $x^2-m\equiv x^2+1\equiv x^2+2x+1\equiv (x+1)^2\pmod2$ a tedy $2\o_K=(2,1+\sqrt m)^2$.
+
+%\ Nyní uvažujme $m\equiv1\pmod4$, tedy $\o_K=\z[\frac{1+\sqrt m}2]$. Víme již, že nemůžeme použít větu \ref{polynomy}, musíme tedy použít jiné argumenty.
+
+%\ Pokud $m\equiv1\pmod 8$, tak $2\in (2,\frac{1-\sqrt m}2)(2,\frac{1+\sqrt m}2)=(4,1+\sqrt m,1-\sqrt m,\frac{1- m}4)$ protože $\nsd(4,\frac{1-m}4)=2$ (a díky Bezoutově rovnosti s každými dvěma celými čísly ležícími v daném ideálu v něm leží i jejich největší společný dělitel). Tudíž $2\o_K\s(2,\frac{1-\sqrt m}2)(2,\frac{1+\sqrt m}2)$ a proto $(2,\frac{1-\sqrt m}2)(2,\frac{1+\sqrt m}2)|2\o_K$. Aby platila věta \ref{eifi}, musí už platit přímo rovnost.
+
+%\ Zbývá případ $m\equiv 5\pmod 8$. Nechť $\P$ je prvoideál $o\_K$, $\P|2\o_K$. Ukážeme $f(\P|2)=2$. To uděláme sporem: pokud $f(\P|2)=1$, tak $\o_K/\P\cong\z/2\z$. Uvažujme polynom $x^2-x+\frac{1-m}4$. Ten má v $\o_K$ kořen $\frac{1+\sqrt m}4$; má tedy kořen i v $\o_K/\P$. Na druhou stranu tento polynom v $\z/2\z$ žádný kořen nemá, jelikož $x^2-x+\frac{1-m}4\equiv x^2-x+1\pmod2$. To je spor s tím, že jsou tělesa $\o_K/\P$ a $\z/2\z$ izomorfní a $2\o_K$ je tedy opravdu prvoideál.
+
+%\
+%\end{proof}
+
+%\ Případ $p=2$ nás zajímá spíše pro úplnost, případ $p$ je liché bude hrát ústřední roli v důkazu kvadratické recprocity a dalších tvrzení. 
+
+
+
+
+
+\begin{poznamka} Často nastává situace, kdy $K$ je \uv{skoro} podtěleso $L$. Uvažujme například těleso $\R$ s klasickým sčítáním a násobením a těleso $\R^2=\{(a,b)\mid (a,b)\in\R\}$ s operacemi sčítání po složkách (tj. $(a,b)+(c,d)=(a+c,b+d)$) a s násobením definovaným jako $(a,b)\cdot(c,d)=(ac-bd,ad+bc)$ pro všechna $a,b,c,d\in\R$.Sice $\R$ není podtělesem tělesa $\R^2$, ale existuje vnoření (tj. injektivní homomorfismus) $f: \R\rightarrow\R^2$ (např. definované jako $f(a)=(a,0)$), tzn. $\R$ je izomorfní s nějakým podtělesem $f(\R)=\{f(a)\mid a\in\R\}$ tělesa $\R^2$. Sice tedy přísně vzato nemůžeme hovořit o rozšíření $\R\s\R^2$, ale jelikož $\R$ a $f(\R)$ jsou izomorfní, tudíž mají s algebraického hlediska identické vlastnosti, tak někdy nebudeme zcela korektní a např. v této situaci budeme mluvit o rozšíření $\R\s\R^2$ místo o $f(\R)\s\R^2$. \label{nejsmekorektni} \end{poznamka}
+
+\ Zohledníme-li tuto poznámku, můžeme psát $[\R^2:\R]=2$.
+
+\section{Základní poznatky}
+
+\ V této části stručně připomeneme pojmy z algebry, které budeme v práci nejčastěji používat -- především hlavní větu o faktorgrupách, ideál okruhu a vlastnosti okruhu polynomů jedné proměnné.
+
+\ Uveďme tedy nejprve hlavní větu o faktorgrupách:
+
+\begin{veta} Nechť $f:G\rightarrow K$ je homomorfismus grup, $H$ normální podgrupa grupy $G$ splňující $H\s\ker f$. Nechť $\pi:G\rightarrow G/H$ je projekce grupy $G$ na faktorgrupu $G/H$. Pak existuje, a to jediné, zobrazení $\fii:G/H\rightarrow K$ splňující $\fii\odot\pi=f$. Navíc platí: \begin{enumerate}
+\item $\fii$ je homomorfismus grup,
+\item $\fii$ je injekce, právě když $H=\ker f$,
+\item $\fii$ je surjekce, právě když $f$ je surjekce. \end{enumerate} \end{veta}
+$$
+\xymatrix{
+G\ar[rr]^f\ar[dr]^\pi&&K \\
+&G/H\ar@{-->}[ur]_\fii&
+}
+$$
+
+\ Věta má podstatné důsledky:
+
+\begin{dusledek} Nechť $f:G\rightarrow K$ je homomorfismus grup, $f(G)=\{f(g)\mid g\in G\}$. Pak $G/\ker f\cong f(G)$. \end{dusledek}
+
+\begin{dusledek} Homomorfismus grup $f:G\rightarrow K$ je injektivní, právě když $\ker f$ je triviální grupa. \end{dusledek}
+
+Nyní přejděme k pojmu ideál.
+ 
+
+\begin{poznamka} V dalším textu budeme používat následující značení: pro těleso $K$ symbolem $K(a_1,...,a_n)$ míníme těleso generované množinou $K\cup\{a_1,...,a_n\}$. V případě okruhů používáme obdobné značení -- nejmenší okruh obsahující nějaký okruh $R$ a množinu $\{a_1,...,a_n\}$ značíme $R[a_1,...,a_n]$. Tedy např. $\mathbb{Q}(\sqrt 2)$ nejmenší těleso obsahující racionální čísla a odmocninu ze dvou a $\z[i]$ je nejmenší okruh obsahující celá čísla a imaginární jednotku~$i$. \end{poznamka}
+
+
+\begin{definice} Nechť R je okruh. Neprázdnou množinu $\I\subseteq R$ nazveme ideálem okruhu R, pokud:
+\begin{enumerate}
+\item pro libovolné $a,b\in \I$ platí $a+b\in \I$,
+\item pro libovolné $r\in R, a\in \I$ platí $ar\in \I, ra\in \I$.
+\end{enumerate}
+\end{definice}
+
+\ Každý okruh má alespoň dva ideály, a to celý okruh a triviální ideál $\{0\}$ -- říkáme jim nevlastní ideály a ostatní ideály nazýváme vlastní. 
+
+\begin{definice} Ideál $\I$ okruhu $R$ nazýváme hlavní, pokud je ve tvaru $aR=\{ar|r\in R\}$ pro nějaké $a\in R$. Danému oboru integrity říkáme okruh hlavních ideálů, pokud je každý jeho ideál hlavní. \end{definice}
+
+\ Typickým okruhu hlavních ideálů jsou celá čísla: jediné ideály jsou zde tvaru $n\mathbb{Z}$, kde $n$ je libovolné nezáporné celé číslo.
+
+\begin{poznamka} Hlavní ideál $aR$ někdy značíme $(a)$. Obecně je možné definovat ideál generovaný množinou a ideál generovaný konečnou množinou $\{a_1,a_2,...,a_n\}$ značíme $(a_1,a_2,...,a_n)$.\end{poznamka}
+
+\ Všimněme si, že z definice ideálu přímo plyne důležitý poznatek:
+
+\begin{veta} Nechť $\I$ je ideál okruhu R. Pak $(\I,+)$ je normální podgrupa grupy (R,+). \end{veta}
+
+\ Ideály jsou úzce spjaté s homomorfismy okruhů. Platí totiž následující věta:
+
+\begin{veta} Nechť $f:R\rightarrow S$ je homomorfismus okruhů. Pak platí:
+\begin{enumerate}
+\item je-li $\J$ ideál okruhu $S$, pak $f^{-1}(\J)=\{x\in R|f(x)\in \J\}$ je ideál okruhu $R$,
+\item je-li $f$ surjekce a $\I$ ideál okruhu $R$, pak $f(\I)=\{f(x)|x\in \I\}$ je ideál okruhu $S$.
+\end{enumerate}
+\end{veta}
+
+\ To mimo jiné znamená, že jádro libovolného homomorfismu $f:R\rightarrow S$ je ideál okruhu $R$, jelikož $\ker f=f^{-1}(0)$.
+
+\ Podle ideálů můžeme faktorizovat. Jelikože je pro každý ideál $\I$ je $(\I,+)$ normální podgrupa $(R,+)$, můžeme sestrojit faktorgrupu $(R/\I,+)$, kde + je nyní sčítání tříd pomocí reprezentantů. Lze ukázat, že na této faktorgrupě je možné definovat i násobení pomocí reprezentantů tak, že $R/\I$ je s těmito operacemi okruh. Takto vzniklý okruh nazýváme faktorokruh. Existuje hlavní věta o faktoroktuzích analogická hlavní větě o faktorgrupách.
+
+\ Existují dvě významné skupiny ideálů, které má smysl definovat:
+
+\begin{definice} Nechť R je okruh, $\I$ jeho vlastní ideál. O ideálu $\I$ říkáme, že je:
+\begin{enumerate}
+\item prvoideál, pokud pro libovolné $a,b\in R$ platí implikace $ab\in \I\Rightarrow a\in \I nebo b\in \I$,
+\item maximální ideál, pokud neexistuje žádný ideál $\J$ okruhu $R$ splňující $\I\subsetneq \J\subsetneq R$.
+\end{enumerate}
+\end{definice}
+
+\ Pokud je okruh $R$ komutativní, můžeme tyto skupiny ideálů poznat podle toho, jak vypadá jimi určený faktorokruh:
+
+\begin{veta} Nechť $R$ je komutativní okruh, $\I$ jeho vlastní ideál. Pak je $\I$ prvoideál, právě když faktorokruh $R/\I$ je obor integrity, a $\I$ je maximální ideál, právě když je $R/\I$ těleso. \label{prvmax} \end{veta}
+
+\ Dále stručně připomeňme vlastnosti polynomů jedné proměnné.
+
+\begin{veta} Nechť $R$ je okruh. Pak množina $R[x]$ polynomů jedné proměnné s koeficienty z $R$ tvoří rovněž okruh (s obvykle definovaným sčítáním a násobením polynomů). Navíc je-li $R$ komutativní (resp. obor integrity), tak i $R[x]$ je komutativní (resp. obor integrity). \end{veta}
+
+\begin{veta} Nechť $R$ je obor integrity. Pak polynom $f\in R[x]$ má v $R$ nejvýše tolik kořenů, kolik je jeho stupeň (který značíme $\deg f$). \end{veta}
+
+\begin{veta} Nechť $R$ je obor integrity. Pak je $R[x]$ euklidovský okruh, přesněji pro každé dva polynomy $f,g\in R[x]$ existují právě jedna dvojice polynomů $k,r\in R[x]$ taková, že $f=kg+r$ a $\deg r<\deg g$. \end{veta} 
+
+\ Na závěr definujme podílové těleso a uveďme některé jeho příklady.
+
+\begin{definice} Nechť $R$ je obor integrity. Nejmenší těleso obsahující $R$ nazveme podílové těleso okruhu R. \end{definice}
+
+\begin{veta} Nechť $R$ je obor integrity. Pak jeho podílové těleso $F$ můžeme psát ve tvaru $$F=\left\{\frac ab\mid a,b\in R, b\ne0\right\},$$ kde $\frac ab=\frac cd$, právě když $ad=bc$ a operace sčítání a násobení provádíme následovně: $$\frac ab+\frac cd=\frac{ad+bc}{bd},$$ $$\frac ab\cdot \frac cd= \frac{ac}{bd}.$$ \end{veta}
+
+\ Podílové těleso okruhu $\z$ je těleso racionálních čísel. Podílové těleso okruhu $R[x]$ nazýváme \textit{těleso racionálních funkcí} a značíme ho $R(x)$. Tyto pojmy můžeme zobecnit: množina polynomů více proměnných nad oborem integrity $R$ tvoří rovněž obor integrity a jeho podílové těleso také nazýváme těleso racionálních funkcí.
