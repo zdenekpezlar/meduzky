@@ -15,9 +15,11 @@
 %\usepackage{footnote}
 %\usepackage{thmtools}
 %\usepackage{mathtools}
-\usepackage{tikz}
+%\usepackage{tikz}
 \usepackage{tkz-graph}
 \usepackage{tkz-berge}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage[all]{xypic}
 \usepackage{graphicx}
@@ -48,6 +50,10 @@ citecolor=RoyalBlue
 \usepackage{url}
 \usepackage{tabularx}
 \usetikzlibrary{intersections}
+
+%\usepackage{tkz-euclide} 
+
+
 %\usepackage[metapost, mplabels,truebbox,clip]{mfpic}
 %\allowdisplaybreaks
 %\usepackage{scrextend}
@@ -76,10 +82,18 @@ citecolor=RoyalBlue
 \cfoot{}
 \rfoot{\thepage}
 
-
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Ell}{Ell}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\AG}{AG}
+\DeclareMathOperator{\HG}{HG}
+\DeclareMathOperator{\AH}{AH}
+\usepackage{tkz-euclide}  
 
 \begin{document}
-
 
 \newcommand{\ZZ}{{\mathbb{Z}}}
 \newcommand{\cyc}[1]{{\langle #1 \rangle}}
@@ -95,6 +109,7 @@ citecolor=RoyalBlue
 \newtheorem{de}{Definition}[section]
 \newtheorem{dusledek}[veta]{Důsledek}
 \newtheorem{lemma}[veta]{Lemma}
+\newtheorem{domnenka}[veta]{Domněnka}
 \newtheorem*{lemma*}{Lemma}
 
 \theoremstyle{definition}
@@ -115,39 +130,6 @@ citecolor=RoyalBlue
 %\floatname{algorithm}{Algoritmus}
 
 \setlength{\parindent}{2ex}
-
-\def\Tr{\operatorname{Tr}}
-\def\N{\operatorname{N}}
-\def\SL{\operatorname{SL}}
-\def\nsd{\operatorname{nsd}}
-\def\End{\operatorname{End}}
-\def\id{\operatorname{id}}
-\def\char{\operatorname{char}}
-\def\ker{\operatorname{ker}}
-\def\Aut{\operatorname{Aut}}
-\def\Gal{\operatorname{Gal}}
-\def\Fix{\operatorname{Fix}}
-\def\c{\operatorname{\mathbb{C}}}
-\def\R{\operatorname{\mathbb{R}}}
-\def\q{\operatorname{\mathbb{Q}}}
-\def\e{\operatorname{\mathcal{V}}}
-\def\z{\operatorname{\mathbb{Z}}}
-\def\n{\operatorname{\mathbb{N}}}
-\def\s{\operatorname{\subseteq}}
-\def\w{\operatorname{\zeta}}
-\def\Ell{\operatorname{Ell}}
-\def\fii{\operatorname{\varphi}}
-\def\o{\operatorname{\mathcal{O}}}
-\def\I{\operatorname{\mathcal{I}}}
-\def\J{\operatorname{\mathcal{J}}}
-\def\P{\operatorname{\mathcal{P}}}
-\def\pn{\operatorname{\mathfrak{P}}}
-\def\pn{\operatorname{\mathfrak{p}}}
-\def\res{\operatorname{res}}
-\def\ord{\operatorname{ord}}
-\def\AG{\operatorname{AG}}
-\def\HG{\operatorname{HG}}
-\def\AH{\operatorname{AH}}
 \setlength{\emergencystretch}{3em}
 
 
@@ -375,12 +357,12 @@ Následující věta shrnuje základní vlastnosti $AG$ průměru.
 
 
 \begin{veta}\label{zkjb}
-Mějme $a,b,k \in \mathbb{R}^{+}$. Pro $AG$ průměr platí:
+Mějme $a>b,k \in \mathbb{R}^{+}$. Pro $AG$ průměr platí:
 \begin{enumerate}
 \item $\AG(a,a) = a$,
-\item $\AG(ka,kb) = k \AG (a,b)$,
+\item $\AG(ka,kb) = k \AG (a,b)$,\label{zkjb2}
 \item $\AG(a,b) = \AG(a_1,b_1) = \AG(a_2,b_2) = \dots$,
-\item $\AG(1-x,1+x) = \AG(a,b)$, kde $x = \frac{1}{a} \sqrt{a^2 - b^2}$.\footnote{hmmmmmm}
+\item $\AG(1-x,1+x) = \AG(a,b)$, kde $x = \frac{1}{a} \sqrt{a^2 - b^2}$.\footnote{Tato vlastnost nám přijde vhod v následující sekci.}
 \end{enumerate}
 \end{veta}
 
@@ -409,7 +391,7 @@ Pro $x<1$ platí:
 Nyní nepatrně pozměňme integrál napravo, abychom mohli obecně popsat číslo $\AG(a,b)$. Definujme:
 $$I(a,b) := \int_{0}^{\pi/2} \frac{d \theta}{\sqrt{a^2 \cos ^2 \theta + b^2 \sin ^2 \theta}}. $$
 Pomocí goniometrické jedničky $\sin^2 \theta + \cos^2 \theta = 1$ vidíme, že platí vztah:
-$$I(a,b) = \frac{1}{a} K(x),$$ kde $x =\frac{1}{a} \sqrt{a^2-b^2}$. Takové $x$ jsme už ale někde viděli, konkrétně ve větě \ref{zkjb} $iv)$. Gaussovu větu poté můžeme díky části $ii)$ věty \ref{zkjb} přepsat na:
+$$I(a,b) = \frac{1}{a} K(x),$$ kde $x =\frac{1}{a} \sqrt{a^2-b^2}$. Takové $x$ jsme už ale někde viděli, konkrétně v části $iv)$ věty \ref{zkjb}. Gaussovu větu poté můžeme díky části $ii)$ věty \ref{zkjb} přepsat na:
 \begin{veta}\label{Ia}
 $$\frac{\pi}{2} \frac{1}{\AG(a,b)} = I(a,b).$$
 \end{veta}
@@ -434,6 +416,13 @@ I\left(\sqrt{2},1\right) \cdot \frac{2}{\pi} &= \int_{0}^{\pi/2} \frac{d \theta}
 \end{align*}
 Převrácená hodnota tohoto čísla je $\approx 1.2064925939\dots > \AG(\sqrt{2},1) = 1.198140234736\dots$.
 \end{priklad}
+
+Eliptické integrály nedokážeme nijak \uv{hezky} vyjádřit, můžeme ale využít numerické techniky, abychom je aproximovali. Obecně Simpsonova metoda dává následující odhad.
+\begin{veta}
+Buďte $a,b$ kladná čísla. Pak platí:
+$$\AG(a,b) \approx 6 \left(\frac{1}{a} + \frac{4\sqrt{2}}{\sqrt{a^2+b^2}} + \frac{1}{b} \right)^{-1}.$$
+\end{veta}
+
 
 Nastiňme, jakým způsobem Gauss vlastně dokázal rovnost \eqref{el}. Jeho důkaz spočívá v důkaze mezivýsledku $I(a,b) = I(a_1,b_1)$. K němu lze dojít po několika přiměřeně bolestivých výpočteních krocích. Jak Gauss sám pravil, k tomuto výsledku dojdeme:
 
@@ -519,6 +508,7 @@ Vzhledem k tomu, že $\AG(a,a) \cdot \HG(a,a) = a^2$, vypadá to, že by mohl pl
 
 $HG$ posloupnost je pouze $AG$ posloupnost s převrácenými členy! Limita této posloupnosti je proto s použitím části $ii)$ \ref{zkjb}:
 \begin{veta}\label{agh}
+Pro libovolná $a,b \in \mathbb{R}^{+}$ platí:
 $$\HG(a,b) = \frac{1}{\AG(a^{-1},b^{-1})} = \frac{ab}{\AG(a,b)}.$$
 \end{veta}
 
@@ -545,6 +535,7 @@ $$a_1  b_1 = \frac{a+b}{2} \cdot \frac{2ab}{a+b} = ab.$$
 Jelikož opět obě složky posloupnosti konvergují ke stejné hodnotě $\AH(a,b)$, ta musí splňovat $\AH (a,b)^2 = ab$, tedy $AH(a,b) = \sqrt{ab}$. Tento trend, kdy se $AH$ drasticky liší od předchozích dvou, bude v jistém smyslu držet i v pozdějších částech práce, kdy posloupnosti uvažujeme nad konečnými tělesy. Adaptace $AG$ a $HG$ posloupností budou velmi spřízněné, zatímco $AH$ s nimi má velmi málo společného.
 
 \begin{veta}
+Pro libovolná $a,b \in \mathbb{R}^{+}$ platí:
 \begin{align*}
 \AH(a,b) &= \sqrt{ab}.
 \end{align*}
@@ -602,42 +593,198 @@ Ať $G$ je orientovaný graf a $V \subseteq G$ je komponenta slabé souvislosti.
 \end{umluva}
 
 
-\begin{priklad}
-Pojďme si udělat představu o grafu, se kterým pracujeme, konkrétně se podívejme na $\AG_{\mathbb{F}_7}$. Zvolme dvojici $(1,2) \in \AG_{\mathbb{F}_q}$ a pišme posloupnost $\AG_{\mathbb{F}_q} (1,2)$:
+\begin{priklad}\label{pr2}
+Pojďme si udělat představu o grafu, se kterým pracujeme, konkrétně se podívejme na $\AG_{\mathbb{F}_7}$. Zvolme dvojici $(1,2) \in \AG_{\mathbb{F}_q}$ a pišme posloupnost $\AG_{\mathbb{F}_7} (1,2)$:
 $$
 (1,2) \mapsto (5,3) \mapsto (4,1) \mapsto (6,5) \mapsto (2,4) \mapsto (3,6) \mapsto (1,2),
 $$
-vrchol $(1,2)$ je proto členem cyklu délky $6$. Pokud máme v grafu orientovanou hranu $(a,b) \mapsto (c,d)$, tak jistě vede hrana i mezi $(b,a)$ a $(c,d)$, proto například vede hrana z $(2,1)$ do $(5,3)$ a podobně. Výpočtem lze ověřit, že prvky mimo cyklus - $(2,1)$, $(3,5)$ a pod., již předchůdce nemají. Komponenta obsahující vrchol $(1,2)$ proto vypadá následovně:
-%\begin{center}
-%\begin{tikzpicture}
+vrchol $(1,2)$ je proto členem cyklu délky $6$. Pokud máme v grafu orientovanou hranu $(a,b) \mapsto (c,d)$, tak jistě vede hrana i mezi $(b,a)$ a $(c,d)$, proto například vede hrana z $(2,1)$ do $(5,3)$ a podobně. Výpočtem lze ověřit, že prvky mimo cyklus - $(2,1)$, $(3,5)$ a pododbně, již předchůdce nemají. Toto je jediná komponenta souvislosti grafu $\AG_{\mathbb{F}_7}$.
 
-%\def \n {6}
-%\def \radius {2.5cm}
-%\def \margin {15} % margin in angles, depends on the radius
+Podívejme se nyní na graf $\AG_{\mathbb{F}_{11}}$. Zvolme dvojice $(1,3)$, $(1,5)$ a $(10,6)$ a pišme jejich posloupnosti:
+\begin{align*}
+(1,3) \mapsto (2,6) \mapsto (4,1) \mapsto (8,2) \mapsto (5,4) &\mapsto (10,8) \mapsto (9,5) \mapsto (7,10) \mapsto (3,9) \mapsto (6,7) \mapsto (1,3),\\
+(1,5) \mapsto (3,4) \mapsto (9,1) &\mapsto (5,3) \mapsto (4,9) \mapsto (1,5),\\
+(10,6) \mapsto (8,7) \mapsto (2,10) &\mapsto (6,8) \mapsto (7,2) \mapsto (10,6).
+\end{align*}
+Opět platí, že v každém z těchto případů mají všechny prvky cyklu právě jednoho předchůdce mimo cyklus. Tito předchůdci jsou už listy. Tyto tři komponenty souvislosti tvoří celý graf $\AG_{\mathbb{F}_{11}}$. Všimněme si, že pokud vezmeme druhou posloupnost a vynásobíme každý prvek $-1$, tj. $1 \longmapsto 10, 2 \longmapsto 9$, tak získáme přesně posloupnost třetí. Komponenty souvislosti obsahující prvky $(1,5)$ a $(10,6)$ jsou proto isomorfní.\\
 
-%\node [draw, circle] at ({360/\n * (1 - 1)}:\radius) {$1,2$};
-%  \draw[->, >=latex] ({360/\n * (1 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (1 - 1)+\margin}:{360/\n * (1)-\margin}:\radius);
-%\node[draw, circle] at ({360/\n * (1 - 1)}:2*\radius) {$6,3$};
-%\draw[->,>=latex]
-%\node[draw, circle] at ({360/\n * (2 - 1)}:\radius) {$5,3$};
-%  \draw[->, >=latex] ({360/\n * (2 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (2 - 1)+\margin}:{360/\n * (2)-\margin}:\radius);
-%\node[draw, circle] at ({360/\n * (3 - 1)}:\radius) {$4,1$};
-%  \draw[->, >=latex] ({360/\n * (3 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (3 - 1)+\margin}:{360/\n * (3)-\margin}:\radius);
-%\node[draw, circle] at ({360/\n * (4 - 1)}:\radius) {$6,5$};
-%  \draw[->, >=latex] ({360/\n * (4 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (4 - 1)+\margin}:{360/\n * (4)-\margin}:\radius);
-%\node[draw, circle] at ({360/\n * (5 - 1)}:\radius) {$2,4$};
-%  \draw[->, >=latex] ({360/\n * (5 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (5 - 1)+\margin}:{360/\n * (5)-\margin}:\radius);
-%    \node[draw, circle] at ({360/\n * (6 - 1)}:\radius) {$3,6$};
-%  \draw[->, >=latex] ({360/\n * (6 - 1)+\margin}:\radius) 
-%    arc ({360/\n * (6 - 1)+\margin}:{360/\n * (6)-\margin}:\radius);
-%\end{tikzpicture}
-%\end{center}
-Tento příklad - cyklus a listy připojené ke každému členu cyklu - je typický. Pro ilustraci se podívejme na .
+\begin{figure}[h]
+\begin{center}
+ \begin{tikzpicture}[node distance=2cm]
+\def\s{0.7}
+\def\l{2mm}
+\def\w{1mm}
+%\draw[line width=.5pt,black,fill=yellow] (0:4cm) circle (3pt);
+
+%\draw[line width=.5pt,black,fill=yellow] (60:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (0:8cm) circle (3pt);
+ 
+%\draw[line width=.5pt,black,fill=yellow] (60:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:8cm) circle (3pt);
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c1]      at (0:1.25cm) {$4,1$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c2]      at (60:1.25cm) {$5,3$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c3]      at (120:1.25cm) {$1,2$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c4]      at (180:1.25cm) {$3,6$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c5]      at (240:1.25cm) {$2,4$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c6]      at (300:1.25cm) {$6,5$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b1]      at (0:2.5cm) {$3,5$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b2]      at (60:2.5cm) {$2,1$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b3]      at (120:2.5cm) {$6,3$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b4]      at (180:2.5cm) {$4,2$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b5]      at (240:2.5cm) {$5,6$};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b6]      at (300:2.5cm) {$1,4$};
+\draw [-{Stealth[length=\l, width=\w]}](c2) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](c3) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](c4) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](c5) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](c6) -- (c5);
+\draw [-{Stealth[length=\l, width=\w]}](c1) -- (c6);
+\draw [-{Stealth[length=\l, width=\w]}](b1) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](b2) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](b3) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](b4) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](b5) -- (c5);
+\draw [-{Stealth[length=\l, width=\w]}](b6) -- (c6);
+%\node[text width=3cm] at (300:4cm) {$(1,2)$};
+%\node[text width=3cm] at (0:4cm) {$(5,3)$};
+\end{tikzpicture}
+
+\captionof{figure}{Graf $\AG_{\mathbb{F}_7}$.}
+
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\begin{minipage}{.5\textwidth}
+  \begin{center}
+ \begin{tikzpicture}[node distance=2cm]
+\def\s{0.7}
+\def\l{2mm}
+\def\w{1mm}
+%\draw[line width=.5pt,black,fill=yellow] (0:4cm) circle (3pt);
+
+%\draw[line width=.5pt,black,fill=yellow] (60:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (0:8cm) circle (3pt);
+ 
+%\draw[line width=.5pt,black,fill=yellow] (60:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:8cm) circle (3pt);
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c1]      at (0:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c2]      at (360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c3]      at (2*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c4]      at (3*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c5]      at (4*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c6]      at (5*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c7]      at (6*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c8]      at (7*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c9]      at (8*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c10]      at (9*360/10:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b1]      at (0:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b2]      at (360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b3]      at (2*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b4]      at (3*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b5]      at (4*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b6]      at (5*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b7]      at (6*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b8]      at (7*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b9]      at (8*360/10:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b10]      at (9*360/10:2.5cm){};
+\draw [-{Stealth[length=\l, width=\w]}](c2) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](c3) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](c4) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](c5) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](c6) -- (c5);
+\draw [-{Stealth[length=\l, width=\w]}](c7) -- (c6);
+\draw [-{Stealth[length=\l, width=\w]}](c8) -- (c7);
+\draw [-{Stealth[length=\l, width=\w]}](c9) -- (c8);
+\draw [-{Stealth[length=\l, width=\w]}](c10) -- (c9);
+\draw [-{Stealth[length=\l, width=\w]}](c1) -- (c10);
+\draw [-{Stealth[length=\l, width=\w]}](b1) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](b2) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](b3) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](b4) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](b5) -- (c5);
+\draw [-{Stealth[length=\l, width=\w]}](b6) -- (c6);
+\draw [-{Stealth[length=\l, width=\w]}](b7) -- (c7);
+\draw [-{Stealth[length=\l, width=\w]}](b8) -- (c8);
+\draw [-{Stealth[length=\l, width=\w]}](b9) -- (c9);
+\draw [-{Stealth[length=\l, width=\w]}](b10) -- (c10);
+%\node[text width=3cm] at (300:4cm) {$(1,2)$};
+%\node[text width=3cm] at (0:4cm) {$(5,3)$};
+\end{tikzpicture}
+
+\end{center}
+
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \begin{center}
+ \begin{tikzpicture}[node distance=2cm]
+\def\s{0.7}
+\def\l{2mm}
+\def\w{1mm}
+%\draw[line width=.5pt,black,fill=yellow] (0:4cm) circle (3pt);
+
+%\draw[line width=.5pt,black,fill=yellow] (60:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (0:8cm) circle (3pt);
+ 
+%\draw[line width=.5pt,black,fill=yellow] (60:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:8cm) circle (3pt);
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c1]      at (0:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c2]      at (360/5:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=c3]      at (2*360/5:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c4]      at (3*360/5:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=c5]      at (4*360/5:1.25cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b1]      at (0:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b2]      at (360/5:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s, name=b3]      at (2*360/5:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b4]      at (3*360/5:2.5cm){};
+\node [draw,black,fill=yellow, circle,inner sep=2pt, scale=\s,  name=b5]      at (4*360/5:2.5cm){};
+\draw [-{Stealth[length=\l, width=\w]}](c2) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](c3) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](c4) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](c5) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](c1) -- (c5);
+\draw [-{Stealth[length=\l, width=\w]}](b1) -- (c1);
+\draw [-{Stealth[length=\l, width=\w]}](b2) -- (c2);
+\draw [-{Stealth[length=\l, width=\w]}](b3) -- (c3);
+\draw [-{Stealth[length=\l, width=\w]}](b4) -- (c4);
+\draw [-{Stealth[length=\l, width=\w]}](b5) -- (c5);
+%\node[text width=3cm] at (300:4cm) {$(1,2)$};
+%\node[text width=3cm] at (0:4cm) {$(5,3)$};
+\end{tikzpicture}
+
+
+\end{center}
+
+\end{minipage}
+
+\caption{Neisomorfní komponenty souvislosti grafu $\AG_{\mathbb{F}_{11}}$.}
+\end{figure}
+
+
+
 \end{priklad}
 
 
@@ -647,12 +794,12 @@ Nyní se podíváme na vlastnosti grafu $\AG_{\mathbb{F}_q}$. Začněme zlehka, 
 \begin{veta}\label{pocetprvkuAG}
 Graf $\AG_{\mathbb{F}_q}$ čítá $(q-1)(q-3)/2$ vrcholů a stejný počet hran.
 \end{veta}
-\noindent \textit{Důkaz.} Uspořádaná dvojice $(a,b)$ náleží do $AG_{\mathbb{F}_q}$, právě pokud platí $\phi_q(ab) = 1$, tedy buď jsou $a,b$ obě čtverci v $\mathbb{F}_q$, nebo ani jedno. Počet uspořádaných dvojic různých nenulových čtverců je roven $(q-1)/2 \cdot (q-3)/2$ a stejný počet přispívají dvojice nečtverců. Dohromady získáme $2 \cdot (q-1)(q-3)/4$ vyhovujících dvojic. Protože z každého vrcholu vychází právě jedna orientovaná hrana, počet hran je roven počtu vrcholů. \hfill $\square$\\
+\noindent \textit{Důkaz.} Uspořádaná dvojice $(a,b)$ náleží do $\AG_{\mathbb{F}_q}$, právě pokud platí $\phi_q(ab) = 1$, tedy buď jsou $a,b$ obě čtverci v $\mathbb{F}_q$, nebo ani jedno. Počet uspořádaných dvojic různých nenulových čtverců je roven $(q-1)/2 \cdot (q-3)/2$ a stejný počet přispívají dvojice nečtverců. Dohromady získáme $2 \cdot (q-1)(q-3)/4$ vyhovujících dvojic. Protože z každého vrcholu vychází právě jedna orientovaná hrana, počet hran je roven počtu vrcholů. \hfill $\square$\\
 
 Grafy z příkladu jsou tvořeny z několika komponent souvislosti, které mají všechny velmi specifický tvar, tj. cyklus, kde z každého jeho vrcholu vychází hrana délky jedna. Tento tvar je typický a~libovolná komponenta jej tvoří.
 
 \begin{definice}
-Souvislý orientovaný graf $G$ nazveme \textit{medúzou}, pokud je tvořen jediným cyklem $H$ a navíc pro každý vrchol $V \in H$ existuje unikátní předchůdce\footnotemark FOOTNOTE FOOTNOTE FOOTNOTE mimo cyklus, který sám nemá předchůdce.
+Souvislý orientovaný graf $G$ nazveme \textit{medúzou}, pokud je tvořen jediným cyklem $H$ a navíc pro každý vrchol $V \in H$ existuje unikátní předchůdce\footnote[2]{Označme $G = (V,E)$. Předchůdce vrcholu $X \in V$ je libovolný vrchol $W \in V$ splňující $(W,V) \in E$.} mimo cyklus, který sám nemá předchůdce.
 \end{definice}
 
 Ukážeme si, že komponenty souvislosti grafu $\AG_{\mathbb{F}_q}$ jsou medúzami. Nejprve si charakterizujme, které vrcholy mají v $\AG_{\mathbb{F}_q}$ předchůdce.
@@ -681,13 +828,21 @@ Dejme tomu, že $(c,d)$ je členem nějakého cyklu a jeho předchůdce v cyklu 
 
 Jedno z čísel $\phi_q (C^2 - D^2)$ a $\phi_q(D^2-C^2)$ je kvůli $\phi_q(-1)=-1$ rovno $1$ a to druhé $-1$, podle lemmatu \ref{p} proto má právě jeden z vrcholů  $(C,D)$ a $(D,C)$ předchůdce, ten je jistě taky součástí cyklu. Každý vrchol, který není členem cyklus, proto nemá předchůdce a každá komponenta souvislosti $\AG_{\mathbb{F}_q}$ je proto medúzou. \hfill $\square$\\
 
+\begin{priklad}\label{pr3}
+Délky cyklů medúz se mohou přes různá prvočísla drasticky lišit. Z příkladu \ref{pr2} víme, že pro $p = 7$ nalezneme v grafu $\AG_{\mathbb{F}_p}$ medúzu s délkou cyklu rovnou $6$ a pro $p=11$ jsou délky cyklů rovné po řadě $5$ a $10$. Například v grafu $\AG_{\mathbb{F}_{67}}$ máme mimo jiné medúzy s~délkami cyklů po řadě $9$ a $198$.
+\begin{align*}
+(1,17) \mapsto (9,33) \mapsto (21,37) \mapsto (29,24) &\mapsto \dots \mapsto (65,15) \mapsto (40,29) \mapsto (1,17),\\
+(1,9) \mapsto (5,33) \mapsto (4,22) \mapsto (13,50) &\mapsto \dots \mapsto (21,26) \mapsto (57,12) \mapsto (1,9).
+\end{align*}
+V grafu $\AG_{\mathbb{F}_{79}}$ jsou jediné přípustné délky cyklů velké, po řadě $205$ a $410$.
+\end{priklad}
 
-Pojďme si nyní charakterizovat, jaké různé medúzy můžeme v celém grafu najít. Podle analogu bodu $ii)$ věty \ref{zkjb} můžeme přenásobit všechny vrcholy dané medúzy nějakým $k \in \mathbb{F}_q$ a získat novou medúzu, kterou nazveme jejím \textit{přítelem}. Příklady takových medúz jsou na TOM PŘÍKLADU NA ZAČÁTKU.
+Pojďme si charakterizovat, jaké různé medúzy můžeme v celém grafu najít. Podle analogu bodu $ii)$ věty \ref{zkjb} můžeme přenásobit všechny vrcholy dané medúzy nějakým $k \in \mathbb{F}_q$ a získat novou medúzu, kterou nazveme jejím \textit{přítelem}. Příklady takových medúz jsou medúzy v $\AG_{\mathbb{F}_{11}}$ obsahující prvky $(1,5)$ a $(10,6) = (-1,-5)$ z příkladu \ref{pr2}.
 \begin{definice}
 Ať $M \subseteq \AG_{\mathbb{F}_q}$ je medúza a $(a,b)$ její prvek. Potom nazveme libovolnou medúzu obsahující prvek $(ka,kb)$ pro $k \in \mathbb{F}_q$ \textit{přítelem} medúzy $M$.
 \end{definice}
 
- Kolik přátel má daná medúza? Na to zodpovídá následující tvrzení:
+Kolik přátel má daná medúza? Na to zodpovídá následující tvrzení:
 \begin{veta}\label{isom}
 Ať $(a,b) \in \AG_{\mathbb{F}_q}$ leží v cyklu medúzy $M$ a $(a_i,b_i) \in \AG_{\mathbb{F}_q}(a,b)$ je první prvek takový, že existuje $k \in \mathbb{F}_q$ splňující $(a_i,b_i) = (ka, kb)$. Pak má medúza $M$ právě:
 $$\frac{q-1}{\ord_q (k)}$$
@@ -698,7 +853,7 @@ přátel.
 
 Přesněji, máme danou akci grup $\mathbb{F}_q \times \AG_{\mathbb{F}_q} \longrightarrow \AG_{\mathbb{F}_q}$, která pro $k \in \mathbb{F}_q$ zobrazí prvek $(a,b)$ na $(ka,kb)$. Nosná množina $O_k$ je pak stabilizátorem pro libovolný prvek medúzy $M$. To znamená, že existuje bijekce mezi množinou prvků $k \in \mathbb{F}_q$, které zobrazí $M$ na jejího přítele, a faktorgrupou $\mathbb{F}_q/O_k$, která má $\frac{q-1}{\ord_q (k)}$ prvků. \hfill $\square$\\
 
-Je-li jediné vyhovující $k$ rovno $1$, tak medúza má $q-1$ přátel a pro $(a_i,b_i) \in AG(a,b)$ platí $a_i/b_i = a_j/b_j$ právě pokud $(a_i,b_i) = (a_j,b_j)$. Pro taxonomické účely se nám hodí tyto spřátelené medúzy uskupit dohromady, zaveďme proto pojem \textit{hejno}.
+Je-li jediné vyhovující $k$ rovno $1$, tak medúza má $q-1$ přátel a pro $(a_i,b_i) \in \AG_{\mathbb{F}_q}(a,b)$ platí $a_i/b_i = a_j/b_j$ právě pokud $(a_i,b_i) = (a_j,b_j)$. Pro taxonomické účely se nám hodí tyto spřátelené medúzy uskupit dohromady, zaveďme proto pojem \textit{hejno}.
 \begin{definice}
 Ať $H \subseteq AG_{\mathbb{F}_q}$ je medúza a $H_1,\dots,H_k$ jsou všichni její přátelé. Pak $H \cup H_1 \cup \dots \cup H_k$ nazvěme \textit{hejnem medúz}.
 \end{definice}
@@ -711,12 +866,13 @@ Ohledně medúz je hned několik hodnot, které má cenu zkoumat. Kolik je pro d
 Nejdůležitější hodnotou je pro nás počet medúz v celém roji, případně počet hejn v roji. Tyto hodnotu studovali autoři původního článku \cite{Meduza} a pomocí eliptických křivek budeme moci na tato čísla uvést odhady.
 
 \begin{definice}
-Ať $q \equiv 3 \pmod{4}$ je mocnina prvočísla. Pak označme $d(\mathbb{F}_q)$ počet všech medúz v grafu $AG_{\mathbb{F}_q}$. Dále označme $s(\mathbb{F}_q)$ počet všech hejn v grafu $\AG_{\mathbb{F}_q}$.
+Ať $q \equiv 3 \pmod{4}$ je mocnina prvočísla. Pak označme $d(\mathbb{F}_q)$ počet všech medúz v grafu $\AG_{\mathbb{F}_q}$. Dále označme $s(\mathbb{F}_q)$ počet všech hejn v grafu $\AG_{\mathbb{F}_q}$.
 \end{definice}
 
-V článku, ze kterého vycházíme, se $d(\mathbb{F}_q)$ nazývá \textit{jellyfish number}, číslo $s(\mathbb{F}_q)$ není zmíněno vůbec a obecně hejna medúz nejsou nijak značena a jsou zmíněna pouze okrajově. Protože víme z příkladu ?, že délky cyklů se přes prvočísla mohou tak lišit, tak nás nepřekvapí, že i celkový počet medúz se chová poměrně různorodě. Pro představu uveďme malou tabulku pro prvočísla $p < 100$.
+V článku, ze kterého vycházíme, se $d(\mathbb{F}_q)$ nazývá \textit{jellyfish number}, číslo $s(\mathbb{F}_q)$ není zmíněno vůbec a obecně hejna medúz nejsou nijak značena a jsou zmíněna pouze okrajově. Protože víme z příkladu \ref{pr3}, že délky cyklů se přes prvočísla mohou tak lišit, tak nás nepřekvapí, že i celkový počet medúz se chová poměrně různorodě. Pro představu uveďme malou tabulku pro prvočísla $p < 100$.
 
-\begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
+\begin{figure}[h]
+ \begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
 \toprule
 $p$ & $d(\mathbb{F}_p)$ & $s(\mathbb{F}_p)$\\
 \midrule
@@ -735,17 +891,21 @@ $79$ & \noindent $18$ & \noindent $7$\\
 $83$ & \noindent $6$ & \noindent $4$\\
 \bottomrule 
 \end{longtable}
-
-Tato náhodná povaha $d(\mathbb{F}_q)$ se nese i dál, na následujících grafech vidíme jednotlivé hodnoty pro prvočísla $p < 10^4$ a $p < 10^5$:
-\begin{center}
-\begin{figure}[h]
-\begin{center}
-  \includegraphics[width=12cm]{MCount.png}
-  \label{fig:boat1}
-  \caption{Číslo $d(\mathbb{F}_p)$}
-\end{center}
+\caption{Tabulka hodnot $d(\mathbb{F}_p)$ a $s(\mathbb{F}_p)$ pro $p < 100$}
 \end{figure}
-\end{center}
+
+
+Tato náhodná povaha $d(\mathbb{F}_q)$ se nese i dál, na následujících grafech vidíme jednotlivé hodnoty pro prvočísla $p < 10^4$ a $p < 10^5$.
+
+%\begin{center}
+%\begin{figure}[h]
+%\begin{center}
+%  \includegraphics[width=12cm]{MCount.png}
+%  \label{fig:boat1}
+%  \caption{Číslo $d(\mathbb{F}_p)$}
+%\end{center}
+%\end{figure}
+%\end{center}
 \begin{figure}[h]
 \centering
 \begin{minipage}{.5\textwidth}
@@ -760,56 +920,69 @@ Tato náhodná povaha $d(\mathbb{F}_q)$ se nese i dál, na následujících graf
 \end{minipage}
 \end{figure}
 
-Některé hodnoty $d(\mathbb{F}_p)$ jsou mnohem vyšší, než ostatní, například pro $p=99859$ máme $d(\mathbb{F}_p) = 406954$. I po sobě jdoucí prvočísla mohou mít disproporcionálně různé počty medúz. Na příklad pro prvočíslo $1619$ je počet medúz roven $d(\mathbb{F}_{1619}) = 56$ a hned o dům dál u prvočísla $1627$ nalezneme v grafu enormní počet $d(\mathbb{F}_{1627}) =2227$ medúz, skoro čtyřicetkrát více. Na grafu výše tak vidíme chování extrémních případů, žádné zjevné trendy se nevyskytují. 
+Některé hodnoty $d(\mathbb{F}_p)$ jsou mnohem vyšší než ostatní, například pro $p=99859$ máme $d(\mathbb{F}_p) = 406954$. I po sobě jdoucí prvočísla mohou mít disproporcionálně různé počty medúz. Na příklad pro prvočíslo $1619$ je počet medúz roven $d(\mathbb{F}_{1619}) = 56$ a hned o dům dál u prvočísla $1627$ nalezneme v grafu enormní počet $d(\mathbb{F}_{1627}) =2227$ medúz, skoro čtyřicetkrát více. Na grafu výše tak vidíme chování extrémních případů, žádné zjevné trendy se nevyskytují. 
 
-Číslo $s(\mathbb{F}_p)$ se chová mnohem rozumněji. Případy, kdy $d(\mathbb{F}_p)$ je velké, jsou právě ty, kdy jsou hejna dostatečně velká, hodnoty $s(\mathbb{F}_q)$ stabilizují. Na následujícím grafu vidíme chování $s(\mathbb{F}_p)$ pro $p<10^5$.
+Číslo $s(\mathbb{F}_p)$ se chová mnohem rozumněji. Případy, kdy $d(\mathbb{F}_p)$ je velké, jsou právě ty, kdy jsou hejna dostatečně velká, hodnoty $s(\mathbb{F}_q)$ stabilizují. Na následujícím grafu vidíme chování $s(\mathbb{F}_p)$ pro $p<10^5$.\\
 
 \begin{figure}[h]
-  \includegraphics[width=15cm]{SCount.png}
+\centering
+  \includegraphics[width=12cm]{SCount.png}
   \label{fig:boat1}
-  \caption{Číslo $s(\mathbb{F}_p)$}
+  \caption{Číslo $s(\mathbb{F}_p)$ pro $p < 10^5$}
 \end{figure}
 
 
 Autoři článku \cite{Meduza} propojili $AG$ posloupnost s teorií eliptických křivek, těm se budeme věnovat v kapitole \ref{ctyri}. Pomocí této teorie dokázali netriviální dolní odhad na číslo $d(\mathbb{F}_q)$, resp. jejich postup ohraničí dokonce číslo $s(\mathbb{F}_q)$. Hlavním výsledkem jejich článku je tvrzení, že pro libovolně malé $\varepsilon > 0$ a $q$ dostatečně velké platí:
 $$s(\mathbb{F}_q) \geqslant \left( \frac{1}{2} - \varepsilon \right) \sqrt{q}.$$
-V závěru práce spekulují, zda je tento odhad asymptoticky optimální a navrhují odhad $d(\mathbb{F}_q) \geqslant O(\sqrt{q} \log \log q)$. Pojďme se těmto výsledkům věnovat.
+V závěru práce spekulují, zda je tento odhad asymptoticky optimální a navrhují odhad $d(\mathbb{F}_q) \geqslant O(\sqrt{q} \log \log q)$. Pojďme se těmto odhadům věnovat.
 
-Nejprve, jak optimální opravdu je odhad $s(\mathbb{F}_q)$ (resp. $d(\mathbb{F}_q)$)?  Podívejme se na číslo $s(\mathbb{F}_q)$:
+Nejprve, jak optimální opravdu je odhad $s(\mathbb{F}_q)$ (resp. $d(\mathbb{F}_q)$)?  Porovnejme číslo $s(\mathbb{F}_q)$ s funkcí $ \sqrt{q}$:
 
---\\
+\begin{figure}[h]
+  \includegraphics[width=15cm]{SCountLOL.png}
+  \label{fig:boat1}
+\caption{Porovnání $s(\mathbb{F}_p)$ s funkcemi $\sqrt{p}$, $\sqrt{p} \log \log p$ a $\frac{1}{4} \sqrt{p} \log \log p$.}
+\end{figure}
+
+Těsnější odhad získáme, pokud uvážíme funkce $f \in O(\sqrt{q} \log \log q)$, podle návrhu v \cite{Meduza}. I když se autoři horním odhadům na číslo $s(\mathbb{F}_q)$ nevěnovali, zdánlivě jej můžeme též odhadnout funkcí tvaru $c \sqrt{q} \log \log q$.
+\begin{domnenka}\label{dd}
+Pro dostatečně velké $q$ platí:
+$$\sqrt{q} \log \log q \geqslant s(\mathbb{F}_q) \geqslant \frac{1}{4} \sqrt{q} \log \log q.$$
+\end{domnenka}
+Ověřme výpočetně odhady, které jsou předměty domněnky \ref{dd}.
 
 
+\begin{figure}[h]
+ \begin{longtable}[H]{>{\raggedright\arraybackslash}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
+\toprule
+$p$ & $s(\mathbb{F}_p)$ & $\frac{1}{4} \sqrt{p} \log \log p$ & $\sqrt{p} \log \log p$\\
+\midrule
+$3$ & \noindent $0$ & \noindent $0$ & $0$\\
+\bottomrule 
+\end{longtable}
+\caption{????}
+\end{figure}
 
-blabla
-
-se to chová trochu jako nějaká funkce idk.
-
-Další otázkou může být, jak spolu souvisí čísla $d(\mathbb{F}_q)$ a $s(\mathbb{F}_q)$. Rozhodně platí $s(\mathbb{F}_q) \geqslant d(\mathbb{F}_q)$, co lepšího ale můžeme říci? Obecný trend alespoň ze začátku zdárně neexistuje, uveďme si tabulku několika vybraných hodnot:
-
-Tabulka
-
-Pokud se podíváme, jak se plošně chová číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ získáme velmi zajímavý graf:
+Další otázkou může být, jak spolu souvisí čísla $d(\mathbb{F}_q)$ a $s(\mathbb{F}_q)$. Rozhodně platí $s(\mathbb{F}_q) \geqslant d(\mathbb{F}_q)$, co lepšího ale můžeme říci? Pokud se podíváme, jak se plošně chová číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ získáme velmi zajímavý graf:
 
 
 \begin{figure}[h]
   \includegraphics[width=15cm]{Podil.png}
   \label{fig:boat1}
-  \caption{Hodnoty $s(\mathbb{F}_p)/d(\mathbb{F}_p)$ pro $p < 170000$}
+  \caption{Hodnoty $s(\mathbb{F}_p)/d(\mathbb{F}_p)$ pro $p < 1.2 \cdot 10^5$}
 \end{figure}
 
-Zaprvé, pro $p>7$ číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ drží pod hodnotou hodnoty $0.75$ (maximální podíl nastane pro $p=47$). To naznačuje, že libovolný horní odhad na číslo $s(\mathbb{F}_q)$ nemůže mít jako důsledek asymptoticky silnější odhad na číslo $d(\mathbb{F}_q)$. Tyto podíly se drží i pro $p \gg 10^5$, zde uveďme pár různé velkých vzorků:
+Zaprvé vidíme, pro $p>7$ se číslo $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ drží pod hodnotou $0.75$ (maximální podíl nastane pro $p=47$). To naznačuje, že libovolný horní odhad na číslo $s(\mathbb{F}_q)$ nemůže mít jako důsledek asymptoticky silnější odhad na číslo $d(\mathbb{F}_q)$. Tyto podíly se drží i pro $p \gg 10^5$, zde uveďme pár různé velkých vzorků:
 
 -TABULKA-
 
-Dále na grafu zjevně pozorujeme dva velké shluky hodnot, jeden v intervalu $[0.53,0.66]$. Prvočísla $p<10^5$, pro které hodnota $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ neleží v žádné z těchto mezí jsou pouze:
-
+Dále na grafu zjevně pozorujeme dva velké shluky hodnot, jeden v intervalu $[0.53,0.66]$. Prvočísla $p<10^5$, pro které hodnota $\frac{d(\mathbb{F_q})}{d(\mathbb{F}_q)}$ neleží v žádné z těchto mezí jsou pouze.
 tabulečka.
 
 
 Krom velikostí celého roje, můžeme se podívat na velikostí jednotlivých hejn, ?.
 
-Konečně, zaměřme se na jednotlivé medúzy a podívejme se na velikosti jednotlivých medúz, resp. jejich cyklů.
+%Konečně, zaměřme se na jednotlivé medúzy a podívejme se na velikosti jednotlivých medúz, resp. jejich cyklů.
 
 \section{HG posloupnost}
 
@@ -831,7 +1004,7 @@ přičemž $b_{n+1}$ volíme tak, že $\phi_q (a_{n+1} b_{n+1}) = 1$.
 \end{definice}
 
 \begin{definice}
-Definujme \textit{roj}$HG_{\mathbb{F}_q} = (V,E)$ jako orientovaný graf, kde $(a,b) \in V$, právě pokud platí $\phi_q(ab) = 1$, a $\big((a,b),(c,d)\big) \in E$, právě pokud platí $(c,d) = (a_1,b_1)$.
+Definujme \textit{roj} $\HG_{\mathbb{F}_q} = (V,E)$ jako orientovaný graf, kde $(a,b) \in V$, právě pokud platí $\phi_q(ab) = 1$, a $\big((a,b),(c,d)\big) \in E$, právě pokud platí $(c,d) = (a_1,b_1)$.
 \end{definice}
 
 PRIKLADY, GRAF.
@@ -840,13 +1013,13 @@ PRIKLADY, GRAF.
 Při porovnání předchozího příkladu se můžeme dovtípit, že tato posloupnost je pouze přestrojená AG posloupnost. V tomto přesvědčení nás může utvrdit počet hran a vrcholů i kritérium, kdy vrchol má předchůdce.
 
 \begin{veta}
-Graf $HG_{\mathbb{F}_q}$ čítá $(q-1)(q-3)/2$ vrcholů a stejný počet hran.
+Graf $\HG_{\mathbb{F}_q}$ čítá $(q-1)(q-3)/2$ vrcholů a stejný počet hran.
 \end{veta}
 \textit{Důkaz.} Analogický k důkazu věty \ref{pocetprvkuAG}. \hfill $\square$
 
 
-\begin{lemma}
-Vrchol $(a,b) \in HG_{\mathbb{F}_q}$ má předchůdce, právě pokud platí $\phi_q(b^2-a^2)=1$.
+\begin{lemma}\label{q}
+Vrchol $(a,b) \in \HG_{\mathbb{F}_q}$ má předchůdce, právě pokud platí $\phi_q(b^2-a^2)=1$.
 \end{lemma}
 
 \noindent \textit{Důkaz.} Nejprve předpokládejme $(a,b)$ má předchůdce $(c,d)$, platí tedy:
@@ -860,23 +1033,22 @@ b^2-a^2 = cd- \left(\frac{2 cd}{c+d} \right)^2 = cd \left( \frac{c-d}{c+d} \righ
 je čtverec, protože pracujeme pouze s dvojicemi, jejichž součin je čtvercem. Naopak ať $b^2-a^2$ je čtverec a $x$ je nějaká jeho odmocnina. Pak uvažme vrchol $\Big(\frac{b^2+b  x}{a},\frac{b^2-bx}{a} \Big)$, jeho následník je: $$\left(\frac{2 b^2 (b+x)(b-x)}{a^2 \left(\frac{b^2+bx}{a} + \frac{b^2-bx}{a} \right)}, \sqrt{\frac{b^2(b^2-x^2)}{a^2}} \right)= \left(\frac{2 b^2 \cdot a^2}{2 a \cdot b^2 }, b \right) = \left(a, b \right).$$
  \hfill $\square$
 
-Porovnejme toto lemma 
 
 \begin{dusledek}
-Graf $GH_{\mathbb{F}_q}$ je tvořen z několika medúz.
+Graf $\HG_{\mathbb{F}_q}$ je tvořen z několika medúz.
 \end{dusledek}
 \noindent \textit{Důkaz}. Analogický k důkazu věty \ref{meduzy}. \hfill $\square$\\
 
-Rozdíl mezi oběma grafy je ten, že vrchol $(a,b)$ pro $a,b$ je součástí cyklu v \textit{právě jednom} z grafů $AG_{\mathbb{F}_q}$ a $HG_{\mathbb{F}_q}$. To a nebo věta \ref{agh} nám napovídají, jaké bude konkrétní propojení těchto dvou grafů.
+Rozdíl mezi oběma grafy je ten, že vrchol $(a,b)$ pro $a,b$ je součástí cyklu v \textit{právě jednom} z grafů $\AG_{\mathbb{F}_q}$ a $\HG_{\mathbb{F}_q}$ díky lemmatům \ref{p} a \ref{q}. To a nebo věta \ref{agh} nám napovídají, jaké bude konkrétní propojení těchto dvou grafů.
 
 \begin{veta}
-Platí isomorfismus grafů $AG_{\mathbb{F}_q} \cong HG_{\mathbb{F}_q}$.
+Platí isomorfismus grafů $\AG_{\mathbb{F}_q} \cong \HG_{\mathbb{F}_q}$.
 \end{veta}
-\noindent \textit{Důkaz.} Uvažme zobrazení $\psi : AG_{\mathbb{F}_q} \longrightarrow HG_{\mathbb{F}_q}$ určené předpisem $\psi((a,b)) = (1/a,1/b)$. Ukážeme, že toto zobrazení definuje mezi grafy isomorfismus. Opravdu, uvažme orientovanou hranu v grafu $AG_{\mathbb{F}_q}$: 
+\noindent \textit{Důkaz.} Uvažme zobrazení $\psi : \AG_{\mathbb{F}_q} \longrightarrow \HG_{\mathbb{F}_q}$ určené předpisem $\psi((a,b)) = (1/a,1/b)$. Ukážeme, že toto zobrazení definuje mezi grafy isomorfismus. Opravdu, uvažme orientovanou hranu v grafu $\AG_{\mathbb{F}_q}$: 
 $$(a,b) \longmapsto \left(\frac{a+b}{2}, \sqrt{ab} \right),$$
-poté v grafu $HG_{\mathbb{F}_q}$ má $\psi((a,b))$ hranu:
+poté v grafu $\HG_{\mathbb{F}_q}$ má $\psi((a,b))$ hranu:
 $$\psi ((a,b)) = \left(\frac{1}{a}, \frac{1}{b} \right) \longmapsto \left(\frac{2/ab}{1/a+1/b}, \sqrt{\frac{1}{ab}} \right) = \left( \frac{2}{a+b}, \frac{1}{\sqrt{ab}} \right) = \psi \left( \left( \frac{a+b}{2}, \sqrt{ab} \right) \right).$$
-Jelikož $\psi$ se zjevně bijekce mezi $AG_{\mathbb{F}_q}$ a $HG_{\mathbb{F}_q}$, definuje mezi grafy isomorfismus.\hfill $\square$\\
+Jelikož $\psi$ se zjevně bijekce mezi $\AG_{\mathbb{F}_q}$ a $\HG_{\mathbb{F}_q}$, definuje mezi grafy isomorfismus.\hfill $\square$\\
 
 
 \chapter{AH posloupnost}\label{AH}
@@ -898,7 +1070,7 @@ Ať $K$ je těleso. Pak definujeme \textit{projektivní přímku} $\mathbb{P}^{1
 \end{enumerate}
 \end{definice}
 
-Všimněme si, že projektivní přímka není tělesem, protože již každý prvek není jednotkou. Dále násobení není zjevně asociativní, například platí $(0 \cdot \infty) \cdot 2 = 2 \neq   1 = 0 \cdot (\infty \cdot 2)$. Pomocí projektivní přímky můžeme v plném rozsahu definovat a studovat $AH$ posloupnost v konečném oboru.
+Všimněme si, že projektivní přímka není tělesem, protože již každý prvek není jednotkou. Dále násobení není zjevně asociativní, například platí $(0 \cdot \infty) \cdot 2 = 2 \neq   1 = 0 \cdot (\infty \cdot 2)$. Pomocí projektivní přímky můžeme v plném rozsahu definovat a studovat $AH$ posloupnost nad konečným tělesem.
 
 \begin{definice}
 Ať $a,b \in \mathbb{F}_q ^{\times}$ jsou různé. Pak definujeme $\AH_{\mathbb{F}_q}(a,b)$ jako posloupnost $(a_n,b_n)_{n=0}^{\infty}$ s $(a_0,b_0) = (a,b)$ a:
@@ -923,12 +1095,102 @@ Definujme \textit{roj} $\AH_{\mathbb{F}_q} = (V,E)$ jako orientovaný graf, kde 
 \end{definice}
 Každý afinní prvek má v grafu zjevně nejvýše dva předchůdce. Toto je zdárně porušeno pro body v nekonečnu, kde prvek $(0,\infty)$ má předchůdců hned $\frac{q-1}{2}$. Čistě z důvodu elegance budeme uvažovat $\frac{q-1}{2}$ bodů $(0,\infty)$ a $(\infty,0)$, každý příslušící jedné dvojici bodů $(a,-a)$ a~$(-a,a)$. 
 \begin{umluva}
-Ať $a,b \in \mathbb{F}_q ^{\times}$ splňují $a \neq \pm b$. Poté se domluvme, že body $(a,-a)$ a~$(b,-b)$ neleží ve stejné komponentě souvislosti grafu $\AH_{\mathbb{F}_q}$. 
+Ať $a,b \in \mathbb{F}_q ^{\times}$ splňují $a \neq \pm b$. Poté se domluvme, že body $(a,-a)$ a~$(b,-b)$ neleží ve stejné komponentě souvislosti grafu $\AH_{\mathbb{F}_q}$. Naopak uvažujme, že body $(a,-a)$ a $(-a,a)$ ve stejné komponentě souvislosti leží.
 \end{umluva}
 
-PRIKLAD
+\begin{priklad}\label{pr4}
+Podívejme se na graf $\AH_{\mathbb{F}_{11}}$ a dva prvky, $(1,3)$ a $(3,2)$. Komponenty souvislosti obsahující tyto dva prvky vypadají následovně:\\
 
-Na příkladu vidíme, že pro $q \equiv \pm 3 \pmod{8}$ při vizualizaci $\AH$ posloupnosti získáme krom medúz i tzv. \textit{vulkány hloubky $2$}. V případě $q \equiv \pm 1 \pmod{8}$ jsou tyto vulkány dokonce ještě hlubší a některé obsahují $(\infty,0)$. Tato terminologie není vybraná autorem, setkáme se s ní v kontextu eliptických křivek. 
+ 
+\begin{figure}[h]
+\begin{minipage}{\textwidth}
+  \begin{center}
+ \begin{tikzpicture}[node distance=2cm]
+\def\s{0.7}
+\def\l{2mm}
+\def\w{1mm}
+\def\t{3pt}
+%\draw[line width=.5pt,black,fill=yellow] (0:4cm) circle (3pt);
+
+%\draw[line width=.5pt,black,fill=yellow] (60:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:4cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (0:8cm) circle (3pt);
+ 
+%\draw[line width=.5pt,black,fill=yellow] (60:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (120:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (180:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (240:8cm) circle (3pt);
+%\draw[line width=.5pt,black,fill=yellow] (300:8cm) circle (3pt);
+
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=c1]      at (180:1cm) {$3,2$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=c2]      at (0:1cm) {$8,9$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b2]      at (0:3cm) {$2,3$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b1]      at (180:3cm) {$9,8$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=d1]      at (160:5cm) {$6,1$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=d2]      at (200:5cm) {$1,6$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=d3]      at (20:5cm) {$5,10$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=d4]      at (340:5cm) {$10,5$};
+\draw [-{Stealth[length=\l, width=\w]}](c1) to [out=45,in=135](c2);
+\draw [-{Stealth[length=\l, width=\w]}](c2) to [out=225,in=315](c1);
+\draw [-{Stealth[length=\l, width=\w]}](b1) to (c1);
+\draw [-{Stealth[length=\l, width=\w]}](b2) to (c2);
+\draw [-{Stealth[length=\l, width=\w]}](d1) to (b1);
+\draw [-{Stealth[length=\l, width=\w]}](d2) to (b1);
+\draw [-{Stealth[length=\l, width=\w]}](d3) to (b2);
+\draw [-{Stealth[length=\l, width=\w]}](d4) to (b2);
+%\node[text width=3cm] at (300:4cm) {$(1,2)$};
+%\node[text width=3cm] at (0:4cm) {$(5,3)$};
+\end{tikzpicture}
+
+\end{center}
+
+\end{minipage}
+\begin{minipage}{0.2\textwidth}
+
+\begin{center}
+ \begin{tikzpicture}[node distance=2cm]
+\def\s{0.7}
+\def\l{2mm}
+\def\w{1mm}
+\def\t{3pt}
+
+
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=a1]      at (90:2cm) {$1,3$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=a2]      at (0:2cm) {$2,7$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=a3]      at (270:2cm) {$10,8$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=a4]      at (180:2cm) {$9,4$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b1]      at (90:4cm) {$4,9$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b2]      at (0:4cm) {$3,1$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b3]      at (270:4cm) {$7,2$};
+\node [draw,black,fill=yellow, circle,inner sep=\t, scale=\s, name=b4]      at (180:4cm) {$8,10$};
+\draw [-{Stealth[length=\l, width=\w]}](a1) to (a2);
+\draw [-{Stealth[length=\l, width=\w]}](a2) to (a3);
+\draw [-{Stealth[length=\l, width=\w]}](a3) to (a4);
+\draw [-{Stealth[length=\l, width=\w]}](a4) to (a1);
+\draw [-{Stealth[length=\l, width=\w]}](b1) to (a1);
+\draw [-{Stealth[length=\l, width=\w]}](b2) to (a2);
+\draw [-{Stealth[length=\l, width=\w]}](b3) to (a3);
+\draw [-{Stealth[length=\l, width=\w]}](b4) to (a4);
+%\node[text width=3cm] at (300:4cm) {$(1,2)$};
+%\node[text width=3cm] at (0:4cm) {$(5,3)$};
+\end{tikzpicture}
+
+
+\end{center}
+
+\end{minipage}
+
+\caption{Neisomorfní komponenty souvislosti grafu $\AG_{\mathbb{F}_{11}}$.}
+\end{figure} 
+ 
+ 
+Dále se podívejme na graf $\AH_{\mathbb{F}_{23}}$. 
+\end{priklad}
+
+Na příkladu \ref{pr4} vidíme, že pro $q \equiv \pm 3 \pmod{8}$ při vizualizaci $\AH$ posloupnosti získáme krom medúz i tzv. \textit{vulkány hloubky $2$}. V případě $q \equiv \pm 1 \pmod{8}$ jsou tyto vulkány dokonce ještě hlubší a některé obsahují $(\infty,0)$. Tato terminologie není vybraná autorem, setkáme se s ní v kontextu eliptických křivek. 
 \begin{definice}
 Souvislý orientovaný graf $V$ nazveme \textit{vulkánem hloubky $k$}, pokud je dělen do $k+1$ stupňů $V_0,\dots,V_k$ a:
 \begin{enumerate}
@@ -950,7 +1212,7 @@ Buď $q = p^k$ mocnina prvočísla. Pak:
 \end{veta}  
 \noindent \textit{Důkaz.} V případě, kdy $ab$ je v $\mathbb{F}_q$ nenulovým čtvercem, leží v roji $\AH_{\mathbb{F}_q}$ právě dvojice $(a,b)$, až na případ, kdy $a=b$. Pokud je součin dvou prvků čtverec, tak jsou buď oba čtverce, nebo ani jeden. Počet dvojic nenulových prvků $(a,b)$, jejichž součin je čtverec, spočítáme tedy součtem počtů dvojic různých čtverců, resp. nečtverců. Toto je $(q-1)/2 \cdot (q-3)/2 + (q-1)/2 \cdot (q-3)/2 =  (q-1)(q-3)/2$.
 
-V případě, kdy $ab$ není v $\mathbb{F}_q$ nenulovým čtvercem, leží v roji $\AH_{\mathbb{F}_q}$ právě dvojice $(a,b)$. Takové dvojice mají jedno složku, která je čtvercem, a druhou, která není. Vyhovující počet je proto $(q-1)/2 \cdot (q-1)/2 + (q-1)/2 \cdot (q-1)/2 = (q-1)^2/2$. Konečně, z každého afinního vrcholu vychází právě jedna hrana, proto počet hran je:
+V případě, kdy $ab$ není v $\mathbb{F}_q$ nenulovým čtvercem, leží v roji $\AH_{\mathbb{F}_q}$ všechny dvojice $(a,b)$. Takové dvojice mají jedno složku, která je čtvercem, a druhou, která není. Vyhovující počet je proto $(q-1)/2 \cdot (q-1)/2 + (q-1)/2 \cdot (q-1)/2 = (q-1)^2/2$. Konečně, z každého afinního vrcholu vychází právě jedna hrana, proto počet hran je:
 $$\frac{(q-1)(q-3)}{2}+\frac{(q-1)^2}{2} = (q-1)(q-2).$$  \hfill $\square$\\
 
 
@@ -1010,6 +1272,9 @@ a(a-b) = \frac{c+d}{2} \left( \frac{c+d}{2} - \frac{2cd}{c+d} \right) =\left( \f
 \end{equation*}
 je čtverec. Naopak ať $a(a-b)$ je čtverec a $x$ je nějaká jeho odmocnina. Podle definice roje nemůže platit $a^2 \neq a(a-b)$, tedy v $\AH_{\mathbb{F}_q}$ leží vrchol $(a-x,a+x)$.  Jeho následník je: $$\left(\frac{a-x+a+x}{2}, \frac{2 (a-x)(a+x)}{a-x+a+x} \right)= \left(a, b \right).$$ \hfill $\square$\\
 
+\begin{poznamka}
+Lemma \ref{lema} pro $a=-b$ nám říká, že vrchol $(a,-a) \in \AH_{\mathbb{F}_q}$ má předchůdce, právě pokud platí $\phi_q(2) = 1$. 
+\end{poznamka}
 
 Díky tomuto tvrzení dokážeme poskytnout parciální odpověď na otázku, jak vypadají komponenty souvislosti v $\AH_{\mathbb{F}_q}$. Prozatím se zaměříme na případy $q \equiv 3,5 \pmod{8}$, lemma \ref{lema} nám rozdělí práci pro tyto dva případy.
 
@@ -1118,7 +1383,7 @@ $$v_2 (p^k - 1) = v_2(p-1)+v_2 (p+1) + v_2 (k) - 1.$$
 I v případě $AH$ posloupnosti se můžeme dívat na empirická data ohledně jednotlivých parametrů.
 
 \begin{definice}
-Ať $q$ je mocnina prvočísla. Pak označme $D(\mathbb{F}_q)$ počet všech souvislých komponent v grafu $AG_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek. Navíc, označme $S(\mathbb{F}_q)$ počet všech hejn v grafu $AH_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek.
+Ať $q$ je mocnina prvočísla. Pak označme $D(\mathbb{F}_q)$ počet všech souvislých komponent v grafu $\AH_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek. Navíc, označme $S(\mathbb{F}_q)$ počet všech hejn v grafu $\AH_{\mathbb{F}_q}$, které obsahují alespoň jeden afinní prvek.
 \end{definice}
 ???
 \begin{veta}
@@ -1149,24 +1414,24 @@ $$\lbrace x,f(x),f(f(x)),f(f(f(x))),\dots \rbrace,$$
 kde $f \equiv \frac{(x+1)^2}{4x}$. \textit{Dynamický systém} $D_f = (\mathbb{P}^{1}(\mathbb{F}_q),E)$ definujeme jako orientovaný graf takový, že pro $a,b \in \mathbb{P}^{1}(\mathbb{F}_q)$ platí $(a,b) \in E$, právě pokud $f(a)=b$.
 \end{definice}
 
-Uvažme surjektivní zobrazení $g : AH_{\mathbb{F}_q} \longrightarrow \mathbb{P}^1 (\mathbb{F}_q)$ dané $g(a,b) = \frac{a}{b}$. Potom se na každý nenulový prvek $x \in \mathbb{F}_q$ zobrazí právě $q-1$ prvků $AH_{\mathbb{F}_q}$, konkrétně body $(ax,a) \in AH_{\mathbb{F}_q}$ pro $a \in \mathbb{F}_q ^{\times}$. Prvky $0$ a $\infty$ mají každý právě jeden předobraz. Každé hejno v grafu $AH_{\mathbb{F}_q}$ se pak pod $g$ zobrazí na jednu komponentu souvislosti v $D_f$. Navíc rozdělení grafů na body $(a,b)$ podle $\phi_q(ab)$ je zachováno. To proto, že pro bod $(a,b) \in AH_{\mathbb{F}_q}$ platí $\phi_q(ab) =1$, právě pokud platí $\phi_q \left(\frac{a}{b} \right) = 1$.
+Uvažme surjektivní zobrazení $g : \AH_{\mathbb{F}_q} \longrightarrow \mathbb{P}^1 (\mathbb{F}_q)$ dané $g(a,b) = \frac{a}{b}$. Potom se na každý nenulový prvek $x \in \mathbb{F}_q$ zobrazí právě $q-1$ prvků $\AH_{\mathbb{F}_q}$, konkrétně body $(ax,a) \in AH_{\mathbb{F}_q}$ pro $a \in \mathbb{F}_q ^{\times}$. Prvky $0$ a $\infty$ mají každý právě jeden předobraz. Každé hejno v grafu $AH_{\mathbb{F}_q}$ se pak pod $g$ zobrazí na jednu komponentu souvislosti v $D_f$. Navíc rozdělení grafů na body $(a,b)$ podle $\phi_q(ab)$ je zachováno. To proto, že pro bod $(a,b) \in \AH_{\mathbb{F}_q}$ platí $\phi_q(ab) =1$, právě pokud platí $\phi_q \left(\frac{a}{b} \right) = 1$.
 
-Jelikož je $D_f$ systém daný kvadratickou lomenou funkcí, každý prvek (vyjma $1$) má buď žádného nebo dva předchůdce. Víme, že prvky $AH_{\mathbb{F}_q}$ chodí v párech - pokud $(a,b)$ je předchůdce body $(x,y)$, tak je jím i $(b,a)$. Tento fakt koresponduje s tím, že funkce $f$ je fixovaná pod involucí $x \longmapsto \frac{1}{x}$. Pokud tedy $x$ je předchůdcem $y$, tak druhým předchůdcem $y$ je $\frac{1}{x}$. Zkoumejme další pouta mezi oběma grafy.
+Jelikož je $D_f$ systém daný kvadratickou lomenou funkcí, každý prvek (vyjma $1$) má buď žádného nebo dva předchůdce. Víme, že prvky $\AH_{\mathbb{F}_q}$ chodí v párech - pokud $(a,b)$ je předchůdce body $(x,y)$, tak je jím i $(b,a)$. Tento fakt koresponduje s tím, že funkce $f$ je fixovaná pod involucí $x \longmapsto \frac{1}{x}$. Pokud tedy $x$ je předchůdcem $y$, tak druhým předchůdcem $y$ je $\frac{1}{x}$. Zkoumejme další pouta mezi oběma grafy.
 
 \begin{veta}\label{cy}
-Bod $(a,b) \in AH_{\mathbb{F}_q}$ leží v cyklu, právě pokud bod $\frac{a}{b} \in D_f$ leží v cyklu.
+Bod $(a,b) \in \AH_{\mathbb{F}_q}$ leží v cyklu, právě pokud bod $\frac{a}{b} \in D_f$ leží v cyklu.
 \end{veta}
-\noindent \textit{Důkaz.} Dokážeme obměnu tvrzení. Dejme tomu, že bod $(a,b)$ neleží v cyklu grafu $AH_{\mathbb{F}_q}$, poté dle symetrie v něm neleží ani bod $(-a,-b)$. Podle věty \ref{fix} jsou $(a,b)$ a $(-a,-b)$ jediní možní kandidáti na body $(x,y)$ ležící v komponentě souvislosti obsahující $(a,b)$, které splňují $\frac{x}{y} = \frac{a}{b}$. Tj. tyto body jsou jediní kandidáti na body, které se zobrazí na prvek $\frac{a}{b} \in D_f$. Nejsou-li oba body periodické, pak $\frac{a}{b}$ nemůže být periodický též.
+\noindent \textit{Důkaz.} Dokážeme obměnu tvrzení. Dejme tomu, že bod $(a,b)$ neleží v cyklu grafu $\AH_{\mathbb{F}_q}$, poté dle symetrie v něm neleží ani bod $(-a,-b)$. Podle věty \ref{fix} jsou $(a,b)$ a $(-a,-b)$ jediní možní kandidáti na body $(x,y)$ ležící v komponentě souvislosti obsahující $(a,b)$, které splňují $\frac{x}{y} = \frac{a}{b}$. Tj. tyto body jsou jediní kandidáti na body, které se zobrazí na prvek $\frac{a}{b} \in D_f$. Nejsou-li oba body periodické, pak $\frac{a}{b}$ nemůže být periodický též.
 
-Naopak je-li bod $(a,b)$ zobrazen na bod mimo cyklus, tak je $(-a,-b)$ též. To znamení, že se v orbitě $\mathcal{O}\left(\frac{a}{b}\right)$ již nebude znovu prvek $\frac{a}{b}$ vyskytovat, takže ani v posloupnosti $AH_{\mathbb{F}_q} (a,b)$ se bod $(a,b)$ znovu nevyskytuje. Bod $(a,b)$ proto leží mimo cyklus. \hfill $\square$\\
+Naopak je-li bod $(a,b)$ zobrazen na bod mimo cyklus, tak je $(-a,-b)$ též. To znamení, že se v orbitě $\mathcal{O}\left(\frac{a}{b}\right)$ již nebude znovu prvek $\frac{a}{b}$ vyskytovat, takže ani v posloupnosti $\AH_{\mathbb{F}_q} (a,b)$ se bod $(a,b)$ znovu nevyskytuje. Bod $(a,b)$ proto leží mimo cyklus. \hfill $\square$\\
 
-Pokud máme posloupnost $AH(a,b)$:
+Pokud máme posloupnost $\AH_{\mathbb{F}_q}(a,b)$:
 $$(a,b) \longmapsto (a_1,b_1) \longmapsto \dots \longmapsto (a_k,b_k) \longmapsto \dots,$$
 kde $(a_k,b_k)$ je první prvek cyklu, pak v orbitě: $$\mathcal{O}\left(\frac{a}{b}\right) =\left\lbrace \frac{a}{b},\frac{a_1}{b_1},\frac{a_2}{b_2},\dots,\frac{a_k}{b_k},\dots \right\rbrace,$$
 je $\frac{a_k}{b_k}$ první periodický bod. Z toho můžeme díky větám \ref{big} a \ref{cy} odvodit následující.
 
-\begin{dusledek}
-Ať $(x,y) \in AH_{\mathbb{F}_q}$ je členem cyklu a $V \subseteq AH_{\mathbb{F}_q}$ je orientovaný binární strom zakořeněný v $(x,y)$. Dále označme $W \subseteq D_f$ orientovaný binární strom zakořeněný v prvku $\frac{a}{b} \in \mathbb{P}^{1}(\mathbb{F}_q)$. Potom platí $V \cong W$.
+\begin{dusledek}\label{co}
+Ať $(x,y) \in \AH_{\mathbb{F}_q}$ je členem cyklu a $V \subseteq \AH_{\mathbb{F}_q}$ je orientovaný binární strom zakořeněný v $(x,y)$. Dále označme $W \subseteq D_f$ orientovaný binární strom zakořeněný v prvku $\frac{a}{b} \in \mathbb{P}^{1}(\mathbb{F}_q)$. Potom platí $V \cong W$.
 \end{dusledek}
 \begin{dusledek}
 Ať $q \equiv 3,5 \pmod{8}$ je mocnina prvočísla. Pak graf $D_f$ vypadá následovně:
@@ -1184,9 +1449,9 @@ Ať $q \equiv 3,5 \pmod{8}$ je mocnina prvočísla. Pak graf $D_f$ vypadá násl
 \end{enumerate}
 \end{dusledek}
 
- Jediný rozdíl tak nastává v ohledu cyklů - stejně jako v případě $AG$ posloupnosti. Konkrétně, je-li $(a,b) \in AH_{\mathbb{F}_q}$ je členem cyklu, tak buď prvek $(-a,-b)$ leží v tom samém cyklu, potom je délka cyklu v $D_f$ je poloviční, nebo leží v naprosto odlišném cyklu, pak je délka cyklu zachována.
+ Jediný rozdíl tak nastává v ohledu cyklů - stejně jako v případě $AG$ posloupnosti. Konkrétně, je-li $(a,b) \in \AH_{\mathbb{F}_q}$ je členem cyklu, tak buď prvek $(-a,-b)$ leží v tom samém cyklu, potom je délka cyklu v $D_f$ je poloviční, nebo leží v naprosto odlišném cyklu, pak je délka cyklu zachována.
 
-Pomocí dynamických systémů můžeme znovu dokázat některé výsledky ohledně $AH$ posloupnosti, které jsme dokázali v předchozích sekcích. Pomocí vlastností konečných těles můžeme dokázat znovu odhady, které jsou předmětem důsledku \ref{hloub}. Stačí nám ukázat, že pro $z \in \mathbb{F}_q$ leží každý předchůdce prvku $(z,1) \in AH_{\overline{\mathbb{F}}_q}$ po normalizaci v $\mathbb{F}_{q^2}$. 
+Pomocí dynamických systémů můžeme znovu dokázat některé výsledky ohledně $AH$ posloupnosti, které jsme dokázali v předchozích sekcích. Vlastnosti konečných těles poskytnou nový důkaz odhadů, které jsou předmětem důsledku \ref{hloub}. Stačí nám ukázat, že pro $z \in \mathbb{F}_q$ leží každý předchůdce prvku $z \in D_f$ v $\mathbb{F}_{q^2}$. 
 
 
 \begin{veta}
@@ -1203,7 +1468,8 @@ x^{q+1} + 2 x^{q} + x^{q-1} &= x^{2q} + 2x^q + 1,\\
 Buď tedy platí $x^{q+1} = 1$ nebo $x^{q-1}=1$. Umocněním těchto dvou vztahů na exponent po řadě $q-1$ a $q+1$ získáme, že v každém případě platí $x^{q^2-1}=1$, tj. $x \in \mathbb{F}_{q^2}$. \hfill $\square$\\
 %V každém případě platí $x^{q^2-1} = 1$, tj. $x \in \mathbb{F}_{q^2}$. \hfill $\square$\\
 
-???? JE ASI MOC HARD UKAZAT, ZE DAL TO NEJDE
+
+Dokázali jsme, že list $(a,b) \in \AH_{\mathbb{F}_q}$ má v grafu $\AH_{\mathbb{F}_{q^2}}$ dva předchůdce. Bohužel ukázat, že tyto dva vrcholy již předchůdce nemají, je obtížnější. Abychom ukázali, že pro $q \equiv 1,7 \pmod{8}$ tvoří komponenty souvislosti grafu $\AH_{\mathbb{F}_q}$ hlubší vulkány, využijeme v~kapitole \ref{5} teorii spojenou s eliptickými křivkami.
 
 Nyní se věnujme otázce délek cyklů v $D_f$. Nejprve si všimněme, že rovnice: $$\frac{(x+1)^2}{4x} = a$$ s parametrem $a$ má nad $\mathbb{F}_q$ řešení, právě pokud diskriminant výsledné kvadratické rovnice $x^2 + (2-4a)x+1=0$, tedy $4(1-a)^2-4 = 4a(a-1)$, je nad $\mathbb{F}_q$ čtvercem. Toto koresponduje s lemmatem \ref{lema}. Můžeme určit, kolik prvků v $D_f$ není listy.
 
@@ -1258,7 +1524,7 @@ Je-li $x \in D_f$ periodický bod, pak jeho perioda má délku nejvýše $(q-1)/
 %Vidíme tedy, že poměrně mnoho prvočísel dosahuje této maximální délky cyklu, další trendy se poté drží u podílů $1/5, 1/6$ a poté většina prvočísel spadá pod podíl $1/12$. (vysvětlení?)
 Tento výsledek je však zjevný při pohledu na původní problém. Totiž každá komponenta souvislosti obsahuje podle věty \ref{fixab} nejvýše $q-1$ afinních bodů a navíc obsahuje jediný cyklus. Navíc ke každému prvku cyklu je připojen alespoň jeden další prvek, proto každý cyklus má délku nejvýše $(q-1)/2$. Můžeme ale ohraničit největší cyklus v grafu i jinak. Ohledně spodních odhadů na největší cyklus v grafu $D_{f}$ již pochodíme lépe.
 
-Dívejme se na vícenásobné aplikace lomené funkce $f \equiv \frac{(x+1)^2}{4x}$ stupně dva, její $n$-násobná aplikace má stupeň $2^n$, přičemž stupeň čitatele je ostře větší, než stupeň jmenovatele. Podívejme se na následující rovnici: $$\underbrace{f(f(\dots f}_{n}(x))) = x.$$
+Dívejme se na vícenásobné aplikace lomené funkce $f \equiv \frac{(x+1)^2}{4x}$ stupně dva, její $n$-násobná aplikace má stupeň $2^n$, přičemž stupeň čitatele je ostře větší, než stupeň jmenovatele. Podívejme se na následující rovnici: $$f^{(n)}(x) := \underbrace{f(f(\dots f}_{n}(x))) = x.$$
 
 Pokud vynásobíme rovnici jmenovatelem, získáme polynom stupně $2^n$ roven $0$. Jelikož $\mathbb{F}_q$ je oborem integrity, rovnice má nejvýše $2^n$ kořenů. 
 
@@ -1301,8 +1567,6 @@ opět s bodem v nekonečnu.
 \end{definice}
 Pokud definujeme sčítání na křivce tak, že součet každých tří kolineárních (ne-nutně různých) bodů je $O$, pak body na eliptické křivky tvoří grupu. V případě, že přímka $PQ$ pro $P,Q$ body na $E$ degeneruje v tečnu, pak poslední průsečík této přímky s $E$ bude dvojnásobek bodu $P$. Díky asociativitě sčítání na křivky můžeme pak jednoznačně definovat $n$-násobek bodu $[n]P = \underbrace{P+\dots+P}_{n}$. Definujeme $[0]P = O$.
 
---Obrázek--
-
 
 \begin{figure}[h]
 \begin{center}
@@ -1340,7 +1604,7 @@ Pokud definujeme sčítání na křivce tak, že součet každých tří koline�
              
          \draw[->] (-0.5,3.63) -- (-0.5,6);
          \draw[->] (-0.5,3.63) -- (-0.5,1.35);
-         \node[above right, outer sep=2pt] at (-0.5,6) {$\mathcal{O}$};
+         \node[above right, outer sep=2pt] at (-0.5,6) {$O$};
         \end{tikzpicture}
 \end{center}
 \caption{Sčítání na eliptické křivce.}
@@ -1368,7 +1632,6 @@ I když ne všechny isogenie jsou invertibilní, ke každé isogenii $\phi : E \
 Buďte $E,E^\prime$ eliptické křivky nad $\mathbb{F}_q$. Pak jsou tyto křivky isogenní nad $\mathbb{F}_q$, právě pokud platí $\#E (\mathbb{F}_q) = \#E^\prime (\mathbb{F}_q)$.
 \end{veta}
 
-Problém, kdy jsou dvě křivky isogenní pod isogenií daného stupně, je již obtížnější.
 
 \section{Okruhy endomorfismů}
 Endomorfismus na křivce $E$ definujme jako isogenii $\phi : E \longrightarrow E$, přičemž připusťme, že $[0]$ je na $E$ endomorfismem. Pak se sčítáním $(\phi+\psi) P = \phi P + \psi P$ a skládáním $\phi \circ \psi = \phi(\psi)$ tvoří endomorfismy na křivce okruh.
@@ -1396,19 +1659,17 @@ Buď $\alpha \in \End^0(E)$. Pak definujeme jeho stopu a normu jako:
 \N \alpha &= \alpha \widehat{\alpha}.
 \end{align*}
 \end{definice}
-Obě tato čísla jsou v algebře endomorfismů celá čísla. Navíc je jednoduché ukázat, že stopa je lineární zobrazení na $\End^0 (E)$ a norma je multiplikativní. Pomocí normy a stopy pak můžeme stanovit následující věty.
+Obě tato čísla jsou v algebře endomorfismů racionální čísla. Opět je každý prvek kořenem kvadratického polynomu $x^2 - \Tr \alpha x + \N \alpha \in \mathbb{Q}[x]$. Navíc je jednoduché ukázat, že stopa je lineární zobrazení na $\End^0 (E)$ a norma je multiplikativní. Pomocí normy a stopy pak můžeme říci, že každý prvek má v $\End^0 (E)$ multiplikativní inverzi. 
 \begin{veta}
 Buď $\alpha \in \End^0 (E)$ nenulové. Potom existuje prvek $\alpha^{-1} \in \End^0 (E)$ splňující $\alpha \alpha^{-1} = 1 = \alpha^{-1} \alpha$. 
 \end{veta}
-\begin{veta}
-Buďte $\alpha \in \End^0 (E)$ a $r \in \mathbb{Q}$. Pak platí $r \alpha = \alpha r$ a $\pi \alpha = \alpha \pi$.
-\end{veta}
-O algebře endomorfismů a okruhu endomorfismů Legendreho křivky pak můžeme říct následující.
+Legendreho křivky jsou tzv. \textit{obyčejné křivky}, což znamená, že o jejich algebře endomorfismů můžeme odvodit, že jsou kvadratická tělesa. [Sutherland] Využijeme zde polynom $x^2-tx+q$, jehož kořenem je $\pi$.
 \begin{dusledek}
-Buď $E$ Legendreho křivka. Pak platí $\End^0(E) \cong \mathbb{Q}(\pi)$. Okruh $\End (E)$ je volným $\mathbb{Z}$-modulem v $\End^0 (E)$ ranku $2$.
+Buď $E$ Legendreho křivka. Pak platí $\End^0(E) = \mathbb{Q}(\pi) \cong \mathbb{Q}(\sqrt{t^2-4q})$ je imaginární kvadratické těleso. Okruh $\End (E)$ je volným $\mathbb{Z}$-modulem v $\End^0 (E)$ ranku $2$.
 \end{dusledek}
-Jistě platí inkluze okruhů $\mathbb{Z}[\pi] \subseteq \End(E)$. Navíc v kvadratickém $K$ tělese je každý volný $\mathbb{Z}$-modul obsažen v okruhu celých algebraických čísel $\mathcal{O}_K$. Okruh celých algebraických čísel je obsažen v okruhu $\mathbb{Z}\left[\frac{1+\pi}{2}\right]$, platí proto $[\End(E):\mathbb{Z}[\pi]] \in \lbrace 1,2 \rbrace$.
-
+Jistě platí inkluze okruhů $\mathbb{Z}[\pi] \subseteq \End(E)$. Navíc v kvadratickém číselném tělese $K = \mathbb{Q}(\sqrt{d})$ pro $d \equiv 1 \pmod{4}$ je každý volný $\mathbb{Z}$-modul obsažen v okruhu celých algebraických čísel $\mathcal{O}_K = \mathbb{Z}\left[\frac{1+\sqrt{d}}{2}\right]$. Okruh celých algebraických čísel tělesa $\End^0 (E)$ je okruhu $\mathbb{Z}\left[\frac{1+\pi}{2}\right]$, platí proto $[\End(E):\mathbb{Z}[\pi]] \in \lbrace 1,2 \rbrace$.
+ 
+Kdy nastává který případ? Lze ukázat [?], že pro křivku $E \in \Ell(\mathbb{F}_q)$ splňující $\End(E) = \mathbb{Z}[\pi]$ existuje jediná isogenie $\phi : E \longrightarrow E^{\prime}$ stupně dva a navíc platí $\End(E^{\prime}) = \mathbb{Z}\left[\frac{1+\pi}{2}\right]$. Z křivky $E^{\prime}$ vychází tři isogenie stupně $2$ definované nad $\mathbb{F}_q$. Duální isogenie $\widehat{\phi} : E^{\prime} \longrightarrow E$ zobrazí křivku $E^{\prime}$ na křivku s \uv{menším} okruhem endomorfismů, zbylé dvě isogenie zobrazí $E^{\prime}$ na křivky, jejichž okruh endomorfismů je $E^{\prime \prime} \cong  \mathbb{Z}\left[\frac{1+\pi}{2}\right]$.
 
 
 \section{Aplikace na AG posloupnost}
@@ -1435,7 +1696,7 @@ Ať $V \subseteq \AG_{\mathbb{F}_q}$ je medúza obsahující vrchol $(a,b)$, jej
 $$\frac{d N}{q-1}.$$
 \end{veta}
 
-Pointou této definice samozřejmě je zjistit, jaký vztah spolu má dvojice $(a,b)$ a $(a_1,b_1)$.
+Můžeme přesně konstruovat isogenii, která na sebe převádí křivky $E_{(a,b)}$ a $E_{(a_1,b_1)}$.
 \begin{veta}
 Mějme vrchol $(a,b) \in \AG_{\mathbb{F}_q}$. Pak existuje mezi křivkami $E_{(a,b)}$ a $E_{(a_1,b_1)}$ isogenie stupně dvě definovaná nad $\mathbb{F}_q$. Tato isogenie má předpis:
 $$\phi(x,y) = \left(\frac{(ax+b)^2}{x (a+b)^2 }, y \frac{a(ax+b)(ax-b)}{x^2 (a+b)^3 } \right).$$
@@ -1451,7 +1712,13 @@ Isogenie $\phi$ proto zobrazí $E_{(a,b)}$ na $E_{(a_1,b_1)}$. \hfill $\square$\
 
 Jádro takové isogenie (ve smyslu homomorfismu grup) je grupa $\lbrace (0,0), O \rbrace $. To potvrzuje, že $AG$ posloupnost nezobrazí žádnou dvojici na jinou dvojici s nulovou složkou.
 
-Věta ?? nám říká, že graf $\Ell(\mathbb{F}_q)$ je tvořen s vulkánů, a opravdu každá medúza je i vulkánem. Pojďme se nyní podrobněji podívat na tyto medúzy.
+Dejme tomu, že $(a,b) \in \AG_{\mathbb{F}_q}$ je členem cyklu. Potom dle věty ?? platí $\End(E_{(a,b)}) = \mathbb{Z}\left[\frac{1+\pi}{2} \right]$.  
+
+
+
+
+
+?? nám říká, že graf $\Ell(\mathbb{F}_q)$ je tvořen z medúz, kde členy cyklu jsou p
 
 Class number shit
 
@@ -1478,7 +1745,7 @@ $$s(\mathbb{F}_q) \geqslant \left(\frac{1}{2} - \varepsilon \right) \sqrt{q}.$$
 
 
 
-\chapter{Eliptické křivky a AH posloupnost}
+\chapter{Eliptické křivky a AH posloupnost}\label{5}
 
 $AG$ posloupnost má kořeny v teorii eliptických křivek, proto jsem hledal propojení i mezi eliptickými křivkami a $AH$ posloupnost.
 Přímo adaptovat jejich postup, tedy přiřadit vrcholům grafu křivky, podle nejlepšího mínění autora není možné. Totiž komponenty $AH_{\mathbb{F}_q}$ mají nejvýše $q$ prvků, viz věta \ref{fixab}, oproti $AG$ posloupnosti, kde může být až mnohonásobně více prvků, jak jsme viděli u příkladu ?.  Ne, $AH$ posloupnost můžeme popsat trochu jednodušeji. Opět se ale podíváme do světa eliptických křivek. 
@@ -1528,7 +1795,7 @@ Tomuto vztahu vyhovují právě dvě hodnoty $y \in \lbrace t^3-t, (-t)^3+t \rbr
 $$s(s^2-1) = t(t^2-1) = t(s^2-1).$$
 Jistě platí $st \neq 0$, proto platí $s^2=1=t^2$, což je spor. Docházíme k~tomu, že prvky $E(\mathbb{F}_q) \setminus \lbrace O \rbrace$ můžeme jednoznačně přiřadit prvkům $\mathbb{F}_q \setminus \lbrace \pm 1 \rbrace$. \hfill $\square$\\
 
-Okamžitým důsledkem lemmatu \ref{param} je, že počet prvků na $E$ je $\vert E(\mathbb{F}_q)\vert = q-1$. 
+Okamžitým důsledkem lemmatu \ref{param} je, že počet prvků na $E$ je $\# E(\mathbb{F}_q)= q-1$. 
 Podívejme se, kdy v grupě $E(\mathbb{F}_{q^k})$ leží bod s $x$-ovou souřadnicí $a \in \mathbb{F}_q ^{\times}$. Leží-li bod $(a,-)$ v $E(\mathbb{F}_q)$, potom podle lemmatu \ref{param} platí $\phi_q(a)=1$. Je-li naopak $a$ čtvercem v $\mathbb{F}_q$, tak podle lemmatu \ref{param} existuje bod $P \in E(\mathbb{F}_q)$, jehož $x$-ová souřadnice je $a$. Speciálně pro $a \in \mathbb{F}_q$, které není čtvercem, leží bod $(a,-) \in E(\mathbb{F}_{q^2})$, ale takový bod už nenajdeme v $E(\mathbb{F}_q)$. Tyto poznatky shrnuje následující tvrzení.
 
 \begin{veta}\label{Fq2}
@@ -1582,26 +1849,43 @@ Studium iterací zobrazení $x \longmapsto \frac{(x+1)^2}{4x}$ na konečném tě
 Označme $G_{\mathbb{F}_q} = (E(\mathbb{F}_q),F)$ orientovaný graf takový, že pro libovolné body $P,Q \in E$ platí $(P,Q) \in F$, právě pokud $[2]P=Q$.
 \end{definice}
 
-
-Nejprve si uvedeme kritérium, kdy pro bod $P = (x,y) \in E(\mathbb{F}_q)$ existuje v grafu $G_{\mathbb{F}_q}$ předchůdce, tj. kdy existuje bod $Q \in E(\mathbb{F}_q)$ takový, že $[2]Q = P$. Dále ukážeme, že pokud takový bod existuje, tak už existují dva.
-
-\begin{veta}\label{jedna}
-Uvažme bod $P=(x,y) \in E(\mathbb{F}_q)$. Pak existuje bod $Q \in E(\mathbb{F}_q)$ splňující $[2]Q = P$, právě pokud platí $v_2 (\ord P) < v_2 (q-1)$.
-\end{veta}
-\noindent \textit{Důkaz.} Využijeme větu \ref{BRUH}. Je známé [IR], že grupa $\mathbb{F}_q ^{\times}$ je cyklická, tj. existuje prvek $g \in \mathbb{F}_q ^{\times}$, který ji generuje. To znamená, že ???? 
-
--- existuje hledaný bod $Q$, právě pokud $v_2(\ord P)$ je menší, než $v_2 (\# E(\mathbb{F}_q))$. Protože podle věty \ref{bruh} platí $\# E(\mathbb{F}_q) = q-1$, 
+Nejprve studujme předchůdce vrcholů ve grafu $G_{\mathbb{F}_q}$. Nejprve ukážeme, že pokud pro daný bod $P \in G_{\mathbb{F}_q}$ existuje bod $Q \in G_{\mathbb{F}_q}$ splňující $[2]Q = P$, pak již existují dva. Díky tomu pak určíme, kdy vlastně má daný bod předchůdce.
 
 
 \begin{veta}\label{dva}
 Ať $P,Q \in E(\mathbb{F}_q)$ jsou afinní body takové, že $[2]Q = P$. Potom existuje unikátní bod $R \neq Q$ splňující $[2]R = P$ a je to právě bod splňující $Q-R = R-Q = (0,0)$.
 \end{veta}
 
-\noindent\textit{Důkaz.} Nejprve zmiňme, že protože $P \neq O$, tak $Q \not\in \lbrace O,(0,0) \rbrace$, jelikož jediný netriviální bod ležící ve $2$-torzi je $(0,0)$. Proto body $Q,(0,0), Q-(0,0)$ a $O$ jsou si navzájem různé.
+\noindent\textit{Důkaz.} Nejprve zmiňme, že protože $P \neq O$, tak $Q \not\in \lbrace O,(0,0) \rbrace$, jelikož jediný netriviální bod splňující $[2]P = O$ je $(0,0)$. Proto body $Q,(0,0), Q-(0,0)$ a $O$ jsou si navzájem různé.
 
 Nyní ukážeme, že bod $R=Q+(0,0)$ splňuje $[2]R=P$. Opravdu, jelikož bod $(0,0)$ splňuje vztah $[2](0,0) = O$, tak:
 $$[2]\big(Q+(0,0)\big) = [2]Q  + O= P.$$
 Konečně dokážeme, že $Q$ a $Q+(0,0)$ jsou jediné body splňující $[2]X = P$.  Naopak připusťme, že bod $R \neq Q$ splňuje $[2]R = P = [2]Q$. Platí pak $[2](R-Q) = O$. Jelikož bod $R-Q$ není $O$, tak leží ve $2$-torzi a je proto roven $(0,0)$. \hfill $\square$\\
+
+
+%Nejprve si uvedeme kritérium, kdy pro bod $P = (x,y) \in E(\mathbb{F}_q)$ existuje v grafu $G_{\mathbb{F}_q}$ předchůdce, tj. kdy existuje bod $Q \in E(\mathbb{F}_q)$ takový, že $[2]Q = P$. Dále ukážeme, že pokud takový bod existuje, tak už existují dva.
+
+\begin{veta}\label{jedna}
+Uvažme bod $P=(x,y) \in E(\mathbb{F}_q)$. Pak existuje bod $Q \in E(\mathbb{F}_q)$ splňující $[2]Q = P$, právě pokud platí $v_2 (\ord P) < v_2 (q-1)$.
+\end{veta}
+\noindent \textit{Důkaz.} Dejme tomu, že existuje bod $Q$ splňující $[2]Q = P$. Vysvětleme, proč bod $Q$ splňující $[2]Q = P$ pro $v_2 (\ord P )> 0$ musí splňovat $\ord Q = 2 \ord P$. Platí $[2 \ord P] Q = [\ord P] P = O$, tj. $\ord Q \mid 2 \ord P$. Pokud označíme $r$ libovolný prvodělitel čísla $2 \ord P$, pak:
+$$\left[\frac{2 \ord P}{r} \right] Q = \begin{cases}
+(0,0), &\text{ pokud } r = 2,\\
+\left[\frac{\ord P}{r}\right] P \neq O, &\text{ pokud } r > 2.
+\end{cases}
+$$  
+Je proto $\ord Q = 2 \ord P$. To znamená, že:
+$$v_2(\ord P) + 1 = v_2 (\ord Q) \leqslant v_2(\# E(\mathbb{F}_q)) = v_2 (q-1).$$ 
+
+Nyní předpokládejme, že platí $v_2 (\ord P) < v_2 (q-1)$. Využijeme větu \ref{BRUH}. Je známé \cite[Ch.7 Thm. 1]{Ireland}, že grupa $\mathbb{F}_q ^{\times}$ je cyklická, tj. existuje prvek $g \in \mathbb{F}_q ^{\times}$, který ji generuje. To znamená, že pokud nejvyšší mocnina dvojky dělící řád $P$ je ostře menší, než $v_2(q-1)$, pak má $P$ předchůdce. \hfill $\square$\\
+
+
+%To znamená, že pro $k \mid q-1$ existuje právě $\phi(k)$ prvků řádu $k$ - prvky tvaru $g^{\frac{q-1}{k} \ell}$, kde $(\ell,k) = 1$. 
+
+%Uvažme nějaké $d = 2^a b \mid q-1$, kde $a < v_2(q-1)$ a $b$ je liché. Pak existuje právě $\phi(d)$ prvků s řádem $d$ a $\phi(2d) = 2^{a} \phi(b) = 2 \phi(d)$ prvků řádu $2d$. Podle věty \ref{dva} víme, že každému bodu $P \in G_{\mathbb{F}_q}$ řádu $d$ předchází nejvýše dva prvky, proto musí každý z nich 
+
+%-- existuje hledaný bod $Q$, právě pokud $v_2(\ord P)$ je menší, než $v_2 (\# E(\mathbb{F}_q))$. Protože podle věty \ref{bruh} platí $\# E(\mathbb{F}_q) = q-1$, 
+
 
 Věta \ref{dva} nám říká, že každý afinní vrchol $P \in G_{\mathbb{F}_q}$ má buď dva předchůdce, nebo ani jednoho. Bod $O$ má dva předchůdce, $(0,0)$ a sama sebe. Zamysleme se nyní, jak může souvislá komponenta grafu $G_{\mathbb{F}_q}$ vypadat - podle příkladů uvedených v kapitole \ref{AH} se můžeme domnívat, že grafy \textit{vždy} tvoří vulkány. Jak ale rozlišíme, v jakém stupni vulkánu daný bod leží?
 
@@ -1629,17 +1913,21 @@ Ať $P \in G_{\mathbb{F}_q}$ je libovolný bod na $E$. Potom komponenta souvislo
 Tato věta platí v případě, kdy jsou ve hře body v nekonečnu - poté je cyklus vulkánu smyčka $\infty \longmapsto \infty$. Pomocí věty \ref{Fq2} se můžeme vrátit zpět do roje $AH_{\mathbb{F}_q}$.
 
 \begin{veta}
-Ať $q = p^k$ je mocnina prvočísla. Potom roj $AH_{\mathbb{F}_q}$ vypadá následovně:
+Ať $q = p^k$ je mocnina prvočísla. Potom roj $\AH_{\mathbb{F}_q}$ vypadá následovně:
 \begin{enumerate}
 \item komponenty souvislosti obsahující prvky $(a,b)$ splňující $\phi_q (ab) = 1$ jsou vulkány hloubky $v_2(q-1)$,
 \item komponenty souvislosti obsahující prvky $(a,b)$ splňující $\phi_q (ab) = -1$ jsou vulkány hloubky $v_2 (p+1) + v_2(k)$.
 \end{enumerate} 
 \end{veta}
 
-\noindent \textit{Důkaz.} V případě komponent souvislosti grafu $AH_{\mathbb{F}_q}$ obsahujících prvky $\phi_q(ab)$ podle věty \ref{Fq2} víme, že binárních stromy zakořeněných v prvcích cyklů jsou isomorfní se stromy zakořeněnými v prvcích cyklů grafu $G_{\mathbb{F}_q}$. To znamená, že komponenty souvislosti tvoří vulkány a jejich hloubka je podle důsledku \ref{d} rovna $v_2 (q-1)$. 
+\noindent \textit{Důkaz.} V případě komponent souvislosti grafu $\AH_{\mathbb{F}_q}$ obsahujících body $(a,b)$ splňující $\phi_q(ab) = 1$. Podle věty \ref{Fq2} víme, že binárních stromy zakořeněných v prvcích cyklů jsou isomorfní se stromy zakořeněnými v prvcích cyklů grafu $G_{\mathbb{F}_q}$. To znamená, že komponenty souvislosti tvoří vulkány a jejich hloubka je podle důsledku \ref{d} rovna $v_2 (q-1)$. 
+
+Nyní se podívejme na komponenty souvislosti v $\AH_{\mathbb{F}_q}$ obsahující list $(a,b)$ s $\phi_q(ab) = -1$. Takový bod ztotožníme pro $z = \frac{a}{b}$ s bodem $z \in D_f$, platí $\phi_q(z) = -1$. Podle věty \ref{Fq2} existuje bod $(z,y) \in E(\mathbb{F}_{q^2})$. Tento bod je díky větě \ref{cy} jistě v grafu $G_{\mathbb{F}_{q^2}}$ listem. 
+
+
 
 \begin{poznamka}
-Podotkněme, že $v_2 (q-1)$ lze vyjádřit pomocí $v_2(k)$ a $v_2(p \pm 1)$. Tzv.  \textit{Lifting The Exponent lemma} z olympiádní matematiky totiž říká, že pro $k$ sudé platí: $$v_2(q-1) = v_2(p+1)+v_2(p-1)+v_2(k)-1.$$ Díky tomu zjišťujeme, že odhady, které byly předmětem důsledku, \ref{hloub} JSOU/NEJSOU LOLOL těsné.
+Podotkněme, že $v_2 (q-1)$ lze vyjádřit pomocí $v_2(k)$ a $v_2(p \pm 1)$. Tzv.  \textit{Lifting The Exponent lemma} z olympiádní matematiky totiž říká, že pro $k$ sudé platí: $$v_2(q-1) = v_2(p+1)+v_2(p-1)+v_2(k)-1.$$ Díky tomu zjišťujeme, že odhady, které byly předmětem důsledku, \ref{hloub} jsou těsné.
 \end{poznamka}
 
 
